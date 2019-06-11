@@ -5,13 +5,14 @@
     <parent>
         <artifactId>raven-commons</artifactId>
         <groupId>org.raven</groupId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.raven</groupId>
     <artifactId>raven-commons-data</artifactId>
     <version>${raven-commons-data.version}</version>
+    <description>raven-commons-data</description>
     <packaging>jar</packaging>
 
 </project>

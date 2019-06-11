@@ -8,8 +8,8 @@ import org.springframework.util.Assert;
 
 /**
  * @author yi.liang
- * @date 2018.12.30 17:55
  * @since JDK1.8
+ * date 2018.12.30 17:55
  */
 public class IntegerToValueEnumConverterFactory implements ConverterFactory<Integer, ValueEnum> {
 

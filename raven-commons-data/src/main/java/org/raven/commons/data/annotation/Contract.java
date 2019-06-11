@@ -7,8 +7,8 @@ import java.lang.annotation.*;
 
 /**
  * @author yi.liang
- * @date 2018.9.25
  * @since JDK1.8
+ * date 2018.9.25
  */
 @Documented
 @Target({ElementType.TYPE})
@@ -17,9 +17,9 @@ import java.lang.annotation.*;
  * 可以指定属性成员格式化类型
  */
 public @interface Contract {
+
     /**
-     *
-     * @return
+     * @return MemberFormatType
      */
     MemberFormatType formatType() default MemberFormatType.CamelCase;
 }

@@ -6,17 +6,17 @@ import java.util.HashMap;
 
 /**
  * @author yi.liang
- * @date 2018.9.25
  * @since JDK1.8
+ * date 2018.9.25
  */
 public class ValueEnumHelper {
 
     private static final HashMap<String, HashMap<Integer, ValueEnum>> cache = new HashMap<>();
 
     /**
-     * @param clazz
-     * @param <T>
-     * @return
+     * @param clazz enum class
+     * @param <T>   enum type
+     * @return enum
      */
     public static <T extends ValueEnum> HashMap<Integer, ValueEnum> getValueMap(Class<T> clazz) {
 
@@ -52,10 +52,10 @@ public class ValueEnumHelper {
     }
 
     /**
-     * @param clazz
-     * @param value
-     * @param <T>
-     * @return
+     * @param clazz enum class
+     * @param value enum value
+     * @param <T>   enum type
+     * @return enum
      */
     public static <T extends ValueEnum> T valueOf(Class<T> clazz, int value) {
         try {
@@ -73,14 +73,14 @@ public class ValueEnumHelper {
     }
 
     /**
-     * @param clazz
-     * @param name
-     * @param <T>
-     * @return
+     * @param clazz enum class
+     * @param name  enum name
+     * @param <T>   enum type
+     * @return enum
      */
     public static <T extends Enum & ValueEnum> T nameOf(Class<T> clazz, String name) {
 
-        if(name == null || name.length() == 0) {
+        if (name == null || name.length() == 0) {
             return null;
         }
 

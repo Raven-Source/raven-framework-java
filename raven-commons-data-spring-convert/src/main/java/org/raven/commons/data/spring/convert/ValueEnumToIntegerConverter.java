@@ -5,8 +5,8 @@ import org.springframework.core.convert.converter.Converter;
 
 /**
  * @author yi.liang
- * @date 2019.01.08 14:53
  * @since JDK1.8
+ * date 2019.01.08 14:53
  */
 public class ValueEnumToIntegerConverter implements Converter<ValueEnum, Integer> {
 

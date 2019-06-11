@@ -2,22 +2,18 @@ package org.raven.commons.data;
 
 /**
  * @author yi.liang
- * @date 2018.9.25
  * @since JDK1.8
+ * date 2018.9.25
  */
 public interface Delible {
 
     /**
-     * 是否逻辑删除
-     *
-     * @return
+     * @return logically del
      */
     boolean isDel();
 
     /**
-     * 是否逻辑删除
-     *
-     * @return
+     * @param del logically del
      */
     void setDel(boolean del);
 

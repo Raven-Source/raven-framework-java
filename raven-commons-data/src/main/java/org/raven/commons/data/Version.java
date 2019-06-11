@@ -2,22 +2,18 @@ package org.raven.commons.data;
 
 /**
  * @author yi.liang
- * @date 2018.11.09 11:05
  * @since JDK1.8
+ * date 2018.11.09 11:05
  */
 public interface Version<V> {
 
     /**
-     * 获取主键
-     *
-     * @return primary key
+     * @return version
      */
     V getVersion();
 
     /**
-     * 设置主键
-     *
-     * @param key primary key
+     * @param key version
      */
     void setVersion(V key);
 }

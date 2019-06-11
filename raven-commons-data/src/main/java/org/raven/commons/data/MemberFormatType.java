@@ -2,8 +2,8 @@ package org.raven.commons.data;
 
 /**
  * @author yi.liang
- * @date 2018.9.25
  * @since JDK1.8
+ * date 2018.9.25
  */
 public enum MemberFormatType {
 

@@ -9,8 +9,8 @@ import org.springframework.util.StringUtils;
 
 /**
  * @author yi.liang
- * @date 2018.12.30 17:55
  * @since JDK1.8
+ * date 2018.12.30 17:55
  */
 public class StringToValueEnumConverterFactory implements ConverterFactory<String, ValueEnum> {
 

@@ -5,13 +5,14 @@
     <parent>
         <artifactId>raven-commons</artifactId>
         <groupId>org.raven</groupId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.raven</groupId>
     <artifactId>raven-commons-data-spring-convert</artifactId>
-    <version>${raven-commons-data-spring-convert}</version>
+    <version>${raven-commons-data-spring-convert.version}</version>
+    <description>raven-commons-data-spring-convert</description>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -26,7 +27,6 @@
             <groupId>org.raven</groupId>
             <artifactId>raven-commons-data</artifactId>
             <version>${raven-commons-data.version}</version>
-            <scope>provided</scope>
         </dependency>
 
     </dependencies>
