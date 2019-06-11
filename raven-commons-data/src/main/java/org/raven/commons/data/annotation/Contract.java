@@ -14,7 +14,7 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 /**
- * 可以指定属性成员格式化类型
+ * You can specify the attribute member formatting type
  */
 public @interface Contract {
 

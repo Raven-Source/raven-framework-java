@@ -13,11 +13,21 @@ import org.springframework.util.Assert;
  */
 public class IntegerToValueEnumConverterFactory implements ConverterFactory<Integer, ValueEnum> {
 
+    /**
+     *
+     * @param targetType
+     * @param <T>
+     * @return
+     */
     @Override
     public <T extends ValueEnum> Converter<Integer, T> getConverter(Class<T> targetType) {
         return new IntegerToValueEnumConverter(getEnumType(targetType));
     }
 
+    /**
+     *
+     * @param <T>
+     */
     private class IntegerToValueEnumConverter<T extends ValueEnum> implements Converter<Integer, T> {
 
         private final Class<T> enumType;

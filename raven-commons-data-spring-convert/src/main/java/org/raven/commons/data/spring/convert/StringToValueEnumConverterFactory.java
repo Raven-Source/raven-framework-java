@@ -14,11 +14,21 @@ import org.springframework.util.StringUtils;
  */
 public class StringToValueEnumConverterFactory implements ConverterFactory<String, ValueEnum> {
 
+    /**
+     *
+     * @param targetType
+     * @param <T>
+     * @return
+     */
     @Override
     public <T extends ValueEnum> Converter<String, T> getConverter(Class<T> targetType) {
         return new StringToValueEnumConverter(getEnumType(targetType));
     }
 
+    /**
+     *
+     * @param <T>
+     */
     private class StringToValueEnumConverter<T extends Enum & ValueEnum> implements Converter<String, T> {
 
         private final Class<T> enumType;

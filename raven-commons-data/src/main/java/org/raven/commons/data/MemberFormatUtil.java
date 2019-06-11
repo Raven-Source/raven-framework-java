@@ -7,6 +7,12 @@ package org.raven.commons.data;
  */
 public class MemberFormatUtil {
 
+    /**
+     * 
+     * @param input
+     * @param memberFormatType
+     * @return
+     */
     public static String namingFormat(String input, MemberFormatType memberFormatType) {
 
         if (input == null || input.length() == 0) {
@@ -32,6 +38,12 @@ public class MemberFormatUtil {
         return input;
     }
 
+    /**
+     *
+     * @param input
+     * @param propertyFormatType
+     * @return
+     */
     private static String convertFirstChar(String input, MemberFormatType propertyFormatType) {
         char[] _temp = input.toCharArray();
         if (propertyFormatType == MemberFormatType.PascalCase) {
@@ -42,6 +54,12 @@ public class MemberFormatUtil {
         return new String(_temp);
     }
 
+    /**
+     *
+     * @param input
+     * @param delimiter
+     * @return
+     */
     private static String convertSnakeCase(String input, char delimiter) {
 
         int length = input.length();

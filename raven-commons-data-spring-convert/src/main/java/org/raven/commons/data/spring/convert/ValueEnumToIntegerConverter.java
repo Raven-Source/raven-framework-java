@@ -10,6 +10,12 @@ import org.springframework.core.convert.converter.Converter;
  */
 public class ValueEnumToIntegerConverter implements Converter<ValueEnum, Integer> {
 
+    /**
+     * ValueEnum to Integer
+     *
+     * @param source
+     * @return
+     */
     @Override
     public Integer convert(ValueEnum source) {
         if (source == null)
