@@ -8,7 +8,6 @@ package org.raven.commons.data;
 public class MemberFormatUtil {
 
     /**
-     * 
      * @param input
      * @param memberFormatType
      * @return
@@ -20,7 +19,7 @@ public class MemberFormatUtil {
         }
 
         char first = input.charAt(0);
-        Character.isUpperCase(first);
+
         if (memberFormatType == MemberFormatType.PascalCase && first >= 97 && first <= 122) {
             return convertFirstChar(input, memberFormatType);
 
@@ -30,7 +29,7 @@ public class MemberFormatUtil {
         } else if (memberFormatType == MemberFormatType.SnakeCase) {
             return convertSnakeCase(input, '_');
 
-        }else if (memberFormatType == MemberFormatType.KebabCase) {
+        } else if (memberFormatType == MemberFormatType.KebabCase) {
             return convertSnakeCase(input, '-');
 
         }
@@ -39,7 +38,6 @@ public class MemberFormatUtil {
     }
 
     /**
-     *
      * @param input
      * @param propertyFormatType
      * @return
@@ -55,7 +53,6 @@ public class MemberFormatUtil {
     }
 
     /**
-     *
      * @param input
      * @param delimiter
      * @return
@@ -66,24 +63,18 @@ public class MemberFormatUtil {
         StringBuilder result = new StringBuilder(length * 2);
         int resultLength = 0;
         boolean wasPrevTranslated = false;
-        for (int i = 0; i < length; i++)
-        {
+        for (int i = 0; i < length; i++) {
             char c = input.charAt(i);
             // skip first starting delimiter
-            if (i > 0 || c != delimiter)
-            {
-                if (Character.isUpperCase(c))
-                {
-                    if (!wasPrevTranslated && resultLength > 0 && result.charAt(resultLength - 1) != delimiter)
-                    {
+            if (i > 0 || c != delimiter) {
+                if (Character.isUpperCase(c)) {
+                    if (!wasPrevTranslated && resultLength > 0 && result.charAt(resultLength - 1) != delimiter) {
                         result.append(delimiter);
                         resultLength++;
                     }
                     c = Character.toLowerCase(c);
                     wasPrevTranslated = true;
-                }
-                else
-                {
+                } else {
                     wasPrevTranslated = false;
                 }
                 result.append(c);

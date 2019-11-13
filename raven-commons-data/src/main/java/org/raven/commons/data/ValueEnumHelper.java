@@ -60,7 +60,7 @@ public class ValueEnumHelper {
     public static <T extends ValueEnum> T valueOf(Class<T> clazz, int value) {
         try {
             HashMap<Integer, ValueEnum> map = getValueMap(clazz);
-            if (map.containsKey(value)) {
+            if (map != null && map.containsKey(value)) {
                 return (T) map.get(value);
             } else {
                 return null;
@@ -78,14 +78,14 @@ public class ValueEnumHelper {
      * @param <T>   enum type
      * @return enum
      */
-    public static <T extends Enum & ValueEnum> T nameOf(Class<T> clazz, String name) {
+    public static <T extends Enum<T> & ValueEnum> T nameOf(Class<T> clazz, String name) {
 
         if (name == null || name.length() == 0) {
             return null;
         }
 
         try {
-            return (T) Enum.valueOf(clazz, name);
+            return Enum.valueOf(clazz, name);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

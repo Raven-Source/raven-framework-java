@@ -14,7 +14,6 @@ import org.springframework.util.Assert;
 public class IntegerToValueEnumConverterFactory implements ConverterFactory<Integer, ValueEnum> {
 
     /**
-     *
      * @param targetType
      * @param <T>
      * @return
@@ -25,7 +24,6 @@ public class IntegerToValueEnumConverterFactory implements ConverterFactory<Inte
     }
 
     /**
-     *
      * @param <T>
      */
     private class IntegerToValueEnumConverter<T extends ValueEnum> implements Converter<Integer, T> {

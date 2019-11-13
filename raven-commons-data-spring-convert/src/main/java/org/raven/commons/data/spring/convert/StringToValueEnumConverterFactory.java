@@ -15,7 +15,6 @@ import org.springframework.util.StringUtils;
 public class StringToValueEnumConverterFactory implements ConverterFactory<String, ValueEnum> {
 
     /**
-     *
      * @param targetType
      * @param <T>
      * @return
@@ -26,10 +25,9 @@ public class StringToValueEnumConverterFactory implements ConverterFactory<Strin
     }
 
     /**
-     *
      * @param <T>
      */
-    private class StringToValueEnumConverter<T extends Enum & ValueEnum> implements Converter<String, T> {
+    private class StringToValueEnumConverter<T extends Enum<T> & ValueEnum> implements Converter<String, T> {
 
         private final Class<T> enumType;
 
@@ -39,7 +37,7 @@ public class StringToValueEnumConverterFactory implements ConverterFactory<Strin
 
         @Override
         public T convert(String source) {
-            if(StringUtils.isEmpty(source)) {
+            if (StringUtils.isEmpty(source)) {
                 return null;
             }
 
@@ -47,7 +45,7 @@ public class StringToValueEnumConverterFactory implements ConverterFactory<Strin
                 int value = Integer.parseInt(source);
                 return ValueEnumHelper.valueOf(enumType, value);
 
-            }catch (Exception e){
+            } catch (Exception e) {
 
             }
 
