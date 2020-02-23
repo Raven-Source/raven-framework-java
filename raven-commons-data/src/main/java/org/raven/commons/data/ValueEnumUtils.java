@@ -9,7 +9,7 @@ import java.util.HashMap;
  * @since JDK1.8
  * date 2018.9.25
  */
-public class ValueEnumHelper {
+public class ValueEnumUtils {
 
     private static final HashMap<String, HashMap<Integer, ValueEnum>> cache = new HashMap<>();
 

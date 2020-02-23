@@ -1,7 +1,7 @@
 package org.raven.commons.data.spring.convert;
 
 import org.raven.commons.data.ValueEnum;
-import org.raven.commons.data.ValueEnumHelper;
+import org.raven.commons.data.ValueEnumUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
 import org.springframework.util.Assert;
@@ -43,13 +43,13 @@ public class StringToValueEnumConverterFactory implements ConverterFactory<Strin
 
             try {
                 int value = Integer.parseInt(source);
-                return ValueEnumHelper.valueOf(enumType, value);
+                return ValueEnumUtils.valueOf(enumType, value);
 
             } catch (Exception e) {
 
             }
 
-            return ValueEnumHelper.nameOf(enumType, source);
+            return ValueEnumUtils.nameOf(enumType, source);
         }
     }
 

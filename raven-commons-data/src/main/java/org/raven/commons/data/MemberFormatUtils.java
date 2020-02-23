@@ -5,7 +5,7 @@ package org.raven.commons.data;
  * @since JDK1.8
  * date 2018.9.25
  */
-public class MemberFormatUtil {
+public class MemberFormatUtils {
 
     /**
      * @param input

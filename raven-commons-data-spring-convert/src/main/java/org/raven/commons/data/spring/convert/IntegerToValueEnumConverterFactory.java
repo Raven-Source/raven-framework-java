@@ -1,7 +1,7 @@
 package org.raven.commons.data.spring.convert;
 
 import org.raven.commons.data.ValueEnum;
-import org.raven.commons.data.ValueEnumHelper;
+import org.raven.commons.data.ValueEnumUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
 import org.springframework.util.Assert;
@@ -36,7 +36,7 @@ public class IntegerToValueEnumConverterFactory implements ConverterFactory<Inte
 
         @Override
         public T convert(Integer source) {
-            return ValueEnumHelper.valueOf(enumType, source);
+            return ValueEnumUtils.valueOf(enumType, source);
         }
     }
 
