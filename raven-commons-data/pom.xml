@@ -13,7 +13,6 @@
     <description>raven-commons-data</description>
     <url>https://github.com/Raven-Source/raven-commons-java</url>
 
-    <groupId>io.github.raven-source</groupId>
     <artifactId>raven-commons-data</artifactId>
     <version>${raven-commons-data.version}</version>
     <packaging>jar</packaging>
