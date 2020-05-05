@@ -1,6 +1,6 @@
 package org.raven.commons.data.spring.convert;
 
-import org.raven.commons.data.ValueEnum;
+import org.raven.commons.data.ValueType;
 import org.springframework.core.convert.converter.Converter;
 
 /**
@@ -8,16 +8,16 @@ import org.springframework.core.convert.converter.Converter;
  * @since JDK1.8
  * date 2019.01.08 14:53
  */
-public class ValueEnumToIntegerConverter implements Converter<ValueEnum, Integer> {
+public class ValueTypeToNumberConverter implements Converter<ValueType, Number> {
 
     /**
-     * ValueEnum to Integer
+     * ValueType to Integer
      *
      * @param source
      * @return
      */
     @Override
-    public Integer convert(ValueEnum source) {
+    public Number convert(ValueType source) {
         if (source == null)
             return 0;
         else

@@ -11,9 +11,9 @@ import org.junit.Test;
 public class EnumConverterTest {
 
     @Test
-    public void convert() {
+    public void convert_enum() {
 
-        StringToValueEnumConverterFactory factory = new StringToValueEnumConverterFactory();
+        StringToValueTypeConverterFactory factory = new StringToValueTypeConverterFactory();
         ColorType colorType = factory.getConverter(ColorType.class).convert("B");
         Assert.assertEquals(colorType, ColorType.B);
 
@@ -21,9 +21,23 @@ public class EnumConverterTest {
         Assert.assertEquals(colorType, ColorType.D);
 
 
-        IntegerToValueEnumConverterFactory factory2 = new IntegerToValueEnumConverterFactory();
+        NumberToValueTypeConverterFactory factory2 = new NumberToValueTypeConverterFactory();
         colorType = factory2.getConverter(ColorType.class).convert(4);
         Assert.assertEquals(colorType, ColorType.D);
+    }
+
+
+    @Test
+    public void convert_valueType() {
+
+        StringToValueTypeConverterFactory factory = new StringToValueTypeConverterFactory();
+        Gender gender = factory.getConverter(Gender.class).convert("2");
+        Assert.assertEquals(gender, Gender.woman);
+
+
+        NumberToValueTypeConverterFactory factory2 = new NumberToValueTypeConverterFactory();
+        gender = factory2.getConverter(Gender.class).convert(2);
+        Assert.assertEquals(gender, Gender.woman);
     }
 
 }

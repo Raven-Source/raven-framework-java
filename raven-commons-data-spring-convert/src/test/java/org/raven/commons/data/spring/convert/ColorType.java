@@ -1,9 +1,9 @@
 package org.raven.commons.data.spring.convert;
 
 
-import org.raven.commons.data.ValueEnum;
+import org.raven.commons.data.ValueType;
 
-public enum ColorType implements ValueEnum {
+public enum ColorType implements ValueType<Integer> {
 
     A(1),
     B(2),
@@ -17,7 +17,7 @@ public enum ColorType implements ValueEnum {
     }
 
     @Override
-    public int getValue() {
+    public Integer getValue() {
         return val;
     }
 

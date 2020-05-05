@@ -5,7 +5,7 @@
     <parent>
         <artifactId>raven-commons</artifactId>
         <groupId>io.github.raven-source</groupId>
-        <version>1.0.3</version>
+        <version>2.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -13,7 +13,6 @@
     <description>raven-commons-data-spring-convert</description>
     <url>https://github.com/Raven-Source/raven-commons-java</url>
 
-    <groupId>io.github.raven-source</groupId>
     <artifactId>raven-commons-data-spring-convert</artifactId>
     <version>${raven-commons-data-spring-convert.version}</version>
     <packaging>jar</packaging>
