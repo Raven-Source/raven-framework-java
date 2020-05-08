@@ -19,7 +19,7 @@ public class NumberToValueTypeConverterFactory implements ConverterFactory<Numbe
      */
     @Override
     public <T extends ValueType> Converter<Number, T> getConverter(Class<T> targetType) {
-        return new NumberToValueTypeConverter(targetType);
+        return new NumberToValueTypeConverter<>(targetType);
     }
 
     /**

@@ -14,7 +14,6 @@
     <url>https://github.com/Raven-Source/raven-commons-java</url>
 
     <artifactId>raven-commons-data-spring-convert</artifactId>
-    <version>${raven-commons-data-spring-convert.version}</version>
     <packaging>jar</packaging>
 
     <dependencies>

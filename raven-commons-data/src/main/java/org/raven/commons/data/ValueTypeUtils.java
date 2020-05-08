@@ -15,6 +15,7 @@ import java.util.HashMap;
  * date 2018.9.25
  */
 @Slf4j
+@SuppressWarnings("unchecked")
 public class ValueTypeUtils {
 
     private ValueTypeUtils() {
