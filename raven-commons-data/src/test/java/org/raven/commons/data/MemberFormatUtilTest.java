@@ -23,8 +23,4 @@ public class MemberFormatUtilTest {
 
     }
 
-    private String format(MemberFormatType formatType) {
-        return MemberFormatUtils.namingFormat(formatType.toString(), formatType);
-    }
-
 }

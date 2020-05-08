@@ -2,6 +2,7 @@ package org.raven.commons.data;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.raven.commons.data.annotation.Create;
 
 import java.lang.reflect.*;
 import java.math.BigDecimal;
@@ -125,8 +126,11 @@ public class ValueTypeUtils {
                     if (!method.isAccessible()) {
                         method.setAccessible(true);
                     }
-                    initMethod = method;
-                    break;
+
+                    if (initMethod == null || method.getAnnotation(Create.class) != null) {
+                        initMethod = method;
+                    }
+//                    break;
 
                 }
             }
@@ -194,36 +198,41 @@ public class ValueTypeUtils {
     }
 
     /**
-     * @param target      enum class
-     * @param stringValue enum value
-     * @param <T>         enum type
-     * @return enum
+     * @param target
+     * @param stringValue
+     * @param <T>
+     * @return ValueType
      */
     public static <T extends ValueType> T valueOf(Class<T> target, String stringValue) {
 
         Number value = null;
-        try {
+        if (StringUtils.isNumeric(stringValue)) {
+            try {
 
-            Class genericType = ValueTypeUtils.getGenericType(target);
-            if (genericType.equals(Integer.class)) {
-                value = Integer.parseInt(stringValue);
-            } else if (genericType.equals(Long.class)) {
-                value = Long.parseLong(stringValue);
-            } else if (genericType.equals(BigInteger.class)) {
-                value = new BigInteger(stringValue);
-            } else if (genericType.equals(Double.class)) {
-                value = Double.parseDouble(stringValue);
-            } else if (genericType.equals(Float.class)) {
-                value = Float.parseFloat(stringValue);
-            } else if (genericType.equals(BigDecimal.class)) {
-                value = new BigDecimal(stringValue);
+                Class genericType = ValueTypeUtils.getGenericType(target);
+                if (genericType.equals(Integer.class)) {
+                    value = Integer.parseInt(stringValue);
+                } else if (genericType.equals(Long.class)) {
+                    value = Long.parseLong(stringValue);
+                } else if (genericType.equals(BigInteger.class)) {
+                    value = new BigInteger(stringValue);
+                } else if (genericType.equals(Double.class)) {
+                    value = Double.parseDouble(stringValue);
+                } else if (genericType.equals(Float.class)) {
+                    value = Float.parseFloat(stringValue);
+                } else if (genericType.equals(BigDecimal.class)) {
+                    value = new BigDecimal(stringValue);
+                }
+
+            } catch (Exception ex) {
+                log.error(ex.getMessage(), ex);
             }
-
-        } catch (Exception ex) {
-            log.error(ex.getMessage(), ex);
         }
 
-        return valueOf(target, value);
+        if (value != null) {
+            return valueOf(target, value);
+        } else
+            return null;
     }
 
     /**
@@ -251,13 +260,21 @@ public class ValueTypeUtils {
 
     private static final HashMap<Class<? extends ValueType>, Class<? extends Number>> genericCache = new HashMap<>();
 
+    /**
+     * @param valueTypeClass
+     * @return
+     */
     public static Class<? extends Number> getGenericType(Class<? extends ValueType> valueTypeClass) {
 
         Class<? extends Number> clazz = genericCache.get(valueTypeClass);
         if (clazz != null)
             return clazz;
-
-        Type[] types = GenericUtils.getInterfacesGenericTypes(valueTypeClass, ValueType.class);
+        Type[] types = null;
+        if (NumberType.class.isAssignableFrom(valueTypeClass)) {
+            types = GenericUtils.getInterfacesGenericTypes(valueTypeClass, NumberType.class);
+        } else {
+            types = GenericUtils.getInterfacesGenericTypes(valueTypeClass, ValueType.class);
+        }
         clazz = (Class<? extends Number>) types[0];
         synchronized (genericCache) {
             if (!genericCache.containsKey(valueTypeClass)) {

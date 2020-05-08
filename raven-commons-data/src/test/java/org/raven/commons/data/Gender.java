@@ -1,5 +1,7 @@
 package org.raven.commons.data;
 
+import org.raven.commons.data.annotation.Create;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 
@@ -10,14 +12,20 @@ import java.lang.reflect.Type;
  */
 public class Gender extends NumberType<Integer, Gender> {
 
-    protected Gender(Integer value) {
+    private Gender(Integer value) {
         super(value);
     }
 
-    public final static Gender x = new Gender(1);
-    public final static Gender y = new Gender(2);
+    public final static Gender x = new Gender(10);
+    public final static Gender y = new Gender(20);
 
-    public static Gender valueOf(Integer i) {
+    public static Gender valueOf1(Integer i) {
+        return new Gender(i.intValue());
+    }
+
+    @Create
+    public static Gender valueOf2(Integer i) {
+        i = i * 10;
         return new Gender(i.intValue());
     }
 
