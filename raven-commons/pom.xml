@@ -3,17 +3,16 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>raven-commons</artifactId>
         <groupId>io.github.raven-source</groupId>
+        <artifactId>raven-commons-parent</artifactId>
         <version>2.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <name>${project.groupId}:${project.artifactId}</name>
-    <description>raven-commons-data</description>
+    <description>raven-commons</description>
     <url>https://github.com/Raven-Source/raven-commons-java</url>
 
-    <artifactId>raven-commons-data</artifactId>
+    <artifactId>raven-commons</artifactId>
     <packaging>jar</packaging>
 
 </project>

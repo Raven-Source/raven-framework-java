@@ -1,12 +1,11 @@
 package org.raven.commons.data.spring.convert;
 
 import lombok.extern.slf4j.Slf4j;
-import org.raven.commons.data.StringUtils;
+import org.raven.commons.util.StringUtils;
 import org.raven.commons.data.ValueType;
 import org.raven.commons.data.ValueTypeUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
-import org.springframework.util.Assert;
 
 /**
  * @author yi.liang
