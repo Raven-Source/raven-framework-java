@@ -10,9 +10,9 @@ import java.util.List;
  * created by 2018/1/3 14:00:00
  */
 @Data
-public class BasicRequestModel implements RequestModel {
+public class BasicRequestModel implements RequestModel<Extension> {
 
-    private List<KeyValue<String, String>> extension;
+    private Extension extension;
 
     /**
      *

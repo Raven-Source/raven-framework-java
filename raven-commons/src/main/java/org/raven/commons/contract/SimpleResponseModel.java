@@ -7,8 +7,8 @@ import java.util.List;
  * @since JDK1.8
  * created by 2018/1/3 14:00:00
  */
-public interface SimpleResponseModel {
+public interface SimpleResponseModel<TExtension> {
 
-    List<KeyValue<String, String>> getExtension();
-    void setExtension(List<KeyValue<String, String>> extension);
+    TExtension getExtension();
+    void setExtension(TExtension extension);
 }

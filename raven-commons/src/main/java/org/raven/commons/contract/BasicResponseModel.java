@@ -11,13 +11,13 @@ import java.util.List;
  * created by 2018/1/3 14:00:00
  */
 @Data
-public class BasicResponseModel<TData, TCode> implements ResponseModel<TData, TCode> {
+public class BasicResponseModel<TData, TCode> implements ResponseModel<TData, TCode, Extension> {
 
     private TCode code;
 
     private TData data;
 
-    private List<KeyValue<String, String>> extension;
+    private Extension extension;
 
     private String message;
 
