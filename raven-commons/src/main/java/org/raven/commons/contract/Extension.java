@@ -1,6 +1,5 @@
 package org.raven.commons.contract;
 
-
 import java.util.HashMap;
 
 /**

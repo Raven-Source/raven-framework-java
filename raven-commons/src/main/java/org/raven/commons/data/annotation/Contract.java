@@ -1,6 +1,5 @@
 package org.raven.commons.data.annotation;
 
-
 import org.raven.commons.data.MemberFormatType;
 
 import java.lang.annotation.*;

@@ -1,7 +1,5 @@
 package org.raven.commons.contract;
 
-import java.util.List;
-
 /**
  * @author yi.liang
  * @since JDK1.8

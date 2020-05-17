@@ -1,6 +1,5 @@
 package org.raven.commons.contract;
 
-
 /**
  * @author yi.liang
  * @since JDK1.8

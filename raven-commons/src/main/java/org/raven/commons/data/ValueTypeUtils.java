@@ -1,6 +1,5 @@
 package org.raven.commons.data;
 
-
 import lombok.extern.slf4j.Slf4j;
 import org.raven.commons.data.annotation.Create;
 import org.raven.commons.util.StringUtils;
