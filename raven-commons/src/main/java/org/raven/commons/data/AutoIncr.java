@@ -6,5 +6,5 @@ package org.raven.commons.data;
  * @since JDK1.8
  * date 2018.9.25
  */
-public interface AutoIncr<TKey> extends Entity<TKey> {
+public interface AutoIncr<TKey> extends Entity<Number> {
 }
