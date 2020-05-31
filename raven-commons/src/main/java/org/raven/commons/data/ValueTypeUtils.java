@@ -166,7 +166,7 @@ public class ValueTypeUtils {
         if (constructorCache.containsKey(target)) {
             constructor = constructorCache.get(target);
         } else {
-            for (Constructor<?> constr : target.getConstructors()) {
+            for (Constructor<?> constr : target.getDeclaredConstructors()) {
                 if (constr.getParameterCount() == 1
                     && Number.class.isAssignableFrom(constr.getParameterTypes()[0])) {
                     if (!constr.isAccessible()) {
