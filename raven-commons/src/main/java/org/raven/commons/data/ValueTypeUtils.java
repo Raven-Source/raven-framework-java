@@ -2,6 +2,7 @@ package org.raven.commons.data;
 
 import lombok.extern.slf4j.Slf4j;
 import org.raven.commons.data.annotation.Create;
+import org.raven.commons.data.annotation.Values;
 import org.raven.commons.util.StringUtils;
 
 import java.lang.reflect.*;
@@ -46,9 +47,18 @@ public class ValueTypeUtils {
             }
         }
         try {
-            Method method = target.getMethod("values");
+            Method method = target.getDeclaredMethod("values");
             //is enum-type, or user-defined values Method
-            if (method != null) {
+            if (method == null) {
+                for (Method declaredMethod : target.getDeclaredMethods()) {
+                    if (declaredMethod.getAnnotation(Values.class) != null) {
+                        method = declaredMethod;
+                        break;
+                    }
+                }
+            }
+
+            if (method != null && Modifier.isStatic(method.getModifiers())) {
 
                 ValueType[] inter = (ValueType[]) method.invoke(null);
                 for (int i = 0; i < inter.length; i++) {

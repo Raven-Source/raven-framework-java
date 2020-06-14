@@ -9,17 +9,24 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <description>raven-commons-data-spring-convert</description>
+    <description>raven-commons-data-hibernate-convert</description>
     <url>https://github.com/Raven-Source/raven-commons-java</url>
 
-    <artifactId>raven-commons-data-spring-convert</artifactId>
+    <artifactId>raven-commons-data-hibernate-convert</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
 
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
+            <groupId>com.vladmihalcea</groupId>
+            <artifactId>hibernate-types-52</artifactId>
+            <version>2.9.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.10.Final</version>
         </dependency>
 
         <dependency>
@@ -29,5 +36,6 @@
         </dependency>
 
     </dependencies>
+
 
 </project>
