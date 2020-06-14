@@ -53,14 +53,10 @@ public class ValueTypeTypeDescriptor
         if (value == null) {
             return null;
         } else if (String.class.isInstance(value)) {
-            return this.fromName((String) value);
+            return ValueTypeUtils.valueOf(typeToClass(), ((String) value).trim());
         } else {
             return Number.class.isInstance(value) ? ValueTypeUtils.valueOf(typeToClass(), (Number) value) : null;
         }
-    }
-
-    public ValueType fromName(String relationalForm) {
-        return relationalForm == null ? null : ValueTypeUtils.valueOf(typeToClass(), relationalForm.trim());
     }
 
 

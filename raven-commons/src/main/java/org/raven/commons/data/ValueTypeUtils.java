@@ -8,7 +8,9 @@ import org.raven.commons.util.StringUtils;
 import java.lang.reflect.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author yi.liang
@@ -47,31 +49,42 @@ public class ValueTypeUtils {
             }
         }
         try {
-            Method method = target.getDeclaredMethod("values");
-            //is enum-type, or user-defined values Method
-            if (method == null) {
-                for (Method declaredMethod : target.getDeclaredMethods()) {
-                    if (declaredMethod.getAnnotation(Values.class) != null) {
-                        method = declaredMethod;
-                        break;
+            ValueType[] inter = null;
+
+            if (target.isEnum()) {
+                inter = target.getEnumConstants();
+            } else {
+
+                Method method = target.getDeclaredMethod("values");
+                //is enum-type, or user-defined values Method
+                if (method == null) {
+                    for (Method declaredMethod : target.getDeclaredMethods()) {
+                        if (declaredMethod.getAnnotation(Values.class) != null) {
+                            method = declaredMethod;
+                            break;
+                        }
+                    }
+                }
+
+                if (method != null && Modifier.isStatic(method.getModifiers())) {
+                    inter = (ValueType[]) method.invoke(null);
+                } else {
+                    List<ValueType> list = new ArrayList<>();
+                    for (Field declaredField : target.getDeclaredFields()) {
+                        if (Modifier.isStatic(declaredField.getModifiers()) && declaredField.getType().equals(target)) {
+                            ValueType valueType = (ValueType) declaredField.get(declaredField);
+                            list.add(valueType);
+                        }
+                    }
+                    if (!list.isEmpty()) {
+                        inter = (ValueType[]) list.toArray();
                     }
                 }
             }
 
-            if (method != null && Modifier.isStatic(method.getModifiers())) {
-
-                ValueType[] inter = (ValueType[]) method.invoke(null);
-                for (int i = 0; i < inter.length; i++) {
-                    ValueType valueType = inter[i];
-                    map.put(valueType.getValue(), valueType);
-                }
-            } else {
-                for (Field declaredField : target.getDeclaredFields()) {
-                    if (Modifier.isStatic(declaredField.getModifiers()) && declaredField.getType().equals(target)) {
-                        ValueType valueType = (ValueType) declaredField.get(declaredField);
-                        map.put(valueType.getValue(), valueType);
-                    }
-                }
+            for (int i = 0; i < inter.length; i++) {
+                ValueType valueType = inter[i];
+                map.put(valueType.getValue(), valueType);
             }
 
         } catch (NoSuchMethodException ex) {

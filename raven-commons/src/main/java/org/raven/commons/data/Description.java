@@ -1,5 +1,7 @@
 package org.raven.commons.data;
 
+import org.raven.commons.util.StringUtils;
+
 /**
  * @author yi.liang
  * @since JDK1.8
@@ -7,5 +9,8 @@ package org.raven.commons.data;
  */
 public interface Description {
 
-    String description();
+    default String getDescription() {
+        return StringUtils.EMPTY;
+    }
+
 }

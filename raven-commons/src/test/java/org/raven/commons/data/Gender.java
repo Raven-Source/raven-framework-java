@@ -1,6 +1,9 @@
 package org.raven.commons.data;
 
+import lombok.val;
 import org.raven.commons.data.annotation.Create;
+import org.raven.commons.data.annotation.Description;
+import org.raven.commons.extension.DescriptionExtensions;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
@@ -16,7 +19,10 @@ public class Gender extends NumberType<Integer, Gender> {
         super(value);
     }
 
+    @Description
     public final static Gender x = new Gender(10);
+
+    @Description
     public final static Gender y = new Gender(20);
 
     public static Gender valueOf1(Integer i) {

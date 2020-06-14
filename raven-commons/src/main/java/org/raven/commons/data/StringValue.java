@@ -5,7 +5,8 @@ package org.raven.commons.data;
  * @since JDK1.8
  * date 2020.6.14
  */
-public interface StringType {
+public interface StringValue extends Description {
 
     String getValue();
+
 }
