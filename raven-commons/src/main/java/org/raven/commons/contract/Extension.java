@@ -7,6 +7,6 @@ import java.util.HashMap;
  * @since JDK1.8
  * date 2020.05.15 01:55
  */
-public class Extension extends HashMap<String, String> {
+public class Extension extends HashMap<String, Object> {
 
 }

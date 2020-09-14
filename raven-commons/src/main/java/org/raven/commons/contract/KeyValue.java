@@ -25,4 +25,15 @@ public class KeyValue<TKey, TValue> {
         this.key = key;
         this.value = value;
     }
+
+    /**
+     * @param key
+     * @param value
+     * @param <TKey>
+     * @param <TValue>
+     * @return
+     */
+    public static <TKey, TValue> KeyValue<TKey, TValue> of(@NonNull TKey key, TValue value) {
+        return new KeyValue<>(key, value);
+    }
 }
