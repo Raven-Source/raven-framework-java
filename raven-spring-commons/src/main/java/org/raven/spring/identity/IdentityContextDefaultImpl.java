@@ -1,4 +1,4 @@
-package org.raven.web.spring.identity;
+package org.raven.spring.identity;
 
 import lombok.NonNull;
 import org.raven.web.spi.identity.Context;
