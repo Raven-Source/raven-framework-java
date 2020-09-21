@@ -13,6 +13,7 @@ import org.springframework.core.convert.converter.ConverterFactory;
  * date 2018.12.30 17:55
  */
 @Slf4j
+@SuppressWarnings("unchecked")
 public class StringToValueTypeConverterFactory implements ConverterFactory<String, ValueType> {
 
     /**

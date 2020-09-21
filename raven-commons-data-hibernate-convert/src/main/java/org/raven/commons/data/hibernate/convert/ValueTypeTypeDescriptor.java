@@ -19,6 +19,7 @@ import java.util.Properties;
  * @since JDK1.8
  * date 2020.06.04 17:23
  */
+@SuppressWarnings("unchecked")
 public class ValueTypeTypeDescriptor
     extends AbstractTypeDescriptor<ValueType>
     implements DynamicParameterizedType {
@@ -52,10 +53,10 @@ public class ValueTypeTypeDescriptor
     public <X> ValueType wrap(X value, WrapperOptions options) {
         if (value == null) {
             return null;
-        } else if (String.class.isInstance(value)) {
+        } else if (value instanceof String) {
             return ValueTypeUtils.valueOf(typeToClass(), ((String) value).trim());
         } else {
-            return Number.class.isInstance(value) ? ValueTypeUtils.valueOf(typeToClass(), (Number) value) : null;
+            return value instanceof Number ? ValueTypeUtils.valueOf(typeToClass(), (Number) value) : null;
         }
     }
 

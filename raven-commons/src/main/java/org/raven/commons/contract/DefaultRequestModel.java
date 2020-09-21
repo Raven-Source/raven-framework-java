@@ -8,14 +8,14 @@ import lombok.Data;
  * created by 2018/1/3 14:00:00
  */
 @Data
-public class BasicRequestModel implements RequestModel<Extension> {
+public class DefaultRequestModel implements RequestModel<Extension> {
 
     private Extension extension;
 
     /**
      *
      */
-    public BasicRequestModel() {
+    public DefaultRequestModel() {
         extension = new Extension();
     }
 

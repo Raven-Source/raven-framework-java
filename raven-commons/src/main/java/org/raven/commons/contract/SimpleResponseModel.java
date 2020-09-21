@@ -7,6 +7,9 @@ package org.raven.commons.contract;
  */
 public interface SimpleResponseModel<TExtension> {
 
+    boolean isSuccess();
+    void setSuccess(boolean success);
+
     TExtension getExtension();
     void setExtension(TExtension extension);
 }

@@ -9,28 +9,32 @@ import org.raven.commons.data.annotation.Ignore;
  * created by 2018/1/3 14:00:00
  */
 @Data
-public class BasicResponseModel<TData, TCode> implements ResponseModel<TData, TCode, Extension> {
+public class DefaultResponseModel<TData, TCode> implements ResponseModel<TData, TCode, Extension> {
+
+    private boolean success;
 
     private TCode code;
 
     private TData data;
 
-    private Extension extension;
-
     private String message;
+
+    private Extension extension;
 
     /**
      *
      */
-    public BasicResponseModel() {
-        extension = new Extension();
+    public DefaultResponseModel() {
+        this.success = true;
+        this.extension = new Extension();
     }
 
-    public BasicResponseModel(TData data, String message, TCode code) {
+    public DefaultResponseModel(boolean success, TData data, String message, TCode code) {
 
+        this.success = success;
+        this.code = code;
         this.data = data;
         this.message = message;
-        this.code = code;
         this.extension = new Extension();
     }
 

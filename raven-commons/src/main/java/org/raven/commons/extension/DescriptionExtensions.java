@@ -5,7 +5,6 @@ import org.raven.commons.data.annotation.Description;
 import org.raven.commons.util.StringUtils;
 
 import java.lang.reflect.AccessibleObject;
-import java.lang.reflect.Method;
 
 /**
  * @author yi.liang
@@ -15,15 +14,23 @@ import java.lang.reflect.Method;
 public class DescriptionExtensions {
 
     public static String getDescription(@NonNull Class target) {
-        Description description = (Description) target.getDeclaredAnnotation(Description.class);
+        try {
+            Description description = (Description) target.getDeclaredAnnotation(Description.class);
 
-        return getValue(description);
+            return getValue(description);
+        } catch (Exception ex) {
+            return StringUtils.EMPTY;
+        }
     }
 
     public static String getDescription(@NonNull AccessibleObject target) {
-        Description description = (Description) target.getDeclaredAnnotation(Description.class);
+        try {
+            Description description = target.getDeclaredAnnotation(Description.class);
 
-        return getValue(description);
+            return getValue(description);
+        } catch (Exception ex) {
+            return StringUtils.EMPTY;
+        }
     }
 
     private static String getValue(Description description) {
