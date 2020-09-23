@@ -8,7 +8,7 @@ import org.junit.Test;
  * @date 2019.01.08 15:39
  * @since JDK1.8
  */
-public class EnumConverterTest {
+public class ValueTypeConverterTest {
 
     @Test
     public void convert_enum() {

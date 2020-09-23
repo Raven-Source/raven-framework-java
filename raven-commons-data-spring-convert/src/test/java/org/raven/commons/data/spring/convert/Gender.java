@@ -25,4 +25,9 @@ public class Gender extends NumberType<Integer, Gender> {
     public static Gender valueOf(Integer i) {
         return new Gender(i.intValue());
     }
+
+    @Override
+    public Gender[] values() {
+        return new Gender[]{man, woman};
+    }
 }

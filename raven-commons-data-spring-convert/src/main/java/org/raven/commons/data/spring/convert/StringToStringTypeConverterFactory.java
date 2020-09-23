@@ -1,7 +1,7 @@
 package org.raven.commons.data.spring.convert;
 
 import org.raven.commons.data.SerializableTypeUtils;
-import org.raven.commons.data.ValueType;
+import org.raven.commons.data.StringType;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
 
@@ -10,7 +10,7 @@ import org.springframework.core.convert.converter.ConverterFactory;
  * @since JDK1.8
  * date 2018.12.30 17:55
  */
-public class NumberToValueTypeConverterFactory implements ConverterFactory<Number, ValueType> {
+public class StringToStringTypeConverterFactory implements ConverterFactory<String, StringType> {
 
     /**
      * @param targetType
@@ -18,14 +18,14 @@ public class NumberToValueTypeConverterFactory implements ConverterFactory<Numbe
      * @return
      */
     @Override
-    public <T extends ValueType> Converter<Number, T> getConverter(Class<T> targetType) {
+    public <T extends StringType> Converter<String, T> getConverter(Class<T> targetType) {
         return new NumberToValueTypeConverter<>(targetType);
     }
 
     /**
      * @param <T>
      */
-    private static class NumberToValueTypeConverter<T extends ValueType> implements Converter<Number, T> {
+    private static class NumberToValueTypeConverter<T extends StringType> implements Converter<String, T> {
 
         private final Class<T> target;
 
@@ -34,7 +34,7 @@ public class NumberToValueTypeConverterFactory implements ConverterFactory<Numbe
         }
 
         @Override
-        public T convert(Number source) {
+        public T convert(String source) {
             return SerializableTypeUtils.valueOf(target, source);
         }
     }

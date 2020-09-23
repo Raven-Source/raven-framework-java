@@ -1,5 +1,7 @@
 package org.raven.commons.data;
 
+import org.raven.commons.data.annotation.Ignore;
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
@@ -25,6 +27,8 @@ public abstract class NumberType<V extends Number, T extends NumberType> impleme
     public V getValue() {
         return value;
     }
+
+    public abstract T[] values();
 
     @Override
     public String toString() {

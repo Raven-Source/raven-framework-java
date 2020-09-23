@@ -5,7 +5,8 @@ package org.raven.commons.data;
  * @since JDK1.8
  * date 2018.9.25
  */
-public interface ValueType<V extends Number> extends Description {
+public interface ValueType<V extends Number> extends SerializableType<V> {
 
+    @Override
     V getValue();
 }

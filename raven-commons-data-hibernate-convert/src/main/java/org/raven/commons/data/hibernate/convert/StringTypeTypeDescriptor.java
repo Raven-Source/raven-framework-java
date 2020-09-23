@@ -8,7 +8,7 @@ import org.hibernate.type.descriptor.java.AbstractTypeDescriptor;
 import org.hibernate.type.descriptor.java.ImmutableMutabilityPlan;
 import org.hibernate.usertype.DynamicParameterizedType;
 import org.raven.commons.data.SerializableTypeUtils;
-import org.raven.commons.data.ValueType;
+import org.raven.commons.data.StringType;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -20,47 +20,47 @@ import java.util.Properties;
  * date 2020.06.04 17:23
  */
 @SuppressWarnings("unchecked")
-public class ValueTypeTypeDescriptor
-        extends AbstractTypeDescriptor<ValueType>
+public class StringTypeTypeDescriptor
+        extends AbstractTypeDescriptor<StringType>
         implements DynamicParameterizedType {
 
     private Type type;
 
-    public ValueTypeTypeDescriptor() {
-        super(ValueType.class, ImmutableMutabilityPlan.INSTANCE);
+    public StringTypeTypeDescriptor() {
+        super(StringType.class, ImmutableMutabilityPlan.INSTANCE);
     }
 
-    public ValueTypeTypeDescriptor(Class<ValueType> type) {
+    public StringTypeTypeDescriptor(Class<StringType> type) {
         super(type, ImmutableMutabilityPlan.INSTANCE);
     }
 
     @Override
-    public String toString(ValueType value) {
+    public String toString(StringType value) {
         return value == null ? "<null>" : value.getValue().toString();
     }
 
     @Override
-    public ValueType fromString(String s) {
+    public StringType fromString(String s) {
         return s == null ? null : SerializableTypeUtils.stringValueOf(this.getJavaType(), s);
     }
 
     @Override
-    public <X> X unwrap(ValueType t, Class<X> aClass, WrapperOptions wrapperOptions) {
+    public <X> X unwrap(StringType t, Class<X> aClass, WrapperOptions wrapperOptions) {
         return t == null ? null : aClass.cast(t.getValue());
     }
 
     @Override
-    public <X> ValueType wrap(X value, WrapperOptions options) {
+    public <X> StringType wrap(X value, WrapperOptions options) {
         if (value == null) {
             return null;
         } else {
-            return value instanceof Number ? SerializableTypeUtils.valueOf(typeToClass(), value) : null;
+            return value instanceof String ? SerializableTypeUtils.valueOf(typeToClass(), value) : null;
         }
     }
 
 
     @Override
-    public boolean areEqual(ValueType one, ValueType another) {
+    public boolean areEqual(StringType one, StringType another) {
         if (one == another) {
             return true;
         }
@@ -80,11 +80,11 @@ public class ValueTypeTypeDescriptor
         }
     }
 
-    private Class<ValueType> typeToClass() {
+    private Class<StringType> typeToClass() {
         Type classType = type;
         if (type instanceof ParameterizedType) {
             classType = ((ParameterizedType) type).getRawType();
         }
-        return (Class<ValueType>) classType;
+        return (Class<StringType>) classType;
     }
 }
