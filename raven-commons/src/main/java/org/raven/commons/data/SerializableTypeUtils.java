@@ -312,14 +312,17 @@ public class SerializableTypeUtils {
         Class<?> clazz = genericCache.get(typeClass);
         if (clazz != null)
             return clazz;
+
         Type[] types = null;
-        if (NumberType.class.isAssignableFrom(typeClass)) {
+        if (StringType.class.isAssignableFrom(typeClass)) {
+            clazz = String.class;
+        } else if (NumberType.class.isAssignableFrom(typeClass)) {
             types = GenericUtils.getInterfacesGenericTypes(typeClass, NumberType.class);
+            clazz = (Class<?>) types[0];
         } else if (ValueType.class.isAssignableFrom(typeClass)) {
             types = GenericUtils.getInterfacesGenericTypes(typeClass, ValueType.class);
+            clazz = (Class<?>) types[0];
         }
-
-        clazz = (Class<?>) types[0];
         synchronized (genericCache) {
             if (!genericCache.containsKey(typeClass)) {
                 genericCache.put(typeClass, clazz);

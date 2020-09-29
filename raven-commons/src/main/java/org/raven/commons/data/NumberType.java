@@ -37,16 +37,13 @@ public abstract class NumberType<V extends Number, T extends NumberType> impleme
 
     @Override
     public boolean equals(Object obj) {
+
         if (obj == null) {
             return false;
         }
 
-        if (obj instanceof ValueType) {
-            return value.equals(((ValueType) obj).getValue());
-        }
-
-        if (obj instanceof Number) {
-            return obj.equals(value);
+        if (target.equals(obj.getClass())) {
+            return equalsValue(obj);
         }
 
         return false;
