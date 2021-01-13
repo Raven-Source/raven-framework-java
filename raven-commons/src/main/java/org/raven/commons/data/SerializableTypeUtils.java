@@ -3,7 +3,7 @@ package org.raven.commons.data;
 import lombok.extern.slf4j.Slf4j;
 import org.raven.commons.data.annotation.Create;
 import org.raven.commons.data.annotation.Values;
-import org.raven.commons.util.StringUtils;
+import org.raven.commons.util.StringUtil;
 
 import java.lang.reflect.*;
 import java.math.BigDecimal;
@@ -145,7 +145,7 @@ public class SerializableTypeUtils {
      */
     public static <T extends SerializableType> T stringValueOf(Class<T> target, String stringValue) {
 
-        if (StringUtils.isEmpty(stringValue)) {
+        if (StringUtil.isEmpty(stringValue)) {
             return null;
         }
 
@@ -153,7 +153,7 @@ public class SerializableTypeUtils {
             return valueOf(target, stringValue);
         }
         // ValueType
-        else if (ValueType.class.isAssignableFrom(target) && StringUtils.isNumeric(stringValue)) {
+        else if (ValueType.class.isAssignableFrom(target) && StringUtil.isNumeric(stringValue)) {
 
             Number value = null;
             try {

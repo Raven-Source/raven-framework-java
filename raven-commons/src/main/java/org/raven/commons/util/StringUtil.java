@@ -5,11 +5,11 @@ package org.raven.commons.util;
  * @since JDK1.8
  * date 2020.05.05 16:44
  */
-public class StringUtils {
+public class StringUtil {
 
     public static final String EMPTY = "";
 
-    private StringUtils() {
+    private StringUtil() {
     }
 
     /**
