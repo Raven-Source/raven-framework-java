@@ -1,5 +1,10 @@
 package org.raven.commons.constant;
 
+/**
+ * @author yi.liang
+ * @since JDK1.8
+ * created by 2021/1/13 14:00:00
+ */
 public abstract class DateFormatStringConstant {
 
     public final static String DATE_FORMAT_STRING = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";

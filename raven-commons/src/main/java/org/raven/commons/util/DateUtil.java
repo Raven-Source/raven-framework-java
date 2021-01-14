@@ -28,8 +28,8 @@ public class DateUtil {
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DateFormatStringConstant.DATE_FORMAT_STRING);
 
     /**
-     * @param date
-     * @return
+     * @param date date
+     * @return format string
      */
     public static String format(Date date) {
         if (date == null)
@@ -49,7 +49,8 @@ public class DateUtil {
     // }
 
     /**
-     * @return
+     * @param date date
+     * @return format string
      */
     public static String formatTime14(Date date) {
         if (date == null)
@@ -58,8 +59,8 @@ public class DateUtil {
     }
 
     /**
-     * @param date
-     * @return
+     * @param date zoned dateTime
+     * @return format string
      */
     public static String format(ZonedDateTime date) {
         if (date == null)
@@ -68,8 +69,8 @@ public class DateUtil {
     }
 
     /**
-     * @param str
-     * @return
+     * @param str date string
+     * @return the date
      */
     public static Date parse(String str) {
 
@@ -88,8 +89,8 @@ public class DateUtil {
     }
 
     /**
-     * @param obj
-     * @return
+     * @param obj localDate
+     * @return the date
      */
     public static Date toDate(LocalDate obj) {
 
@@ -103,8 +104,8 @@ public class DateUtil {
     }
 
     /**
-     * @param obj
-     * @return
+     * @param obj localDateTime
+     * @return the date
      */
     public static Date toDate(LocalDateTime obj) {
 
@@ -115,22 +116,22 @@ public class DateUtil {
     }
 
     /**
-     * @param obj
-     * @return
+     * @param localDate localDate
+     * @param localTime localTime
+     * @return the date
      */
-    public static Date toDate(LocalDate localDate, LocalTime obj) {
+    public static Date toDate(LocalDate localDate, LocalTime localTime) {
 
-        LocalDateTime localDateTime = LocalDateTime.of(localDate, obj);
+        LocalDateTime localDateTime = LocalDateTime.of(localDate, localTime);
         ZoneId zone = ZoneId.systemDefault();
         Instant instant = localDateTime.atZone(zone).toInstant();
         return Date.from(instant);
     }
 
     /***
-     * 获取当前日期 	格式：201001
-     * @return
+     * @param date date
+     * @return format string, eg: 201001
      */
-
     public static String formatDateMonth(Date date) {
         if (date == null)
             return null;
@@ -138,7 +139,7 @@ public class DateUtil {
     }
 
     public static Date parseDateMonth(String str) {
-        if(StringUtil.isEmpty(str)){
+        if (StringUtil.isEmpty(str)) {
             return null;
         }
         try {
@@ -150,8 +151,8 @@ public class DateUtil {
     }
 
     /***
-     * 获取当前日期 	格式：20100101
-     * @return
+     * @param date date
+     * @return format string, eg: 20100101
      */
     public static String formatDateDay(Date date) {
         if (date == null)
@@ -160,8 +161,8 @@ public class DateUtil {
     }
 
     /***
-     * 获取当前时间 格式：20150101120101000
-     * @return
+     * @param date date
+     * @return format string, eg: 20150101120101000
      */
     public static String formatDateTime17(Date date) {
         if (date == null)

@@ -20,8 +20,8 @@ public class MD5Util {
     private static final String slat = "JnPIgtx5tZPmXszdzdT6stVOM6ahXe8v";
 
     /**
-     * @param str
-     * @return
+     * @param str string
+     * @return md5 byte[]
      */
     public static byte[] encrypt(@NonNull String str) {
         byte[] s = null;
@@ -39,9 +39,10 @@ public class MD5Util {
         return s;
     }
 
+
     /**
-     * @param str
-     * @return
+     * @param str string
+     * @return md5 hexString
      */
     public static String encryptToHexString(@NonNull String str) {
 

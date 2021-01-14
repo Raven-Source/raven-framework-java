@@ -28,10 +28,10 @@ public class JsonUtil {
     }
 
     /**
-     * @param content
-     * @param target
-     * @param <T>
-     * @return
+     * @param content json string
+     * @param target  target class
+     * @param <T>     T
+     * @return target object
      */
     public static <T> T parseObject(String content, Class<T> target) {
 
@@ -45,10 +45,10 @@ public class JsonUtil {
     }
 
     /**
-     * @param content
-     * @param target
-     * @param <T>
-     * @return
+     * @param content json string
+     * @param target  target type
+     * @param <T>     T
+     * @return target object
      */
     public static <T> T parseObject(String content, TypeReference<T> target) {
 
@@ -61,11 +61,11 @@ public class JsonUtil {
     }
 
     /**
-     * @param content
-     * @param parametrized
-     * @param parameterClasses
-     * @param <T>
-     * @return
+     * @param content          json string
+     * @param parametrized     target class
+     * @param parameterClasses parameter class
+     * @param <T>              T
+     * @return target object
      */
     public static <T> T parseObject(String content, Class<?> parametrized, Class<?>... parameterClasses) {
 
@@ -79,10 +79,10 @@ public class JsonUtil {
     }
 
     /**
-     * @param content
-     * @param target
-     * @param <T>
-     * @return
+     * @param content json string
+     * @param target  target class
+     * @param <T>     T
+     * @return target object list
      */
     public static <T> List<T> parseList(String content, Class<T> target) {
 
@@ -97,8 +97,10 @@ public class JsonUtil {
     }
 
     /**
-     * @param value
-     * @return
+     * object to json string
+     *
+     * @param value object
+     * @return json string
      */
     public static String toJsonString(Object value) {
 
@@ -112,15 +114,15 @@ public class JsonUtil {
     }
 
     /**
-     * @param fromValue
-     * @param toValueType
-     * @param <T>
-     * @return
+     * @param fromValue form object
+     * @param toTarget  target class
+     * @param <T>       T
+     * @return T object
      */
-    public static <T> T convert(Object fromValue, Class<T> toValueType) {
+    public static <T> T convert(Object fromValue, Class<T> toTarget) {
 
         try {
-            return mapper.convertValue(fromValue, toValueType);
+            return mapper.convertValue(fromValue, toTarget);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return null;
@@ -128,10 +130,10 @@ public class JsonUtil {
     }
 
     /**
-     * @param fromValue
-     * @param toValueType
-     * @param <T>
-     * @return
+     * @param fromValue   form object
+     * @param toValueType target type
+     * @param <T>         T
+     * @return T object
      */
     public static <T> T convert(Object fromValue, TypeReference<T> toValueType) {
 
@@ -144,9 +146,10 @@ public class JsonUtil {
     }
 
     /**
-     * @param source
-     * @param <T>
-     * @return
+     * @param source form object
+     * @param target target class
+     * @param <T>    T
+     * @return copied object
      */
     public static <T> T copy(T source, Class<T> target) {
 
@@ -161,9 +164,10 @@ public class JsonUtil {
     }
 
     /**
-     * @param source
-     * @param <T>
-     * @return
+     * @param source form object
+     * @param target target type
+     * @param <T>    T
+     * @return copied object
      */
     public static <T> T copy(T source, TypeReference<T> target) {
 
@@ -177,10 +181,13 @@ public class JsonUtil {
         }
     }
 
+
     /**
-     * @param source
-     * @param <T>
-     * @return
+     * @param source           form object
+     * @param parametrized     target type
+     * @param parameterClasses parameter class
+     * @param <T>              T
+     * @return copied object
      */
     public static <T> T copy(T source, Class<?> parametrized, Class<?>... parameterClasses) {
 

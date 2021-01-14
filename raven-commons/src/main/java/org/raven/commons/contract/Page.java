@@ -41,7 +41,7 @@ public interface Page<T> {
     /**
      * Returns the page content as {@link List}.
      *
-     * @return
+     * @return the page content
      */
     List<T> getContent();
 }

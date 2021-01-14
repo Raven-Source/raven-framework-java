@@ -4,18 +4,14 @@ import java.math.BigDecimal;
 
 /**
  * @author yi.liang
- * @date 2019.04.05 19:08
  * @since JDK1.8
+ * date 2019.04.05 19:08
  */
 public class NumberUtil {
 
     private NumberUtil() {
     }
 
-    /**
-     * @param obj
-     * @return
-     */
     public static int toInt(Object obj) {
 
         if (obj == null)
@@ -28,10 +24,6 @@ public class NumberUtil {
 
     }
 
-    /**
-     * @param obj
-     * @return
-     */
     public static long toLong(Object obj) {
 
         if (obj == null)
@@ -44,10 +36,6 @@ public class NumberUtil {
 
     }
 
-    /**
-     * @param obj
-     * @return
-     */
     public static double toDouble(Object obj) {
 
         if (obj == null)
@@ -60,11 +48,6 @@ public class NumberUtil {
 
     }
 
-    /**
-     *  保留2位小数 四舍五入
-     * @param obj
-     * @return
-     */
     public static BigDecimal toBigDecimal(Object obj) {
 
         if (obj == null)
@@ -77,23 +60,10 @@ public class NumberUtil {
 
     }
 
-    /**
-     * 校验Long非空
-     *
-     * @param num
-     * @return
-     */
     public static boolean isEmpty(Long num) {
-        if (num == null || num.equals(0L)) {
-            return true;
-        }
-        return false;
+        return num == null || num.equals(0L);
     }
 
-    /**
-     * @param num
-     * @return
-     */
     public static boolean isNotEmpty(Long num) {
         return !isEmpty(num);
     }

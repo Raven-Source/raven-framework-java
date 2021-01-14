@@ -16,7 +16,7 @@ import java.util.TimeZone;
 
 /**
  * @author yi.liang
- * @date 2018.12.31 22:44
+ * date 2018.12.31 22:44
  * @since JDK1.8
  */
 @Configuration

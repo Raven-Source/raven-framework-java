@@ -4,8 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author yi.liang
- * @date 2019.04.04 17:38
  * @since JDK1.8
+ * date 2019.04.04 17:38
  */
 public class HexUtil {
 

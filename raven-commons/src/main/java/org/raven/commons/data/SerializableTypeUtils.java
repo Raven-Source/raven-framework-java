@@ -138,9 +138,9 @@ public class SerializableTypeUtils {
 
 
     /**
-     * @param target
-     * @param stringValue
-     * @param <T>
+     * @param target target
+     * @param stringValue stringValue
+     * @param <T> T
      * @return SerializableType
      */
     public static <T extends SerializableType> T stringValueOf(Class<T> target, String stringValue) {
@@ -304,8 +304,8 @@ public class SerializableTypeUtils {
     private static final Map<Class<? extends SerializableType>, Class<?>> genericCache = new HashMap<>();
 
     /**
-     * @param typeClass
-     * @return
+     * @param typeClass typeClass
+     * @return the genericType
      */
     public static Class<?> getGenericType(Class<? extends SerializableType> typeClass) {
 
