@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>raven-commons-spring</artifactId>
+    <artifactId>raven-spring-commons</artifactId>
     <packaging>jar</packaging>
 
     <properties>
