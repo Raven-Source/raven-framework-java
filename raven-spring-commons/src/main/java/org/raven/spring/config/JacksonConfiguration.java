@@ -25,8 +25,11 @@ import java.util.TimeZone;
 @EnableConfigurationProperties(JacksonProperties.class)
 public class JacksonConfiguration {
 
-    @Autowired
-    private JacksonProperties jacksonProperties;
+    private final JacksonProperties jacksonProperties;
+
+    public JacksonConfiguration(@Autowired JacksonProperties jacksonProperties) {
+        this.jacksonProperties = jacksonProperties;
+    }
 
     @Bean
     public ObjectMapper objectMapper() {
