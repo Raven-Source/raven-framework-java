@@ -7,7 +7,7 @@
     <groupId>io.github.raven-source</groupId>
     <artifactId>raven-commons-parent</artifactId>
     <packaging>pom</packaging>
-    <version>3.0.3</version>
+    <version>3.0.4</version>
 
     <modules>
         <module>raven-commons</module>
@@ -25,6 +25,9 @@
         <commons-lang3.version>3.10</commons-lang3.version>
         <raven-commons.version>${project.version}</raven-commons.version>
         <spring-core.version>5.0.11.RELEASE</spring-core.version>
+
+        <hibernate-types-52.version>2.9.10</hibernate-types-52.version>
+        <hibernate-core.version>5.4.10.Final</hibernate-core.version>
 
     </properties>
 
@@ -51,18 +54,6 @@
         </dependency>
 
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-core</artifactId>
-                <version>${spring-core.version}</version>
-            </dependency>
-
-        </dependencies>
-    </dependencyManagement>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Raven Commons Library</description>
