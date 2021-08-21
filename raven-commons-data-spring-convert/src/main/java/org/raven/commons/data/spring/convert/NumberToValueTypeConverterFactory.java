@@ -10,12 +10,15 @@ import org.springframework.core.convert.converter.ConverterFactory;
  * @since JDK1.8
  * date 2018.12.30 17:55
  */
+@SuppressWarnings("unchecked")
 public class NumberToValueTypeConverterFactory implements ConverterFactory<Number, ValueType> {
 
     /**
-     * @param targetType
-     * @param <T>
-     * @return
+     * NumberToValueTypeConverter
+     *
+     * @param targetType targetType
+     * @param <T>        T
+     * @return Converter {@link Converter}
      */
     @Override
     public <T extends ValueType> Converter<Number, T> getConverter(Class<T> targetType) {
@@ -23,7 +26,7 @@ public class NumberToValueTypeConverterFactory implements ConverterFactory<Numbe
     }
 
     /**
-     * @param <T>
+     * @param <T> T
      */
     private static class NumberToValueTypeConverter<T extends ValueType> implements Converter<Number, T> {
 

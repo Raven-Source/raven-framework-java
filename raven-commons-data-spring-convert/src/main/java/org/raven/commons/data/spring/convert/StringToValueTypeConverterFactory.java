@@ -17,9 +17,9 @@ import org.springframework.core.convert.converter.ConverterFactory;
 public class StringToValueTypeConverterFactory implements ConverterFactory<String, ValueType> {
 
     /**
-     * @param targetType
-     * @param <T>
-     * @return
+     * @param targetType targetType
+     * @param <T> {@link Converter}
+     * @return Converter
      */
     @Override
     public <T extends ValueType> Converter<String, T> getConverter(Class<T> targetType) {
@@ -27,7 +27,7 @@ public class StringToValueTypeConverterFactory implements ConverterFactory<Strin
     }
 
     /**
-     * @param <T>
+     * @param <T> T
      */
     private static class StringToValueTypeConverter<T extends ValueType> implements Converter<String, T> {
 

@@ -10,12 +10,13 @@ import org.springframework.core.convert.converter.ConverterFactory;
  * @since JDK1.8
  * date 2018.12.30 17:55
  */
+@SuppressWarnings("unchecked")
 public class StringToStringTypeConverterFactory implements ConverterFactory<String, StringType> {
 
     /**
-     * @param targetType
-     * @param <T>
-     * @return
+     * @param targetType targetType
+     * @param <T> T
+     * @return Converter {@link Converter}
      */
     @Override
     public <T extends StringType> Converter<String, T> getConverter(Class<T> targetType) {

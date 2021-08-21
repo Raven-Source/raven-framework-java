@@ -13,8 +13,8 @@ public class StringTypeToStringConverter implements Converter<StringType, String
     /**
      * ValueType to Integer
      *
-     * @param source
-     * @return
+     * @param source source
+     * @return value
      */
     @Override
     public String convert(StringType source) {
