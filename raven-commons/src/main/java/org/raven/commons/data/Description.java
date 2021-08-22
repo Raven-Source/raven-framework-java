@@ -1,6 +1,6 @@
 package org.raven.commons.data;
 
-        import org.raven.commons.util.StringUtil;
+        import org.raven.commons.util.StringUtils;
 
 /**
  * @author yi.liang
@@ -10,7 +10,7 @@ package org.raven.commons.data;
 public interface Description {
 
     default String getDesc() {
-        return StringUtil.EMPTY;
+        return StringUtils.EMPTY;
     }
 
 }

@@ -2,7 +2,7 @@ package org.raven.commons.data.spring.convert;
 
 import lombok.extern.slf4j.Slf4j;
 import org.raven.commons.data.SerializableTypeUtils;
-import org.raven.commons.util.StringUtil;
+import org.raven.commons.util.StringUtils;
 import org.raven.commons.data.ValueType;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
@@ -39,7 +39,7 @@ public class StringToValueTypeConverterFactory implements ConverterFactory<Strin
 
         @Override
         public T convert(String source) {
-            if (StringUtil.isEmpty(source)) {
+            if (StringUtils.isEmpty(source)) {
                 return null;
             }
 
