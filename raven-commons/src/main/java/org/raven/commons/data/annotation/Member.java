@@ -11,6 +11,9 @@ import java.lang.annotation.*;
 @Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Member {
+    int INDEX_UNKNOWN = -1;
 
     String value() default "";
+
+    int index() default -1;
 }
