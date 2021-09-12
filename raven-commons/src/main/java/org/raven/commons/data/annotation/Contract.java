@@ -17,6 +17,8 @@ import java.lang.annotation.*;
  */
 public @interface Contract {
 
+    String value() default "";
+
     /**
      * @return MemberFormatType
      */
