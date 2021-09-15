@@ -8,10 +8,7 @@ import org.raven.commons.util.StringUtils;
 import java.lang.reflect.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author yi.liang
@@ -24,7 +21,7 @@ public class SerializableTypeUtils {
     private SerializableTypeUtils() {
     }
 
-    private static final Map<Class, HashMap<Object, ? extends SerializableType>> serializableTypeCache = new HashMap<>();
+    private static final Map<Class, Map<Object, ? extends SerializableType>> serializableTypeCache = new HashMap<>();
 
 
     /**
@@ -38,65 +35,67 @@ public class SerializableTypeUtils {
             throw new IllegalArgumentException("clazz may not be null");
         }
 
-        if (serializableTypeCache.containsKey(target)) {
-            return (Map<Object, T>) serializableTypeCache.get(target);
+        Map<Object, T> map = (Map<Object, T>) serializableTypeCache.get(target);
+        if (!Objects.isNull(map)) {
+            return map;
         }
 
-        HashMap<Object, T> map = new HashMap<>();
         synchronized (serializableTypeCache) {
-            if (!serializableTypeCache.containsKey(target)) {
+            map = (Map<Object, T>) serializableTypeCache.get(target);
+            if (Objects.isNull(map)) {
+
                 map = new HashMap<>();
-                serializableTypeCache.put(target, map);
-            }
-        }
-        try {
-            SerializableType[] inter = null;
+                try {
+                    SerializableType[] inter = null;
 
-            if (target.isEnum()) {
-                inter = target.getEnumConstants();
-            } else {
+                    if (target.isEnum()) {
+                        inter = target.getEnumConstants();
+                    } else {
 
-                Method method = target.getDeclaredMethod("values");
-                //is enum-type, or user-defined values Method
-                if (method == null) {
-                    for (Method declaredMethod : target.getDeclaredMethods()) {
-                        if (declaredMethod.getAnnotation(Values.class) != null) {
-                            method = declaredMethod;
-                            break;
+                        Method method = target.getDeclaredMethod("values");
+                        //is enum-type, or user-defined values Method
+                        if (method == null) {
+                            for (Method declaredMethod : target.getDeclaredMethods()) {
+                                if (declaredMethod.getAnnotation(Values.class) != null) {
+                                    method = declaredMethod;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (method != null && Modifier.isStatic(method.getModifiers())) {
+                            inter = (SerializableType[]) method.invoke(null);
+                        } else {
+                            List<SerializableType> list = new ArrayList<>();
+                            for (Field declaredField : target.getDeclaredFields()) {
+                                if (Modifier.isStatic(declaredField.getModifiers()) && declaredField.getType().equals(target)) {
+                                    SerializableType valueType = (SerializableType) declaredField.get(declaredField);
+                                    list.add(valueType);
+                                }
+                            }
+                            if (!list.isEmpty()) {
+                                inter = (SerializableType[]) list.toArray();
+                            }
                         }
                     }
+
+                    for (int i = 0; i < inter.length; i++) {
+                        SerializableType serializableType = inter[i];
+                        map.put(serializableType.getValue(), (T) serializableType);
+                    }
+                    serializableTypeCache.put(target, map);
+                    return map;
+
+                } catch (NoSuchMethodException | SecurityException ex) {
+                    log.info(ex.getMessage());
+                } catch (Exception ex) {
+                    log.error(ex.getMessage(), ex);
                 }
 
-                if (method != null && Modifier.isStatic(method.getModifiers())) {
-                    inter = (SerializableType[]) method.invoke(null);
-                } else {
-                    List<SerializableType> list = new ArrayList<>();
-                    for (Field declaredField : target.getDeclaredFields()) {
-                        if (Modifier.isStatic(declaredField.getModifiers()) && declaredField.getType().equals(target)) {
-                            SerializableType valueType = (SerializableType) declaredField.get(declaredField);
-                            list.add(valueType);
-                        }
-                    }
-                    if (!list.isEmpty()) {
-                        inter = (SerializableType[]) list.toArray();
-                    }
-                }
             }
-
-            for (int i = 0; i < inter.length; i++) {
-                SerializableType serializableType = inter[i];
-                map.put(serializableType.getValue(), (T) serializableType);
-            }
-
-        } catch (NoSuchMethodException ex) {
-            log.info(ex.getMessage());
-        } catch (SecurityException ex) {
-            log.info(ex.getMessage());
-        } catch (Exception ex) {
-            log.error(ex.getMessage(), ex);
+            return map;
         }
 
-        return map;
     }
 
     /**
@@ -138,9 +137,9 @@ public class SerializableTypeUtils {
 
 
     /**
-     * @param target target
+     * @param target      target
      * @param stringValue stringValue
-     * @param <T> T
+     * @param <T>         T
      * @return SerializableType
      */
     public static <T extends SerializableType> T stringValueOf(Class<T> target, String stringValue) {
