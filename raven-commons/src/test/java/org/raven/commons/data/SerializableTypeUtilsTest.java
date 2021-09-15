@@ -63,6 +63,7 @@ public class SerializableTypeUtilsTest {
 
                 DBType dbType = SerializableTypeUtils.valueOf(DBType.class, 1);
                 System.out.println(dbType);
+                assert dbType != null;
 
             });
 
@@ -78,7 +79,7 @@ public class SerializableTypeUtilsTest {
 
         }
 
-        System.out.println("ggg");
+        System.out.println("end");
 
 
     }
