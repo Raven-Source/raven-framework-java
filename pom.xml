@@ -7,7 +7,7 @@
     <groupId>io.github.raven-source</groupId>
     <artifactId>raven-commons-parent</artifactId>
     <packaging>pom</packaging>
-    <version>3.1.2-SNAPSHOT</version>
+    <version>3.1.2</version>
 
     <modules>
         <module>raven-commons</module>
@@ -178,7 +178,7 @@
                 </executions>
             </plugin>
 
-            <!--升级版本 mvn versions:set -DprocessAllModules=true -DnewVersion=1.x-SNAPSHOT -->
+            <!-- mvn versions:set -DprocessAllModules=true -DnewVersion=1.x-SNAPSHOT -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
