@@ -8,6 +8,8 @@ package org.raven.commons.data;
  */
 public interface Entity<TKey> {
 
+    String ID = "id";
+
     /**
      * @return primary key
      */

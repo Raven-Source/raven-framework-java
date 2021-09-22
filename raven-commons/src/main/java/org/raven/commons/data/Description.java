@@ -9,6 +9,8 @@ import org.raven.commons.util.StringUtils;
  */
 public interface Description {
 
+    String DESC = "desc";
+
     default String getDesc() {
         return StringUtils.EMPTY;
     }

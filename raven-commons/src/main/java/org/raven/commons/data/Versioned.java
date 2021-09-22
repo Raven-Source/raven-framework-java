@@ -7,6 +7,8 @@ package org.raven.commons.data;
  */
 public interface Versioned<V> {
 
+    String VERSION = "version";
+
     /**
      * @return version
      */

@@ -6,6 +6,9 @@ package org.raven.commons.data;
  * date 2020.07.02 00:20
  */
 public interface SerializableType<V> {
+
+    String VALUE = "value";
+
     V getValue();
 
     default boolean equalsValue(Object obj) {
