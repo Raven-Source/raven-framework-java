@@ -1,6 +1,6 @@
 package org.raven.commons.data;
 
-        import org.raven.commons.util.StringUtils;
+import org.raven.commons.util.StringUtils;
 
 /**
  * @author yi.liang

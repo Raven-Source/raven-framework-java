@@ -5,7 +5,7 @@ package org.raven.commons.data;
  * @since JDK1.8
  * date 2018.11.09 11:05
  */
-public interface Version<V> {
+public interface Versioned<V> {
 
     /**
      * @return version
