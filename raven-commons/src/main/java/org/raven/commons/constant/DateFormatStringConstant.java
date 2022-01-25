@@ -8,23 +8,23 @@ public abstract class DateFormatStringConstant {
 
     public final static String ISO_LOCAL_DATE = "yyyy-MM-dd";
 
-    public final static String ISO_OFFSET_DATE = "yyyy-MM-ddX";
+    public final static String ISO_OFFSET_DATE = "yyyy-MM-ddXXX";
 
-    public final static String ISO_DATE = "yyyy-MM-ddX";
+    public final static String ISO_DATE = "yyyy-MM-ddXXX";
 
     public final static String ISO_LOCAL_TIME = "HH:mm:ss.SSS";
 
-    public final static String ISO_OFFSET_TIME = "HH:mm:ss.SSSX";
+    public final static String ISO_OFFSET_TIME = "HH:mm:ss.SSSXXX";
 
-    public final static String ISO_TIME = "HH:mm:ss.SSSX";
+    public final static String ISO_TIME = "HH:mm:ss.SSSXXX";
 
     public final static String ISO_LOCAL_DATE_TIME = "yyyy-MM-dd'T'HH:mm:ss.SSS";
 
-    public final static String ISO_OFFSET_DATE_TIME = "yyyy-MM-dd'T'HH:mm:ss.SSSX";
+    public final static String ISO_OFFSET_DATE_TIME = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
 
-    public final static String ISO_ZONED_DATE_TIME = "yyyy-MM-dd'T'HH:mm:ss.SSSX";
+    public final static String ISO_ZONED_DATE_TIME = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
 
-    public final static String ISO_DATE_TIME = "yyyy-MM-dd'T'HH:mm:ss.SSSX";
+    public final static String ISO_DATE_TIME = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
 
     public final static String ISO_INSTANT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 
