@@ -9,29 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <description>raven-commons-data-hibernate-convert</description>
+    <description>raven-serializer</description>
     <url>https://github.com/Raven-Source/raven-framework-java</url>
 
-    <artifactId>raven-commons-data-hibernate-convert</artifactId>
+    <artifactId>raven-serializer</artifactId>
     <packaging>jar</packaging>
 
-    <properties>
-        <hibernate-types-52.version>2.14.0</hibernate-types-52.version>
-        <hibernate-core.version>5.6.5.Final</hibernate-core.version>
-    </properties>
     <dependencies>
-
-        <dependency>
-            <groupId>com.vladmihalcea</groupId>
-            <artifactId>hibernate-types-52</artifactId>
-            <version>${hibernate-types-52.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate-core.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>io.github.raven-source</groupId>
@@ -40,6 +24,5 @@
         </dependency>
 
     </dependencies>
-
 
 </project>

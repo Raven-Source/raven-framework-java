@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <description>raven-commons-data-spring-convert</description>
-    <url>https://github.com/Raven-Source/raven-commons-java</url>
+    <url>https://github.com/Raven-Source/raven-framework-java</url>
 
     <artifactId>raven-commons-data-spring-convert</artifactId>
     <packaging>jar</packaging>

@@ -9,16 +9,29 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <description>raven-commons</description>
-    <url>https://github.com/Raven-Source/raven-framework-java</url>
-
-    <artifactId>raven-commons</artifactId>
+    <artifactId>raven-serializer-withMsgpack</artifactId>
     <packaging>jar</packaging>
 
     <properties>
+
+        <msgpack.version>0.6.12</msgpack.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>io.github.raven-source</groupId>
+            <artifactId>raven-serializer</artifactId>
+            <version>${raven-framework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.msgpack</groupId>
+            <artifactId>msgpack</artifactId>
+            <version>${msgpack.version}</version>
+        </dependency>
+
     </dependencies>
+
 
 </project>
