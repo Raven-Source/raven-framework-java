@@ -7,14 +7,13 @@ import java.lang.reflect.Type;
 
 /**
  * @author yi.liang
- * @since JDK1.8
  * date 2020.04.26 22:33
  */
 @SuppressWarnings("unchecked")
 public abstract class NumberType<V extends Number, T extends NumberType> implements ValueType<V> {
 
     private final transient Class<T> target;
-    private V value;
+    private final V value;
 
     protected NumberType(V value) {
         Type genType = getClass().getGenericSuperclass();
