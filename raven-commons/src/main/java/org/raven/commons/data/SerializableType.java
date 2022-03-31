@@ -19,11 +19,11 @@ public interface SerializableType<V> {
 
         if (obj instanceof SerializableType) {
 
-            if (getValue() == null && ((SerializableType) obj).getValue() == null) {
+            if (getValue() == null && ((SerializableType<?>) obj).getValue() == null) {
                 return true;
             }
 
-            return getValue().equals(((SerializableType) obj).getValue());
+            return getValue().equals(((SerializableType<?>) obj).getValue());
         }
 
         return false;

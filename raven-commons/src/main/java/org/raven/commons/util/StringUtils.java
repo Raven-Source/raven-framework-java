@@ -2,7 +2,6 @@ package org.raven.commons.util;
 
 /**
  * @author yi.liang
- * @since JDK1.8
  * date 2020.05.05 16:44
  */
 public class StringUtils {

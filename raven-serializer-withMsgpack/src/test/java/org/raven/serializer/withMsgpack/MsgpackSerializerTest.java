@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -20,7 +21,7 @@ public class MsgpackSerializerTest {
         user = new User();
         user.setId(123);
         user.setName("翻船了");
-        user.setList(new ArrayList<Integer>() {
+        user.setList(new ArrayList<>() {
             {
                 add(1);
             }
@@ -47,7 +48,7 @@ public class MsgpackSerializerTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         serializer.serialize(user, outputStream);
 
-        json = outputStream.toString("UTF-8");
+        json = outputStream.toString(StandardCharsets.UTF_8);
         outputStream.close();
         Assert.assertNotEquals(json, null);
         System.out.println(json);
@@ -71,7 +72,7 @@ public class MsgpackSerializerTest {
         Assert.assertEquals(temp.getId(), user.getId());
         Assert.assertEquals(temp.getName(), user.getName());
 
-        temp.setColorList(new ArrayList<ColorType>() {
+        temp.setColorList(new ArrayList<>() {
             {
                 add(ColorType.C);
             }
@@ -141,7 +142,7 @@ public class MsgpackSerializerTest {
         user2.setPlatform(Platform.Ali);
 
         data = serializer.serialize(user2);
-        String str = new String(data, Charset.forName("UTF-8"));
+        String str = new String(data, StandardCharsets.UTF_8);
         System.out.println(str);
 
         User2 user22 = serializer.deserialize(User2.class, data);

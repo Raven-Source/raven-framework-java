@@ -25,10 +25,9 @@ public class DateTimeUtilsTest {
             if (Modifier.isStatic(declaredField.getModifiers()) && declaredField.getType().equals(DateTimeFormatter.class)) {
                 DateTimeFormatter dateTimeFormatter = (DateTimeFormatter) declaredField.get(DateTimeFormatter.class);
 
-                log.info(String.format("%s: %s"
+                System.out.printf("%s: %s%n"
                         , declaredField.getName()
-                        , zonedDateTime.format(dateTimeFormatter))
-                );
+                        , zonedDateTime.format(dateTimeFormatter));
             }
         }
 
@@ -39,10 +38,9 @@ public class DateTimeUtilsTest {
 
                 DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(formatStr);
 
-                log.info(String.format("%s: %s"
+                System.out.printf("%s: %s%n"
                         , formatStr
-                        , zonedDateTime.format(dateTimeFormatter))
-                );
+                        , zonedDateTime.format(dateTimeFormatter));
             }
         }
 

@@ -62,7 +62,7 @@ public class SerializableTypeUtilsTest {
             Thread thread = new Thread(() -> {
 
                 DBType dbType = SerializableTypeUtils.valueOf(DBType.class, 1);
-                System.out.println(dbType);
+//                System.out.println(dbType);
                 assert dbType != null;
 
             });

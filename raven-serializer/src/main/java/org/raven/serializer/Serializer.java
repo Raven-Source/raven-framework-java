@@ -17,13 +17,8 @@ public interface Serializer {
 
     <T> T deserialize(Class<T> clazz, byte[] data) throws IOException;
 
-    //Object deserialize(Class clazz, byte[] data) throws IOException;
-
     <T> T deserialize(Class<T> clazz, byte[] data, int index, int count) throws IOException;
-
-    //Object deserialize(Class clazz, byte[] data, int index, int count) throws IOException;
 
     <T> T deserialize(Class<T> clazz, InputStream inputStream) throws IOException;
 
-    //Object deserialize(Class clazz, InputStream inputStream) throws IOException;
 }

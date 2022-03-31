@@ -74,7 +74,7 @@ public class SerializableTypeUtils {
                                 }
                             }
                             if (!list.isEmpty()) {
-                                inter = (SerializableType[]) list.toArray();
+                                inter = list.toArray(new SerializableType[0]);
                             }
                         }
                     }
