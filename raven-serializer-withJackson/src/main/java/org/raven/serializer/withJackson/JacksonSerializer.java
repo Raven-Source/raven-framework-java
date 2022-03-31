@@ -15,14 +15,13 @@ import java.io.OutputStream;
  * Jackson json
  *
  * @author yi.liang
- * @since JDK1.8
  * date 2018/1/3 14:00:00
  */
 public class JacksonSerializer extends BasicSerializer
         implements Serializer, StringSerializer {
 
     @Getter
-    private ObjectMapper mapper;
+    private final ObjectMapper mapper;
 
     public JacksonSerializer() {
         this((SerializerSetting) null);

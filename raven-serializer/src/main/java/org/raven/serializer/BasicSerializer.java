@@ -11,7 +11,6 @@ import java.nio.charset.StandardCharsets;
 /**
  * @author yi.liang
  * date 2018.9.25
- * @since JDK1.8
  */
 public abstract class BasicSerializer {
 
