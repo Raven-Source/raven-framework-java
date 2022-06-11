@@ -7,16 +7,16 @@ package org.raven.commons.data;
  */
 public interface Deletable {
 
-    String DEL = "del";
+    String DEL = "deleted";
 
     /**
-     * @return logically del
+     * @return logically delete
      */
-    boolean isDel();
+    Boolean getDeleted();
 
     /**
-     * @param del logically del
+     * @param deleted logically delete
      */
-    void setDel(boolean del);
+    void setDeleted(Boolean deleted);
 
 }

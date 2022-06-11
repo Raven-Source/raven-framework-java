@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.raven.commons.data.Deletable;
 import org.raven.commons.data.MemberFormatType;
 import org.raven.commons.data.annotation.Contract;
 import org.raven.commons.data.annotation.Member;
@@ -11,7 +12,7 @@ import org.raven.commons.data.annotation.Member;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE)
 @Contract(formatType = MemberFormatType.PascalCase)
 @Data
-public class Paper {
+public class Paper implements Deletable {
 
     private ColorType color;
 
@@ -19,5 +20,7 @@ public class Paper {
     private String title;
 
     private String desc;
+
+    private Boolean deleted;
 
 }

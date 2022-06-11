@@ -11,7 +11,7 @@ public class User implements Deletable {
 
     private Long id;
     private String name;
-    private boolean del;
+    private Boolean deleted;
 
     public static void main(String[] args) {
 
