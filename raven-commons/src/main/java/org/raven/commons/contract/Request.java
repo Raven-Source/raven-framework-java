@@ -5,11 +5,8 @@ package org.raven.commons.contract;
  * @since JDK1.8
  * created by 2018/1/3 14:00:00
  */
-public interface SimpleResponseModel<TExtension> {
-
-    boolean isSuccess();
-    void setSuccess(boolean success);
-
+public interface Request<TExtension> {
     TExtension getExtension();
+
     void setExtension(TExtension extension);
 }
