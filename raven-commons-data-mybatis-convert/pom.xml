@@ -3,25 +3,25 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>io.github.raven-source</groupId>
         <artifactId>raven-framework</artifactId>
+        <groupId>io.github.raven-source</groupId>
         <version>4.0.3</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <description>raven-commons-data-spring-convert</description>
+    <artifactId>raven-commons-data-mybatis-convert</artifactId>
+    <packaging>jar</packaging>
     <url>https://github.com/Raven-Source/raven-framework-java</url>
 
-    <artifactId>raven-commons-data-spring-convert</artifactId>
-    <packaging>jar</packaging>
+    <properties>
+    </properties>
 
     <dependencies>
 
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring-core.version}</version>
-            <scope>provided</scope>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
         </dependency>
 
         <dependency>
@@ -29,7 +29,6 @@
             <artifactId>raven-commons</artifactId>
             <version>${raven-framework.version}</version>
         </dependency>
-
     </dependencies>
 
 </project>
