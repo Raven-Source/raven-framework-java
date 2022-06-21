@@ -54,12 +54,13 @@ public class ObjectMapperConfig {
             mapper.setDateFormat(new SimpleDateFormat(setting.getDateFormatString()));
         }
 
-        //Override JavaTimeModule
-        mapper.registerModule(new JavaTimeSerializerModule(setting));
         mapper.registerModules(new JavaTimeModule());
         mapper.registerModules(new Jdk8Module());
         mapper.registerModules(new MultiFormatDateModule(setting));
         mapper.registerModules(new SerializableTypeModule(setting));
+
+        //Override JavaTimeModule
+        mapper.registerModule(new JavaTimeSerializerModule(setting));
 
 
         mapper.setAnnotationIntrospector(new AnnotationIntrospectorWarp());

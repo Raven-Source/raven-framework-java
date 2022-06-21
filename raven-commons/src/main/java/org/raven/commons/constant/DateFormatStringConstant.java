@@ -34,4 +34,8 @@ public abstract class DateFormatStringConstant {
 
     public final static String DATE_TIME_SECOND = "yyyy-MM-dd HH:mm:ss";
 
+    public final static String[] DESERIALIZE_DATE_FORMAT_STRING = new String[]{
+            ISO_OFFSET_DATE_TIME, ISO_INSTANT, ISO_INSTANT_SECOND
+    };
+
 }

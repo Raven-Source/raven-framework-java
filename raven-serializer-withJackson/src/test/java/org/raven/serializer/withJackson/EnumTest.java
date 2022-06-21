@@ -32,10 +32,7 @@ public class EnumTest {
         valueEnumSerializerTest(ColorType.D);
     }
 
-    /**
-     * @param colorType
-     * @throws IOException
-     */
+
     private void valueEnumSerializerTest(ColorType colorType)
         throws IOException {
 
@@ -97,7 +94,7 @@ public class EnumTest {
         int temp = number;
         byte[] b = new byte[4];
         for (int i = 0; i < b.length; i++) {
-            b[i] = new Integer(temp & 0xff).byteValue();// 将最低位保存在最低位
+            b[i] = Integer.valueOf(temp & 0xff).byteValue();// 将最低位保存在最低位
             temp = temp >> 8;// 向右移8位
         }
         return b;

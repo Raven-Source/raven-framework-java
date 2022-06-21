@@ -7,7 +7,7 @@
     <groupId>io.github.raven-source</groupId>
     <artifactId>raven-framework</artifactId>
     <packaging>pom</packaging>
-    <version>4.0.2</version>
+    <version>5.0.0-SNAPSHOT</version>
 
     <modules>
         <module>raven-commons</module>
@@ -19,28 +19,68 @@
         <module>raven-serializer-withMsgpack</module>
         <module>raven-serializer-withProtobuf</module>
         <module>raven-serializer-withJacksonMsgpack</module>
+        <module>raven-commons-data-mybatis-convert</module>
+        <module>raven-spring-commons</module>
+        <module>raven-spring-web</module>
+        <module>raven-spring-webmvc-starter</module>
+        <module>raven-spring-actuate</module>
     </modules>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <raven-framework.version>5.0.0-SNAPSHOT</raven-framework.version>
+
         <encoding>UTF-8</encoding>
-        <java.version>8</java.version>
+        <java.version>11</java.version>
 
+        <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+
+        <lombok.version>1.18.24</lombok.version>
         <slf4j-api.version>1.7.36</slf4j-api.version>
-        <lombok.version>1.18.22</lombok.version>
+        <logback.version>1.2.11</logback.version>
+        <logstash-logback-encoder.version>6.6</logstash-logback-encoder.version>
+        <log4j.version>2.17.1</log4j.version>
+        <javax.activation.version>1.2.0</javax.activation.version>
 
-        <raven-framework.version>${project.version}</raven-framework.version>
-
-        <spring-core.version>5.3.17</spring-core.version>
-
-        <commons-lang3.version>3.12.0</commons-lang3.version>
-        <jackson-databind.version>2.13.2</jackson-databind.version>
+        <jackson-databind.version>2.12.3</jackson-databind.version>
         <jackson-dataformat-msgpack.version>0.9.1</jackson-dataformat-msgpack.version>
-        <hibernate-types-52.version>2.14.1</hibernate-types-52.version>
-        <hibernate-core.version>5.6.7.Final</hibernate-core.version>
         <msgpack.version>0.6.12</msgpack.version>
         <jprotobuf.version>2.4.10</jprotobuf.version>
+
+        <spring-cloud.version>2020.0.3</spring-cloud.version>
+        <spring-boot.version>2.5.2</spring-boot.version>
+        <spring-cloud-kubernetes.version>1.1.10.RELEASE</spring-cloud-kubernetes.version>
+
+        <grpc-spring-boot.version>2.12.0.RELEASE</grpc-spring-boot.version>
+        <redisson-spring-boot.version>3.16.0</redisson-spring-boot.version>
+        <openfeign-spring-cloud.version>3.0.3</openfeign-spring-cloud.version>
+        <openfeign.version>10.12</openfeign.version>
+
+        <hibernate-types-52.version>2.9.10</hibernate-types-52.version>
+        <hibernate-core.version>5.6.7.Final</hibernate-core.version>
+        <sharding-jdbc.version>4.1.1</sharding-jdbc.version>
+        <mybatis-spring-boot.version>2.2.0</mybatis-spring-boot.version>
+        <mybatis.version>3.5.7</mybatis.version>
+
+        <mysql-connector.version>8.0.25</mysql-connector.version>
+        <mongodb-driver.version>4.2.3</mongodb-driver.version>
+        <clickhouse.version>0.3.1</clickhouse.version>
+
+        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <commons-collections4.version>4.4</commons-collections4.version>
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
+        <raven-mongodb.version>2.2-SNAPSHOT</raven-mongodb.version>
+
+        <guava.version>24.1.1-jre</guava.version>
+
+        <swagger.version>1.6.2</swagger.version>
+        <springfox.version>3.0.0</springfox.version>
+
+        <junit.version>4.13.2</junit.version>
+        <powermock.version>1.7.4</powermock.version>
+        <mockito-all.version>1.10.19</mockito-all.version>
 
     </properties>
 
@@ -56,32 +96,320 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j-api.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.36</version>
+            <version>${slf4j-api.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.2</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
 
     </dependencies>
 
-    <dependencyManagement>
 
+    <dependencyManagement>
         <dependencies>
 
-        </dependencies>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
 
+            <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j-api.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-to-slf4j -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-to-slf4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${commons-collections4.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.vladmihalcea</groupId>
+                <artifactId>hibernate-types-52</artifactId>
+                <version>${hibernate-types-52.version}</version>
+            </dependency>
+
+            <!-- region Spring Dependencies -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-kubernetes</artifactId>
+                <version>${spring-cloud-kubernetes.version}</version>
+            </dependency>
+
+            <!-- endregion -->
+
+            <!-- region sharding-jdbc -->
+
+            <!-- https://mvnrepository.com/artifact/org.apache.shardingsphere/sharding-jdbc-core -->
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-core</artifactId>
+                <version>${sharding-jdbc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+                <version>${sharding-jdbc.version}</version>
+            </dependency>
+
+            <!-- endregion -->
+
+            <!-- region mybatis -->
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring-boot.version}</version>
+            </dependency>
+
+            <!-- endregion -->
+
+            <!-- region mysql.driver -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector.version}</version>
+            </dependency>
+            <!-- endregion -->
+
+            <!-- region mongodb.driver -->
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongodb-driver-reactivestreams</artifactId>
+                <version>${mongodb-driver.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>bson</artifactId>
+                <version>${mongodb-driver.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongodb-driver-core</artifactId>
+                <version>${mongodb-driver.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.raven-source</groupId>
+                <artifactId>raven-mongodb-repository-core</artifactId>
+                <version>${raven-mongodb.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.raven-source</groupId>
+                <artifactId>raven-mongodb-repository-spi</artifactId>
+                <version>${raven-mongodb.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.raven-source</groupId>
+                <artifactId>raven-mongodb-repository-sync</artifactId>
+                <version>${raven-mongodb.version}</version>
+            </dependency>
+
+            <!-- endregion -->
+
+            <!-- region clickhouse -->
+
+            <!-- https://mvnrepository.com/artifact/ru.yandex.clickhouse/clickhouse-jdbc -->
+            <dependency>
+                <groupId>ru.yandex.clickhouse</groupId>
+                <artifactId>clickhouse-jdbc</artifactId>
+                <version>${clickhouse.version}</version>
+            </dependency>
+
+            <!-- endregion -->
+
+            <!-- https://mvnrepository.com/artifact/net.devh/grpc-server-spring-boot-starter -->
+            <dependency>
+                <groupId>net.devh</groupId>
+                <artifactId>grpc-server-spring-boot-starter</artifactId>
+                <version>${grpc-spring-boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.devh</groupId>
+                <artifactId>grpc-client-spring-boot-starter</artifactId>
+                <version>${grpc-spring-boot.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson-spring-boot.version}</version>
+            </dependency>
+
+            <!-- region openfeign -->
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${openfeign-spring-cloud.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-core</artifactId>
+                <version>${openfeign.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-slf4j</artifactId>
+                <version>${openfeign.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-httpclient</artifactId>
+                <version>${openfeign.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-jackson</artifactId>
+                <version>${openfeign.version}</version>
+            </dependency>
+
+            <!-- endregion -->
+
+            <!--  region swagger2 -->
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>swagger-annotations</artifactId>
+                        <groupId>io.swagger</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-oas</artifactId>
+                <version>${springfox.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>swagger-annotations</artifactId>
+                        <groupId>io.swagger</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${springfox.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>swagger-annotations</artifactId>
+                        <groupId>io.swagger</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- endregion -->
+
+            <!-- guava start -->
+
+            <!--<dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>-->
+
+            <!-- guava end -->
+
+            <!-- region mockito -->
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>${mockito-all.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito-all.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-junit4</artifactId>
+                <version>${powermock.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-api-mockito</artifactId>
+                <version>${powermock.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- endregion -->
+
+        </dependencies>
     </dependencyManagement>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -125,16 +453,18 @@
     <build>
         <plugins>
             <plugin>
-
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                    <encoding>${encoding}</encoding>
                     <showWarnings>true</showWarnings>
+                    <excludes>
+                        <exclude>target/generated-sources</exclude>
+                    </excludes>
                 </configuration>
+
             </plugin>
 
             <plugin>

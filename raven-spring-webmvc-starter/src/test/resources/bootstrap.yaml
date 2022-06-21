@@ -1,0 +1,19 @@
+server:
+  port: ${port:8080}
+
+app:
+  env: ${env:dev}
+
+spring:
+  profiles:
+    active: ${app.env}
+  application:
+    name: spring-webmvc-starter-test
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: +00:00
+
+logging:
+  config: classpath:logback-spring.xml

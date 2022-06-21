@@ -1,6 +1,6 @@
 package org.raven.commons.data.hibernate.convert;
 
-import com.vladmihalcea.hibernate.util.ReflectionUtils;
+import com.vladmihalcea.hibernate.type.util.ReflectionUtils;
 import org.hibernate.annotations.common.reflection.XProperty;
 import org.hibernate.annotations.common.reflection.java.JavaXMember;
 import org.hibernate.type.descriptor.WrapperOptions;
