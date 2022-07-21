@@ -10,7 +10,7 @@ import java.util.concurrent.CompletableFuture;
 public class SerializableTypeUtilsTest {
 
     @Test
-    public void valueOf() {
+    public void valueOf() throws Exception {
         Assert.assertEquals(
                 SerializableTypeUtils.valueOf(DBType.class, DBType.Mongodb.getValue()), DBType.Mongodb
         );
@@ -46,6 +46,12 @@ public class SerializableTypeUtilsTest {
 
         Assert.assertEquals(
                 SerializableTypeUtils.valueOf(OperationEnum.class, "nin").getValue(), OperationEnum.NIN.getValue()
+        );
+
+
+        OperationEnum[] values = SerializableTypeUtils.enumerationValues(OperationEnum.class);
+        Assert.assertEquals(
+                values.length, OperationEnum.values().length
         );
 
     }

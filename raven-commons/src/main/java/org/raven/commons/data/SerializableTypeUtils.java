@@ -25,8 +25,8 @@ public class SerializableTypeUtils {
 
 
     /**
-     * @param target enum class
-     * @param <T>    enum type
+     * @param target SerializableType class
+     * @param <T>    SerializableType type
      * @return enum
      */
     private static <T extends SerializableType> Map<Object, T> getValueMap(Class<T> target) {
@@ -48,36 +48,7 @@ public class SerializableTypeUtils {
                 try {
                     SerializableType[] inter = null;
 
-                    if (target.isEnum()) {
-                        inter = target.getEnumConstants();
-                    } else {
-
-                        Method method = target.getDeclaredMethod("values");
-                        //is enum-type, or user-defined values Method
-                        if (method == null) {
-                            for (Method declaredMethod : target.getDeclaredMethods()) {
-                                if (declaredMethod.getAnnotation(Values.class) != null) {
-                                    method = declaredMethod;
-                                    break;
-                                }
-                            }
-                        }
-
-                        if (method != null && Modifier.isStatic(method.getModifiers())) {
-                            inter = (SerializableType[]) method.invoke(null);
-                        } else {
-                            List<SerializableType> list = new ArrayList<>();
-                            for (Field declaredField : target.getDeclaredFields()) {
-                                if (Modifier.isStatic(declaredField.getModifiers()) && declaredField.getType().equals(target)) {
-                                    SerializableType valueType = (SerializableType) declaredField.get(declaredField);
-                                    list.add(valueType);
-                                }
-                            }
-                            if (!list.isEmpty()) {
-                                inter = list.toArray(new SerializableType[0]);
-                            }
-                        }
-                    }
+                    inter = enumerationValues(target);
 
                     for (int i = 0; i < inter.length; i++) {
                         SerializableType serializableType = inter[i];
@@ -96,6 +67,51 @@ public class SerializableTypeUtils {
             return map;
         }
 
+    }
+
+    /**
+     * @param target SerializableType class
+     * @param <T>    T
+     * @return T[]
+     * @throws NoSuchMethodException
+     * @throws IllegalAccessException
+     * @throws InvocationTargetException
+     */
+    public static <T extends SerializableType> T[] enumerationValues(Class<T> target)
+            throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+
+        T[] inter = null;
+        if (target.isEnum()) {
+            inter = target.getEnumConstants();
+        } else {
+
+            Method method = target.getDeclaredMethod("values");
+            //is enum-type, or user-defined values Method
+            if (method == null) {
+                for (Method declaredMethod : target.getDeclaredMethods()) {
+                    if (declaredMethod.getAnnotation(Values.class) != null) {
+                        method = declaredMethod;
+                        break;
+                    }
+                }
+            }
+
+            if (method != null && Modifier.isStatic(method.getModifiers())) {
+                inter = (T[]) method.invoke(null);
+            } else {
+                List<T> list = new ArrayList<>();
+                for (Field declaredField : target.getDeclaredFields()) {
+                    if (Modifier.isStatic(declaredField.getModifiers()) && declaredField.getType().equals(target)) {
+                        T valueType = (T) declaredField.get(declaredField);
+                        list.add(valueType);
+                    }
+                }
+                if (!list.isEmpty()) {
+                    inter = (T[]) list.toArray(new SerializableType[0]);
+                }
+            }
+        }
+        return inter;
     }
 
     /**
