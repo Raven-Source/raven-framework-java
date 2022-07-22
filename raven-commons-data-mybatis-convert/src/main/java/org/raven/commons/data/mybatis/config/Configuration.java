@@ -15,6 +15,7 @@ import java.util.Properties;
 import java.util.function.Supplier;
 
 @Slf4j
+@SuppressWarnings("unchecked")
 public class Configuration {
 
     public static final Configuration INSTANCE = new Configuration();
@@ -115,13 +116,9 @@ public class Configuration {
             try {
                 Class<T> clazz = ClassLoaderUtils.loadClass(property);
                 log.debug("Instantiate {}", clazz);
-                object = clazz.newInstance();
-            } catch (ClassNotFoundException e) {
+                object = clazz.getDeclaredConstructor().newInstance();
+            } catch (Exception e) {
                 log.error("Couldn't load the " + property + " class given by the " + propertyKey + " property", e);
-            } catch (InstantiationException e) {
-                log.error("Couldn't instantiate the " + property + " class given by the " + propertyKey + " property", e);
-            } catch (IllegalAccessException e) {
-                log.error("Couldn't access the " + property + " class given by the " + propertyKey + " property", e);
             }
         }
         return object;
