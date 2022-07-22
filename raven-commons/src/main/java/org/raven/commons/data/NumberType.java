@@ -1,6 +1,5 @@
 package org.raven.commons.data;
 
-import org.raven.commons.data.annotation.Ignore;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -27,7 +26,9 @@ public abstract class NumberType<V extends Number, T extends NumberType> impleme
         return value;
     }
 
-    public abstract T[] values();
+    public static <T> T[] values() {
+        throw new RuntimeException("method must implement");
+    }
 
     @Override
     public String toString() {

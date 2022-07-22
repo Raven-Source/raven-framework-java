@@ -54,6 +54,10 @@ public class SerializableTypeUtilsTest {
                 values.length, OperationEnum.values().length
         );
 
+        Gender[] genders = SerializableTypeUtils.enumerationValues(Gender.class);
+        Assert.assertEquals(
+                genders.length, Gender.values().length
+        );
     }
 
 

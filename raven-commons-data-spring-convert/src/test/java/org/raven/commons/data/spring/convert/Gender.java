@@ -3,6 +3,7 @@ package org.raven.commons.data.spring.convert;
 import org.raven.commons.data.GenericUtils;
 import org.raven.commons.data.NumberType;
 import org.raven.commons.data.ValueType;
+import org.raven.commons.data.annotation.Values;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
@@ -26,8 +27,8 @@ public class Gender extends NumberType<Integer, Gender> {
         return new Gender(i.intValue());
     }
 
-    @Override
-    public Gender[] values() {
+    @Values
+    public static Gender[] values() {
         return new Gender[]{man, woman};
     }
 }
