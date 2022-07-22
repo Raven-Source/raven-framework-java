@@ -9,6 +9,8 @@ import java.lang.reflect.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * @author yi.liang
@@ -21,7 +23,7 @@ public class SerializableTypeUtils {
     private SerializableTypeUtils() {
     }
 
-    private static final Map<Class, Map<Object, ? extends SerializableType>> serializableTypeCache = new HashMap<>();
+    private static final Map<Class, ConcurrentMap<Object, ? extends SerializableType>> serializableTypeCache = new HashMap<>();
 
 
     /**
@@ -29,22 +31,25 @@ public class SerializableTypeUtils {
      * @param <T>    SerializableType type
      * @return enum
      */
-    private static <T extends SerializableType> Map<Object, T> getValueMap(Class<T> target) {
+    private static <T extends SerializableType> ConcurrentMap<Object, T> getValueMap(Class<T> target) {
 
         if (target == null) {
             throw new IllegalArgumentException("clazz may not be null");
         }
 
-        Map<Object, T> map = (Map<Object, T>) serializableTypeCache.get(target);
+        ConcurrentMap<Object, T> map = (ConcurrentMap<Object, T>) serializableTypeCache.get(target);
         if (!Objects.isNull(map)) {
             return map;
         }
 
+        // if SerializableType maybe add enumeration items on runtime, serializableTypeCache items must the only
+        // so must use synchronized
         synchronized (serializableTypeCache) {
-            map = (Map<Object, T>) serializableTypeCache.get(target);
+            map = (ConcurrentMap<Object, T>) serializableTypeCache.get(target);
             if (Objects.isNull(map)) {
 
-                map = new HashMap<>();
+                // SerializableType maybe add enumeration items on runtime, so must use ConcurrentHashMap
+                map = new ConcurrentHashMap<>();
                 try {
                     SerializableType[] inter = null;
 
@@ -125,11 +130,14 @@ public class SerializableTypeUtils {
         T ret = null;
 
         try {
-            Map<Object, T> map = getValueMap(target);
-            if (map.containsKey(value)) {
-                return (T) map.get(value);
+            ConcurrentMap<Object, T> map = getValueMap(target);
+            ret = map.get(value);
+
+            if (ret != null) {
+                return (T) ret;
             } else {
 
+                // enum will not be empty, cannot be created dynamically
                 if (target.isEnum()) {
                     return null;
                 }
@@ -227,15 +235,13 @@ public class SerializableTypeUtils {
         return null;
     }
 
-    private static final Map<Class, Method> methodCache = new HashMap<>();
+    private static final Map<Class, Method> initMethodCache = new ConcurrentHashMap<>();
 
-    private static <T extends SerializableType> T createByMethod(Class<T> target, Object value, Map<Object, T> map)
+    private static <T extends SerializableType> T createByMethod(Class<T> target, Object value, ConcurrentMap<Object, T> map)
             throws Exception {
-        Method initMethod = null;
+        Method initMethod = initMethodCache.get(target);
 
-        if (methodCache.containsKey(target)) {
-            initMethod = methodCache.get(target);
-        } else {
+        if (initMethod == null) {
             for (Method method : target.getDeclaredMethods()) {
                 if (Modifier.isStatic(method.getModifiers())
                         && method.getReturnType().equals(target)
@@ -246,27 +252,26 @@ public class SerializableTypeUtils {
                         method.setAccessible(true);
                     }
 
+                    // @Create is high priority
                     if (initMethod == null || method.getAnnotation(Create.class) != null) {
                         initMethod = method;
                     }
-//                    break;
 
                 }
             }
 
-            synchronized (methodCache) {
-                //Prevent repeated calls, initMethod may be null
-                methodCache.put(target, initMethod);
-            }
+            //Prevent repeated calls, initMethod may be null
+            initMethodCache.putIfAbsent(target, initMethod);
         }
 
         if (initMethod != null) {
             T ret = (T) initMethod.invoke(null, value);
-            if (!map.containsKey(value)) {
-                synchronized (map) {
-                    map.put(value, ret);
-                }
-            }
+//            if (!map.containsKey(value)) {
+//                synchronized (map) {
+//                    map.put(value, ret);
+//                }
+//            }
+            map.putIfAbsent(value, ret);
 
             return ret;
         }
@@ -274,16 +279,14 @@ public class SerializableTypeUtils {
         return null;
     }
 
-    private static final Map<Class, Constructor> constructorCache = new HashMap<>();
+    private static final Map<Class, Constructor> constructorCache = new ConcurrentHashMap<>();
 
-    private static <T extends SerializableType> T createByConstructor(Class<T> target, Object value, Map<Object, T> map)
+    private static <T extends SerializableType> T createByConstructor(Class<T> target, Object value, ConcurrentMap<Object, T> map)
             throws Exception {
 
-        Constructor constructor = null;
+        Constructor constructor = constructorCache.get(target);
 
-        if (constructorCache.containsKey(target)) {
-            constructor = constructorCache.get(target);
-        } else {
+        if (constructor == null) {
             for (Constructor<?> constr : target.getDeclaredConstructors()) {
                 if (constr.getParameterCount() == 1
                         && constr.getParameterTypes()[0].isAssignableFrom(value.getClass())) {
@@ -296,19 +299,18 @@ public class SerializableTypeUtils {
                 }
             }
 
-            synchronized (constructorCache) {
-                //Prevent repeated calls, constructor may be null
-                constructorCache.put(target, constructor);
-            }
+            //Prevent repeated calls, constructor may be null
+            constructorCache.putIfAbsent(target, constructor);
         }
 
         if (constructor != null) {
             T ret = (T) constructor.newInstance(value);
-            if (!map.containsKey(value)) {
-                synchronized (map) {
-                    map.put(value, ret);
-                }
-            }
+//            if (!map.containsKey(value)) {
+//                synchronized (map) {
+//                    map.put(value, ret);
+//                }
+//            }
+            map.putIfAbsent(value, ret);
 
             return ret;
         }
@@ -316,7 +318,7 @@ public class SerializableTypeUtils {
         return null;
     }
 
-    private static final Map<Class<? extends SerializableType>, Class<?>> genericCache = new HashMap<>();
+    private static final Map<Class<? extends SerializableType>, Class<?>> genericCache = new ConcurrentHashMap<>();
 
     /**
      * @param typeClass typeClass
@@ -338,11 +340,7 @@ public class SerializableTypeUtils {
             types = GenericUtils.getInterfacesGenericTypes(typeClass, ValueType.class);
             clazz = (Class<?>) types[0];
         }
-        synchronized (genericCache) {
-            if (!genericCache.containsKey(typeClass)) {
-                genericCache.put(typeClass, clazz);
-            }
-        }
+        genericCache.putIfAbsent(typeClass, clazz);
 
         return clazz;
 
