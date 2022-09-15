@@ -3,6 +3,8 @@ package org.raven.serializer.withJackson;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalTime;
+import java.util.List;
 
 /**
  * @author yi.liang
@@ -12,4 +14,8 @@ import java.math.BigDecimal;
 @Data
 public class Order {
     private BigDecimal id;
+
+    private LocalTime localTime;
+
+    private List<LocalTime> localTimes;
 }

@@ -44,6 +44,12 @@ public class ObjectMapperConfig {
 
         ObjectMapper mapper = new ObjectMapper(jsonFactory);
         //mapper.setSerializerFactory(mapper.getSerializerFactory().withSerializerModifier(new ModifySerializer()));
+        registerDefaultModules(setting, mapper);
+
+        return mapper;
+    }
+
+    public static void registerDefaultModules(SerializerSetting setting, ObjectMapper mapper) {
 
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         if (setting.getTimeZone() != null) {
@@ -65,6 +71,6 @@ public class ObjectMapperConfig {
         mapper.setAnnotationIntrospector(new AnnotationIntrospectorWarp());
         mapper.setPropertyNamingStrategy(new PropertyNamingStrategyWarp());
 
-        return mapper;
     }
+
 }
