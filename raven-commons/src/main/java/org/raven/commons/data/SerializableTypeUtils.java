@@ -74,14 +74,6 @@ public class SerializableTypeUtils {
 
     }
 
-    /**
-     * @param target SerializableType class
-     * @param <T>    T
-     * @return T[]
-     * @throws NoSuchMethodException
-     * @throws IllegalAccessException
-     * @throws InvocationTargetException
-     */
     public static <T extends SerializableType> T[] enumerationValues(Class<T> target)
             throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 
@@ -92,16 +84,14 @@ public class SerializableTypeUtils {
 
             Method method = target.getDeclaredMethod("values");
             //is enum-type, or user-defined values Method
-            if (method == null) {
-                for (Method declaredMethod : target.getDeclaredMethods()) {
-                    if (declaredMethod.getAnnotation(Values.class) != null) {
-                        method = declaredMethod;
-                        break;
-                    }
+            for (Method declaredMethod : target.getDeclaredMethods()) {
+                if (declaredMethod.getAnnotation(Values.class) != null) {
+                    method = declaredMethod;
+                    break;
                 }
             }
 
-            if (method != null && Modifier.isStatic(method.getModifiers())) {
+            if (Modifier.isStatic(method.getModifiers())) {
                 inter = (T[]) method.invoke(null);
             } else {
                 List<T> list = new ArrayList<>();

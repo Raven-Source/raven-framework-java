@@ -1,6 +1,5 @@
 package org.raven.commons.data;
 
-import lombok.val;
 import org.raven.commons.data.annotation.Create;
 import org.raven.commons.data.annotation.Values;
 
@@ -29,7 +28,7 @@ public class Gender extends NumberType<Integer, Gender> {
 
     @Create
     public static Gender valueOf2(Integer i) {
-        return new Gender(i.intValue());
+        return new Gender(i);
     }
 
     public static void main(String[] args) {

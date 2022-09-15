@@ -49,6 +49,7 @@ public class DESUtils {
      * @param data     待加密字符串
      * @param password 加密密码，长度不能够小于8位
      * @return 加密后内容
+     * @throws Exception Exception
      */
     public static byte[] encrypt(@NonNull String data, @NonNull String password)
             throws Exception {
@@ -62,9 +63,7 @@ public class DESUtils {
         IvParameterSpec iv = new IvParameterSpec(IV_PARAMETER.getBytes(StandardCharsets.UTF_8));
         cipher.init(Cipher.ENCRYPT_MODE, secretKey, iv);
 
-        byte[] bytes = cipher.doFinal(data.getBytes(StandardCharsets.UTF_8));
-
-        return bytes;
+        return cipher.doFinal(data.getBytes(StandardCharsets.UTF_8));
     }
 
     /**
@@ -73,12 +72,12 @@ public class DESUtils {
      * @param data     待加密字符串
      * @param password 加密密码，长度不能够小于8位
      * @return 加密后内容
+     * @throws Exception Exception
      */
     public static String encrypt2String(String data, String password)
             throws Exception {
 
-        String outStr = new String(Base64Utils.encode(encrypt(data, password)));
-        return outStr;
+        return new String(Base64Utils.encode(encrypt(data, password)));
     }
 
     /**
@@ -114,8 +113,7 @@ public class DESUtils {
     public static String decrypt2String(String data, String password)
             throws Exception {
 
-        String outStr = new String(decrypt(data, password), StandardCharsets.UTF_8);
-        return outStr;
+        return new String(decrypt(data, password), StandardCharsets.UTF_8);
 
     }
 
