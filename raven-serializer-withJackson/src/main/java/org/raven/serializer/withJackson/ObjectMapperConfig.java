@@ -68,7 +68,7 @@ public class ObjectMapperConfig {
         mapper.registerModules(new SerializableTypeModule(setting));
 
 
-        mapper.setAnnotationIntrospector(new AnnotationIntrospectorWarp());
+        mapper.setAnnotationIntrospector(new AnnotationIntrospectWarp());
         mapper.setPropertyNamingStrategy(new PropertyNamingStrategyWarp());
 
     }

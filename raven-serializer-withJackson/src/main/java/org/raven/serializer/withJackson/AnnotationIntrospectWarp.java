@@ -10,7 +10,7 @@ import org.raven.commons.data.annotation.Member;
  * date by 2018/1/8
  * @since JDK1.8
  */
-public class AnnotationIntrospectorWarp extends JacksonAnnotationIntrospector {
+public class AnnotationIntrospectWarp extends JacksonAnnotationIntrospector {
 
     @Override
     protected boolean _isIgnorable(Annotated a) {
@@ -24,7 +24,7 @@ public class AnnotationIntrospectorWarp extends JacksonAnnotationIntrospector {
         if (member != null) {
             int ix = member.index();
             if (ix != Member.INDEX_UNKNOWN) {
-                return Integer.valueOf(ix);
+                return ix;
             }
         }
         return super.findPropertyIndex(a);

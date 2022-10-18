@@ -68,7 +68,7 @@ public class MultiFormatDateDeserializer extends JsonDeserializer<Date>
         } catch (IllegalArgumentException iae) {
             return (java.util.Date) ctxt.handleWeirdStringValue(_valueClass, value,
                     "not a valid representation (error: %s)", iae.getMessage());
-        }catch (ParseException iae) {
+        } catch (ParseException iae) {
             return (java.util.Date) ctxt.handleWeirdStringValue(_valueClass, value,
                     "not a valid representation (error: %s)", iae.getMessage());
         }

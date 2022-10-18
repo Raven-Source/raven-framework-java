@@ -23,17 +23,17 @@ public class RSAUtils {
     /**
      * create KeyPairString
      *
-     * @param keysize eg:512\1024\2048
+     * @param keySize eg:512\1024\2048
      * @return KeyPairString
      * @throws NoSuchAlgorithmException ex
      */
-    public static KeyPairString genKeyPair(int keysize) throws NoSuchAlgorithmException {
+    public static KeyPairString genKeyPair(int keySize) throws NoSuchAlgorithmException {
 
         // KeyPairGenerator类用于生成公钥和私钥对，基于RSA算法生成对象
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
 
         // 初始化密钥对生成器，密钥大小
-        keyPairGen.initialize(keysize, new SecureRandom());
+        keyPairGen.initialize(keySize, new SecureRandom());
 
         // 生成一个密钥对，保存在keyPair中
         KeyPair keyPair = keyPairGen.generateKeyPair();

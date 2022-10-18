@@ -18,13 +18,15 @@ public class GenericUtils {
     public static Type[] getInterfacesGenericTypes(Class target, Class genericClass) {
         if (genericClass.isInterface()) {
             for (Type genericInterface : target.getGenericInterfaces()) {
-                if (((ParameterizedType) genericInterface).getRawType().equals(genericClass)) {
+                if (genericInterface instanceof ParameterizedType
+                        && ((ParameterizedType) genericInterface).getRawType().equals(genericClass)) {
                     return ((ParameterizedType) genericInterface).getActualTypeArguments();
+
                 }
             }
         } else {
             Type genericSuperclass = target.getGenericSuperclass();
-            if (((ParameterizedType) genericSuperclass).getRawType().equals(genericClass)) {
+            if (genericSuperclass instanceof ParameterizedType && ((ParameterizedType) genericSuperclass).getRawType().equals(genericClass)) {
                 return ((ParameterizedType) genericSuperclass).getActualTypeArguments();
             }
         }

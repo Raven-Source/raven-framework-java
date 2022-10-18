@@ -10,7 +10,7 @@ import com.fasterxml.jackson.core.util.VersionUtil;
  */
 public class PackageVersion {
 
-    public static final Version VERSION = VersionUtil.parseVersion("4.0.0", "io.github.raven-source", "raven-serializer-withJackson");
+    public static final Version VERSION = VersionUtil.parseVersion("4.0.7", "io.github.raven-source", "raven-serializer-withJackson");
 
     public PackageVersion() {
     }
