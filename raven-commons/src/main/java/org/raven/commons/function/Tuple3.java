@@ -1,5 +1,6 @@
 package org.raven.commons.function;
 
+import lombok.Getter;
 import lombok.NonNull;
 
 import java.util.Arrays;
@@ -10,12 +11,13 @@ import java.util.List;
 /**
  * date 2022/8/29 20:37
  */
+@Getter
 public class Tuple3<T1, T2, T3> implements Iterable<Object> {
-    final T1 t1;
-    final T2 t2;
-    final T3 t3;
+    private final T1 t1;
+    private final T2 t2;
+    private final T3 t3;
 
-    Tuple3(@NonNull T1 t1, @NonNull T2 t2, @NonNull T3 t3) {
+    public Tuple3(@NonNull T1 t1, @NonNull T2 t2, @NonNull T3 t3) {
         this.t1 = t1;
         this.t2 = t2;
         this.t3 = t3;

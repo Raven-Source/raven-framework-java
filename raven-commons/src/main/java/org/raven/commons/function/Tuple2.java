@@ -1,5 +1,6 @@
 package org.raven.commons.function;
 
+import lombok.Getter;
 import lombok.NonNull;
 
 import java.util.*;
@@ -8,21 +9,14 @@ import java.util.function.Function;
 /**
  * date 2022/8/29 20:37
  */
+@Getter
 public class Tuple2<T1, T2> implements Iterable<Object> {
-    final T1 t1;
-    final T2 t2;
+    private final T1 t1;
+    private final T2 t2;
 
-    Tuple2(@NonNull T1 t1, @NonNull T2 t2) {
+    public Tuple2(@NonNull T1 t1, @NonNull T2 t2) {
         this.t1 = t1;
         this.t2 = t2;
-    }
-
-    public T1 getT1() {
-        return this.t1;
-    }
-
-    public T2 getT2() {
-        return this.t2;
     }
 
     public Object get(int index) {
