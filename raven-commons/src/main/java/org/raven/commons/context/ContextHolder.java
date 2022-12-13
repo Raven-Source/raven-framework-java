@@ -2,6 +2,7 @@ package org.raven.commons.context;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * @author by yanfeng
@@ -16,6 +17,10 @@ public interface ContextHolder {
     Context getContext();
 
     void clearContext();
+
+    <R> R invokeWithContext(Context context, Supplier<R> func);
+
+    void invokeWithContext(Context context, Runnable func);
 
     <T, R> R invokeWithContext(Context context, Function<T, R> func, T t);
 

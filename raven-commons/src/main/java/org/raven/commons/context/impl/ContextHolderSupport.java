@@ -3,8 +3,10 @@ package org.raven.commons.context.impl;
 import org.raven.commons.context.Context;
 import org.raven.commons.context.ContextHolder;
 
+import java.util.concurrent.Callable;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * @author by yanfeng
@@ -38,6 +40,53 @@ public class ContextHolderSupport implements ContextHolder {
     @Override
     public void clearContext() {
         this.contextThreadLocal.remove();
+    }
+
+    @Override
+    public <R> R invokeWithContext(Context context, Supplier<R> func) {
+        Context originalContext = this.contextThreadLocal.get();
+        boolean needReplace = context != null && context != originalContext;
+
+        R res;
+        try {
+            if (needReplace) {
+                this.putContext(context);
+            }
+
+            res = func.get();
+        } finally {
+            if (needReplace) {
+                this.clearContext();
+                if (originalContext != null) {
+                    this.putContext(originalContext);
+                }
+            }
+
+        }
+
+        return res;
+    }
+
+    @Override
+    public void invokeWithContext(Context context, Runnable func) {
+
+        Context originalContext = this.contextThreadLocal.get();
+        boolean needReplace = context != null && context != originalContext;
+
+        try {
+            if (needReplace) {
+                this.putContext(context);
+            }
+            func.run();
+        } finally {
+            if (needReplace) {
+                this.clearContext();
+                if (originalContext != null) {
+                    this.putContext(originalContext);
+                }
+            }
+
+        }
     }
 
     @Override
