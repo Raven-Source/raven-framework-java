@@ -20,6 +20,9 @@ import java.util.concurrent.ConcurrentMap;
 @Slf4j
 @SuppressWarnings("unchecked")
 public class SerializableTypeUtils {
+
+    private final static Object NULL = new Object();
+
     private SerializableTypeUtils() {
     }
 
@@ -32,7 +35,6 @@ public class SerializableTypeUtils {
      * @return enum
      */
     private static <T extends SerializableType> ConcurrentMap<Object, T> getValueMap(Class<T> target) {
-
         if (target == null) {
             throw new IllegalArgumentException("clazz may not be null");
         }
@@ -225,11 +227,17 @@ public class SerializableTypeUtils {
         return null;
     }
 
-    private static final Map<Class, Method> initMethodCache = new ConcurrentHashMap<>();
+    private static final Map<Class, Object> initMethodCache = new ConcurrentHashMap<>();
 
     private static <T extends SerializableType> T createByMethod(Class<T> target, Object value, ConcurrentMap<Object, T> map)
             throws Exception {
-        Method initMethod = initMethodCache.get(target);
+
+        Object methodObject = initMethodCache.get(target);
+        if (methodObject == NULL) {
+            return null;
+        }
+
+        Method initMethod = (Method) methodObject;
 
         if (initMethod == null) {
             for (Method method : target.getDeclaredMethods()) {
@@ -251,16 +259,15 @@ public class SerializableTypeUtils {
             }
 
             //Prevent repeated calls, initMethod may be null
-            initMethodCache.putIfAbsent(target, initMethod);
+            if (initMethod != null) {
+                initMethodCache.putIfAbsent(target, initMethod);
+            } else {
+                initMethodCache.putIfAbsent(target, NULL);
+            }
         }
 
         if (initMethod != null) {
             T ret = (T) initMethod.invoke(null, value);
-//            if (!map.containsKey(value)) {
-//                synchronized (map) {
-//                    map.put(value, ret);
-//                }
-//            }
             map.putIfAbsent(value, ret);
 
             return ret;
