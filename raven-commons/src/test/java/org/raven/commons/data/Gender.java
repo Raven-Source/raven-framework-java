@@ -11,7 +11,7 @@ import java.lang.reflect.Type;
  * @since JDK1.8
  * date 2020.04.23 01:00
  */
-public class Gender extends NumberType<Integer, Gender> {
+public class Gender extends NumberType<Integer> {
 
     private Gender(Integer value) {
         super(value);
@@ -31,11 +31,16 @@ public class Gender extends NumberType<Integer, Gender> {
         return new Gender(i);
     }
 
+    @Values
+    public static Gender[] values() {
+        return new Gender[]{x, y};
+    }
+
     public static void main(String[] args) {
 
         Type type = Gender.class.getGenericSuperclass();
 
-        System.out.println(GenericUtils.getInterfacesGenericTypes(Gender.class, ValueType.class)[0]);
+        System.out.println(GenericUtils.getInterfacesGenericTypes(Gender.class, NumberType.class)[0]);
 
 
         for (Field declaredField : Gender.class.getDeclaredFields()) {
@@ -44,10 +49,5 @@ public class Gender extends NumberType<Integer, Gender> {
         }
 
 
-    }
-
-    @Values
-    public static Gender[] values() {
-        return new Gender[]{x, y};
     }
 }

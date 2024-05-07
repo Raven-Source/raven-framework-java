@@ -60,9 +60,8 @@ public class SerializableTypeUtilsTest {
         );
     }
 
-
     @Test
-    public void multiThreadTest() throws Exception {
+    public void multiThreadTest2() throws Exception {
 
         int seed = 100;
         List<Thread> futures = new ArrayList<>(seed);
@@ -71,9 +70,44 @@ public class SerializableTypeUtilsTest {
 
             Thread thread = new Thread(() -> {
 
+                Gender gender = SerializableTypeUtils.valueOf(Gender.class, 1);
+//                System.out.println(gender);
+                assert gender != null;
+
+            });
+
+            futures.add(thread);
+        }
+
+        for (Thread future : futures) {
+            future.start();
+        }
+
+        for (Thread future : futures) {
+            future.join();
+
+        }
+
+        System.out.println("end");
+
+
+    }
+
+    @Test
+    public void multiThreadTest() throws Exception {
+
+        int seed = 1000;
+        List<Thread> futures = new ArrayList<>(seed);
+
+        for (int i = 0; i < seed; i++) {
+
+            Thread thread = new Thread(() -> {
+
                 DBType dbType = SerializableTypeUtils.valueOf(DBType.class, 1);
+                Gender gender = SerializableTypeUtils.valueOf(Gender.class, 1);
 //                System.out.println(dbType);
                 assert dbType != null;
+                assert gender.getValue() == 1;
 
             });
 

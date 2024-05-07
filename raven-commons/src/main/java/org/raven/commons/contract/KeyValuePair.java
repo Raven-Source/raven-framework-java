@@ -11,7 +11,7 @@ import lombok.*;
 @EqualsAndHashCode
 @Getter
 @Setter
-public class KeyValue<TKey, TValue> {
+public class KeyValuePair<TKey, TValue> {
 
     private TKey key;
 
@@ -21,7 +21,7 @@ public class KeyValue<TKey, TValue> {
      * @param key key
      * @param value valueMemberFormatUtils
      */
-    public KeyValue(@NonNull TKey key, TValue value) {
+    public KeyValuePair(@NonNull TKey key, TValue value) {
         this.key = key;
         this.value = value;
     }
@@ -33,7 +33,7 @@ public class KeyValue<TKey, TValue> {
      * @param <TValue> TValue
      * @return the KeyValue
      */
-    public static <TKey, TValue> KeyValue<TKey, TValue> of(@NonNull TKey key, TValue value) {
-        return new KeyValue<>(key, value);
+    public static <TKey, TValue> KeyValuePair<TKey, TValue> of(@NonNull TKey key, TValue value) {
+        return new KeyValuePair<>(key, value);
     }
 }

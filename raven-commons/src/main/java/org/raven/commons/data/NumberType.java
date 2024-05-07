@@ -9,16 +9,11 @@ import java.lang.reflect.Type;
  * date 2020.04.26 22:33
  */
 @SuppressWarnings("unchecked")
-public abstract class NumberType<V extends Number, T extends NumberType> implements ValueType<V> {
+public abstract class NumberType<V extends Number> implements ValueType<V> {
 
-    private final transient Class<T> target;
     private final V value;
 
     protected NumberType(V value) {
-        Type genType = getClass().getGenericSuperclass();
-        Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
-        target = (Class<T>) params[1];
-
         this.value = value;
     }
 
@@ -42,7 +37,7 @@ public abstract class NumberType<V extends Number, T extends NumberType> impleme
             return false;
         }
 
-        if (target.equals(obj.getClass())) {
+        if (this.getClass().equals(obj.getClass())) {
             return equalsValue(obj);
         }
 

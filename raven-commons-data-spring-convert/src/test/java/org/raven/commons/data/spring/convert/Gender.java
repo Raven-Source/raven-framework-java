@@ -14,7 +14,7 @@ import java.lang.reflect.Type;
  * @since JDK1.8
  * date 2020.04.23 01:00
  */
-public class Gender extends NumberType<Integer, Gender> {
+public class Gender extends NumberType<Integer> {
 
     Gender(int value) {
         super(value);
