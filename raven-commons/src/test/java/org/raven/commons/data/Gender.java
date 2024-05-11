@@ -26,10 +26,10 @@ public class Gender extends NumberType<Integer> {
 //        return new Gender(i.intValue());
 //    }
 
-    @Create
-    public static Gender valueOf2(Integer i) {
-        return new Gender(i);
-    }
+//    @Create
+//    private static Gender valueOf2(Integer i) {
+//        return new Gender(i);
+//    }
 
     @Values
     public static Gender[] values() {
