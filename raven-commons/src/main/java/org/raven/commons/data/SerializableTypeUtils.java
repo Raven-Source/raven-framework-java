@@ -1,5 +1,6 @@
 package org.raven.commons.data;
 
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.raven.commons.data.annotation.Create;
 import org.raven.commons.data.annotation.Values;
@@ -76,7 +77,7 @@ public class SerializableTypeUtils {
 
     }
 
-    public static <T extends SerializableType> T[] enumerationValues(Class<T> target)
+    public static <T extends SerializableType> T[] enumerationValues(@NonNull Class<T> target)
             throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 
         T[] inter = null;
@@ -117,7 +118,11 @@ public class SerializableTypeUtils {
      * @param <T>    enum type
      * @return SerializableType
      */
-    public static <T extends SerializableType> T valueOf(Class<T> target, Object value) {
+    public static <T extends SerializableType> T valueOf(@NonNull Class<T> target, Object value) {
+
+        if (value == null) {
+            return null;
+        }
 
         T ret = null;
 
@@ -158,7 +163,7 @@ public class SerializableTypeUtils {
      * @param <T>         T
      * @return SerializableType
      */
-    public static <T extends SerializableType> T stringValueOf(Class<T> target, String stringValue) {
+    public static <T extends SerializableType> T stringValueOf(@NonNull Class<T> target, String stringValue) {
 
         if (StringUtils.isEmpty(stringValue)) {
             return null;
@@ -210,7 +215,7 @@ public class SerializableTypeUtils {
      * @param <T>    enum type
      * @return enum
      */
-    public static <T extends Enum<T>> T nameOf(Class<T> target, String name) {
+    public static <T extends Enum<T>> T nameOf(@NonNull Class<T> target, String name) {
 
         if (name == null || name.length() == 0) {
             return null;
@@ -321,7 +326,7 @@ public class SerializableTypeUtils {
      * @param typeClass typeClass
      * @return the genericType
      */
-    public static Class<?> getGenericType(Class<? extends SerializableType> typeClass) {
+    public static Class<?> getGenericType(@NonNull Class<? extends SerializableType> typeClass) {
 
         Class<?> clazz = genericCache.get(typeClass);
         if (clazz != null)
