@@ -88,7 +88,7 @@ public final class DateTime implements Cloneable, Comparable<DateTime> {
      * @param year       the year, eg:2021
      * @param month      the month-of-year, from 1 to 12
      * @param dayOfMonth the day-of-month, from 1 to 31
-     * @return
+     * @return DateTime
      */
     public static DateTime of(int year, int month, int dayOfMonth) {
         return today().setYears(year)
@@ -103,7 +103,7 @@ public final class DateTime implements Cloneable, Comparable<DateTime> {
      * @param hour       the hour-of-day, from 0 to 23
      * @param minute     the minute-of-hour,  from 0 to 59
      * @param second     the second-of-minute,  from 0 to 59
-     * @return
+     * @return DateTime
      */
     public static DateTime of(int year, int month, int dayOfMonth, int hour, int minute, int second) {
         return today().setYears(year)
@@ -123,7 +123,7 @@ public final class DateTime implements Cloneable, Comparable<DateTime> {
      * @param minute      the minute-of-hour,  from 0 to 59
      * @param second      the second-of-minute,  from 0 to 59
      * @param millisecond the millisecond-of-second,  from 0 to 59
-     * @return
+     * @return DateTime
      */
     public static DateTime of(int year, int month, int dayOfMonth, int hour, int minute, int second, int millisecond) {
         return today().setYears(year)
@@ -215,7 +215,7 @@ public final class DateTime implements Cloneable, Comparable<DateTime> {
 
     /**
      * @param amount the year, eg:2021
-     * @return
+     * @return DateTime
      */
     public DateTime setYears(int amount) {
         set(Calendar.YEAR, amount);
@@ -224,7 +224,7 @@ public final class DateTime implements Cloneable, Comparable<DateTime> {
 
     /**
      * @param amount the month-of-year, from 1 to 12
-     * @return
+     * @return DateTime
      */
     public DateTime setMonths(int amount) {
         Args.check(amount >= 1 && amount <= 12, "the month-of-year, from 1 to 12");
@@ -234,7 +234,7 @@ public final class DateTime implements Cloneable, Comparable<DateTime> {
 
     /**
      * @param amount the day-of-month, from 1 to 31
-     * @return
+     * @return DateTime
      */
     public DateTime setDays(int amount) {
         Args.check(amount >= 1 && amount <= 31, "the day-of-month, from 1 to 31");
@@ -244,7 +244,7 @@ public final class DateTime implements Cloneable, Comparable<DateTime> {
 
     /**
      * @param amount the day-of-week, from 1 to 7
-     * @return
+     * @return DateTime
      * @see DateTime#MONDAY
      * @see DateTime#TUESDAY
      * @see DateTime#WEDNESDAY
@@ -262,7 +262,7 @@ public final class DateTime implements Cloneable, Comparable<DateTime> {
 
     /**
      * @param amount the hour-of-day, from 0 to 23
-     * @return
+     * @return DateTime
      */
     public DateTime setHours(int amount) {
         Args.check(amount >= 0 && amount <= 23, "the hour-of-day, from 0 to 23");
@@ -272,7 +272,7 @@ public final class DateTime implements Cloneable, Comparable<DateTime> {
 
     /**
      * @param amount the minute-of-hour, from 0 to 59
-     * @return
+     * @return DateTime
      */
     public DateTime setMinutes(int amount) {
         Args.check(amount >= 0 && amount <= 59, "the minute-of-hour, from 0 to 59");
@@ -282,7 +282,7 @@ public final class DateTime implements Cloneable, Comparable<DateTime> {
 
     /**
      * @param amount the second-of-minute, from 0 to 59
-     * @return
+     * @return DateTime
      */
     public DateTime setSeconds(int amount) {
         Args.check(amount >= 0 && amount <= 59, "the second-of-minute, from 0 to 59");
@@ -292,7 +292,7 @@ public final class DateTime implements Cloneable, Comparable<DateTime> {
 
     /**
      * @param amount the millisecond-of-second, from 0 to 999
-     * @return
+     * @return DateTime
      */
     public DateTime setMilliseconds(int amount) {
         Args.check(amount >= 0 && amount <= 999, "the millisecond-of-second, from 0 to 999");
@@ -376,7 +376,8 @@ public final class DateTime implements Cloneable, Comparable<DateTime> {
     }
 
     /**
-     * @return format string
+     * @param pattern the pattern
+     * @return format to string
      */
     public String format(@NonNull String pattern) {
 

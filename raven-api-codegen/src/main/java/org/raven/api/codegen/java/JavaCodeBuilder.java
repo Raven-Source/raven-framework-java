@@ -17,13 +17,13 @@ import java.util.*;
 
 /**
  * @author liangyi
- * @date 2018/9/3
+ * date 2018/9/3
  */
 public class JavaCodeBuilder implements CodeBuilder {
 
     private final Map<String, Template> templateCache = new HashMap<>();
     @Getter
-    private final StructureParser structureParser;
+    private final SchemaParser schemaParser;
     private final TemplateProvision templateProvision;
     private final CodeGenerator codeGenerator;
 
@@ -81,11 +81,6 @@ public class JavaCodeBuilder implements CodeBuilder {
                 , builderOptions.getCodeGenerator());
     }
 
-    /**
-     * @param packageNameReplaceMap
-     * @param templateProvision
-     * @param codeGenerator
-     */
     public JavaCodeBuilder(Set<String> ignoreClassSet,
                            Map<String, String> classNameReplaceMap,
                            Map<String, String> packageNameReplaceMap,
@@ -96,30 +91,26 @@ public class JavaCodeBuilder implements CodeBuilder {
 //        this.classNameReplaceMap = classNameReplaceMap;
 //        this.packageNameReplaceMap = packageNameReplaceMap;
 
-        this.structureParser = new StructureParser(classNameReplaceMap, packageNameReplaceMap);
+        this.schemaParser = new SchemaParser(classNameReplaceMap, packageNameReplaceMap);
         this.templateProvision = templateProvision;
         this.codeGenerator = codeGenerator;
     }
 
     @Override
     public void loadStructure(String xmlContent) throws DocumentException {
-        structureParser.loadStructure(xmlContent);
+        schemaParser.loadStructure(xmlContent);
     }
 
-    /**
-     * @throws IOException
-     * @throws TemplateException
-     */
     public void render()
             throws IOException, TemplateException {
 
-        codeGenerator.init(structureParser.getServiceDescribeMap(), structureParser.getModelDescribeMap());
+        codeGenerator.init(schemaParser.getServiceDescribeMap(), schemaParser.getModelDescribeMap());
 
-        for (Map.Entry<String, ModelDescribe> entry : structureParser.getModelDescribeMap().entrySet()) {
+        for (Map.Entry<String, ModelDescribe> entry : schemaParser.getModelDescribeMap().entrySet()) {
             process(entry.getValue());
         }
 
-        for (Map.Entry<String, ServiceDescribe> entry : structureParser.getServiceDescribeMap().entrySet()) {
+        for (Map.Entry<String, ServiceDescribe> entry : schemaParser.getServiceDescribeMap().entrySet()) {
             process(entry.getValue());
         }
     }

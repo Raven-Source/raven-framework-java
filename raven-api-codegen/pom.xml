@@ -10,7 +10,6 @@
     </parent>
 
     <artifactId>raven-api-codegen</artifactId>
-    <packaging>maven-plugin</packaging>
 
     <properties>
         <freemarker.version>2.3.31</freemarker.version>

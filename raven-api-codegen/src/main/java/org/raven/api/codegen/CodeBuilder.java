@@ -9,7 +9,7 @@ public interface CodeBuilder {
 
     void loadStructure(String xmlContent) throws DocumentException;
 
-    StructureParser getStructureParser();
+    SchemaParser getSchemaParser();
 
     void render() throws IOException, TemplateException;
 }

@@ -178,7 +178,9 @@ public class ApiSchemaContext {
 
 
     /**
-     * @return
+     * 转换为xml
+     *
+     * @return xml
      */
     public String convertToXml() {
 

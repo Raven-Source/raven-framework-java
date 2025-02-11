@@ -1,8 +1,9 @@
 package org.raven.api.codegen;
 
 /**
+ * date 2018/9/3
+ *
  * @author liangyi
- * @date 2018/9/3
  */
 public enum ModelType {
 

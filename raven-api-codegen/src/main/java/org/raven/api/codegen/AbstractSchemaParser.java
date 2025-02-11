@@ -12,11 +12,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * date 2018/9/3
+ *
  * @author liangyi
- * @date 2018/9/3
  */
 @AllArgsConstructor
-public abstract class AbstractStructureParser {
+public abstract class AbstractSchemaParser {
 
     protected final Map<String, String> classNameReplaceMap;
 
@@ -86,10 +87,10 @@ public abstract class AbstractStructureParser {
     }
 
     /**
-     * @param describe
-     * @param value
-     * @param element
-     * @return
+     * @param describe Describe
+     * @param value    value
+     * @param element  Element
+     * @return genericType string
      */
     public String processGenericType(AbstractDescribe describe, String value, Element element) {
         if (element == null)

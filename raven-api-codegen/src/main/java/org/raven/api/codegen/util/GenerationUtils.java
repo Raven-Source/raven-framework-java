@@ -4,23 +4,24 @@ package org.raven.api.codegen.util;
 import org.raven.commons.util.StringUtils;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * date 2018/8/28
+ *
  * @author liangyi
- * @date 2018/8/28
  */
 public abstract class GenerationUtils {
 
     /**
-     * @param value
-     * @param set
-     * @return
+     * @param value regex string
+     * @param set input set
+     * @return true if match
      */
-    public static boolean match(String value, Set<String> set) {
+    public static boolean match(String value, Collection<String> set) {
         for (String item : set) {
             if (Pattern.matches(item, value)) return true;
         }
@@ -28,11 +29,6 @@ public abstract class GenerationUtils {
         return false;
     }
 
-    /**
-     * @param value
-     * @param hashMap
-     * @return
-     */
     public static String replaceFixedName(String value, Map<String, String> hashMap) {
 
         if (hashMap == null || hashMap.isEmpty())

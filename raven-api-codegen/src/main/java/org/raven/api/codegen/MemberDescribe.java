@@ -5,8 +5,9 @@ import lombok.Setter;
 import org.raven.commons.data.MutableDescribable;
 
 /**
+ * date 2018/9/3
+ *
  * @author liangyi
- * @date 2018/9/3
  */
 @Getter
 @Setter

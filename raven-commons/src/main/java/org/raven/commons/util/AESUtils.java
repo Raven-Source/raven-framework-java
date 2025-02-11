@@ -24,8 +24,8 @@ public class AESUtils {
     /**
      * 生成key
      *
-     * @return
-     * @throws Exception
+     * @return generate key String
+     * @throws Exception generate exception
      */
     public static String generateKey()
             throws Exception {
@@ -52,6 +52,7 @@ public class AESUtils {
      * @param data     待加密字符串
      * @param password 加密密码，长度不能够小于8位
      * @return 加密后内容
+     * @throws Exception encrypt exception
      */
     public static String encrypt2String(String data, String password)
             throws Exception {
@@ -74,6 +75,7 @@ public class AESUtils {
      * @param password 解密密码，长度不能够小于8位
      * @param data     待解密字符串
      * @return 解密后内容
+     * @throws Exception decrypt exception
      */
     public static String decrypt2String(String data, String password)
             throws Exception {

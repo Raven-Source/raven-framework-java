@@ -59,6 +59,9 @@ public abstract class TimeBucket {
     /**
      * The format of timeBucket in minute Unit is "yyyyMMddHHmmss", so which means the TimeBucket must be between
      * 10000000000000 and 99999999999999.
+     *
+     * @param timeBucket value of timeBucket
+     * @return true if the timeBucket is second bucket, otherwise false.
      */
     public static boolean isSecondBucket(long timeBucket) {
         return timeBucket < 99999999999999L && timeBucket > 10000000000000L;
@@ -67,6 +70,9 @@ public abstract class TimeBucket {
     /**
      * The format of timeBucket in minute Unit is "yyyyMMddHHmm", so which means the TimeBucket must be between
      * 100000000000 and 999999999999.
+     *
+     * @param timeBucket value of timeBucket
+     * @return true if the timeBucket is minute bucket, otherwise false.
      */
     public static boolean isMinuteBucket(long timeBucket) {
         return timeBucket < 999999999999L && timeBucket > 100000000000L;
@@ -75,6 +81,9 @@ public abstract class TimeBucket {
     /**
      * The format of timeBucket in hour Unit is "yyyyMMddHH", so which means the TimeBucket must be between 1000000000
      * and 9999999999.
+     *
+     * @param timeBucket value of timeBucket
+     * @return true if the timeBucket is hour bucket, otherwise false.
      */
     public static boolean isHourBucket(long timeBucket) {
         return timeBucket < 9999999999L && timeBucket > 1000000000L;
@@ -83,6 +92,9 @@ public abstract class TimeBucket {
     /**
      * The format of timeBucket in day Unit is "yyyyMMdd", so which means the TimeBucket must be between 10000000 and
      * 99999999.
+     *
+     * @param timeBucket value of timeBucket
+     * @return true if the timeBucket is day bucket, otherwise false.
      */
     public static boolean isDayBucket(long timeBucket) {
         return timeBucket < 99999999L && timeBucket > 10000000L;
@@ -106,7 +118,7 @@ public abstract class TimeBucket {
     /**
      * Convert TimeBucket to Timestamp in millisecond.
      *
-     * @param timeBucket   long
+     * @param timeBucket   value of timeBucket
      * @param downsampling Downsampling
      * @return timestamp in millisecond unit
      */

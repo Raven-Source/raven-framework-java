@@ -9,18 +9,12 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 /**
+ * date 2018/8/28
+ *
  * @author liangyi
- * @date 2018/8/28
  */
 public abstract class FreeMarkerUtils {
 
-    /**
-     * @param template
-     * @param data
-     * @return
-     * @throws IOException
-     * @throws TemplateException
-     */
     public static String render(Template template, Object data)
             throws IOException, TemplateException {
 
@@ -31,14 +25,6 @@ public abstract class FreeMarkerUtils {
 
     }
 
-    /**
-     * @param inputStream
-     * @param templateName
-     * @param data
-     * @return
-     * @throws IOException
-     * @throws TemplateException
-     */
     public static String render(InputStream inputStream, String templateName, Object data)
             throws IOException, TemplateException {
 
@@ -48,12 +34,6 @@ public abstract class FreeMarkerUtils {
 
     }
 
-    /**
-     * @param inputStream
-     * @param templateName
-     * @return
-     * @throws IOException
-     */
     public static Template getTemplate(InputStream inputStream, String templateName)
             throws IOException {
 

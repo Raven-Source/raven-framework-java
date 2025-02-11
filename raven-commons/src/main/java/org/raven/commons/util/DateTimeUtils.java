@@ -69,7 +69,8 @@ public class DateTimeUtils {
 
 
     /**
-     * @param date date
+     * @param date      date
+     * @param formatter DateTimeFormatter
      * @return format string
      */
     public static String format(Date date, @NonNull DateTimeFormatter formatter) {
@@ -82,7 +83,8 @@ public class DateTimeUtils {
     }
 
     /**
-     * @param date date
+     * @param date    date
+     * @param pattern pattern
      * @return format string
      */
     public static String format(Date date, @NonNull String pattern) {
@@ -90,7 +92,8 @@ public class DateTimeUtils {
     }
 
     /**
-     * @param date date
+     * @param date     date
+     * @param timeZone timeZone
      * @return format string
      */
     public static String format(Date date, @NonNull TimeZone timeZone) {
@@ -98,7 +101,9 @@ public class DateTimeUtils {
     }
 
     /**
-     * @param date date
+     * @param date     date
+     * @param pattern  pattern
+     * @param timeZone timeZone
      * @return format string
      */
     public static String format(Date date, @NonNull String pattern, @NonNull TimeZone timeZone) {
@@ -124,7 +129,8 @@ public class DateTimeUtils {
     }
 
     /**
-     * @param date zoned dateTime
+     * @param date      zoned dateTime
+     * @param formatter DateTimeFormatter
      * @return format string
      */
     public static String format(ZonedDateTime date, @NonNull DateTimeFormatter formatter) {

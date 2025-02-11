@@ -18,8 +18,9 @@ import java.lang.reflect.*;
 import java.util.*;
 
 /**
+ * date 2018/8/31
+ *
  * @author liangyi
- * @date 2018/8/31
  */
 @Slf4j
 public class SchemaProducer {

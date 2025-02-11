@@ -7,9 +7,9 @@ import org.raven.commons.util.StringUtils;
 import java.util.List;
 import java.util.Map;
 
-public class ServiceStructureParser extends AbstractStructureParser {
+public class ServiceSchemaParser extends AbstractSchemaParser {
 
-    public ServiceStructureParser(Map<String, String> classNameReplaceMap, Map<String, String> packageNameReplaceMap) {
+    public ServiceSchemaParser(Map<String, String> classNameReplaceMap, Map<String, String> packageNameReplaceMap) {
         super(classNameReplaceMap, packageNameReplaceMap);
     }
 

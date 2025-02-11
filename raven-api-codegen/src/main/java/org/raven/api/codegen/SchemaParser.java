@@ -11,34 +11,29 @@ import java.io.StringReader;
 import java.util.*;
 
 /**
+ * date 2018/9/3
+ *
  * @author liangyi
- * @date 2018/9/3
  */
-public class StructureParser {
+@Getter
+public class SchemaParser {
 
 //    private Set<Class> baseClazzSet;
 
-    @Getter
-    private ModelStructureParser modelStructure;
+    private final ModelSchemaParser modelStructure;
 
-    @Getter
-    private ServiceStructureParser serviceStructure;
+    private final ServiceSchemaParser serviceStructure;
 
-    @Getter
-    private Map<String, ModelDescribe> modelDescribeMap;
+    private final Map<String, ModelDescribe> modelDescribeMap;
 
-    @Getter
-    private Map<String, ServiceDescribe> serviceDescribeMap;
+    private final Map<String, ServiceDescribe> serviceDescribeMap;
 
-    /**
-     *
-     */
-    public StructureParser(Map<String, String> classNameReplaceMap, Map<String, String> packageNameReplaceMap) {
+    public SchemaParser(Map<String, String> classNameReplaceMap, Map<String, String> packageNameReplaceMap) {
         this.modelDescribeMap = new LinkedHashMap<>();
         this.serviceDescribeMap = new LinkedHashMap<>();
 
-        this.modelStructure = new ModelStructureParser(classNameReplaceMap, packageNameReplaceMap);
-        this.serviceStructure = new ServiceStructureParser(classNameReplaceMap, packageNameReplaceMap);
+        this.modelStructure = new ModelSchemaParser(classNameReplaceMap, packageNameReplaceMap);
+        this.serviceStructure = new ServiceSchemaParser(classNameReplaceMap, packageNameReplaceMap);
 
 //        this.baseClazzSet = new LinkedHashSet<Class>() {{
 //            add(Object.class);
@@ -63,10 +58,6 @@ public class StructureParser {
 //        }};
     }
 
-    /**
-     * @param content
-     * @throws Exception
-     */
     public void loadStructure(String content)
             throws DocumentException {
 
@@ -87,9 +78,6 @@ public class StructureParser {
         serviceDescribeMap.clear();
     }
 
-    /**
-     * @param element
-     */
     private void loadModel(Element element) {
 
         List<Element> modelELeList = element.element(Label.models).elements(Label.model);

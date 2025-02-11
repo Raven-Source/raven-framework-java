@@ -7,20 +7,21 @@ import org.raven.commons.util.StringUtils;
 import java.util.*;
 
 /**
+ * date 2018/9/3
+ *
  * @author liangyi
- * @date 2018/9/3
  */
-public class ModelStructureParser extends AbstractStructureParser {
+public class ModelSchemaParser extends AbstractSchemaParser {
 
 //    private final Map<String, String> typeConvert;
 
-    public ModelStructureParser(Map<String, String> classNameReplaceMap, Map<String, String> packageNameReplaceMap) {
+    public ModelSchemaParser(Map<String, String> classNameReplaceMap, Map<String, String> packageNameReplaceMap) {
         super(classNameReplaceMap, packageNameReplaceMap);
     }
 
     /**
-     * @param modelEle
-     * @return
+     * @param modelEle Element
+     * @return ModelDescribe
      */
     public ModelDescribe loadModel(Element modelEle) {
 

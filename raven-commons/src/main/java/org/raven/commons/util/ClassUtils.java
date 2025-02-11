@@ -10,10 +10,7 @@ import java.lang.reflect.*;
 import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.regex.Pattern;
@@ -25,11 +22,11 @@ import java.util.regex.Pattern;
 public class ClassUtils {
 
     /**
-     * @param value
-     * @param set
-     * @return
+     * @param value regex string
+     * @param set   input string collection
+     * @return true if match
      */
-    public static boolean match(String value, Set<String> set) {
+    public static boolean match(String value, Collection<String> set) {
         for (String item : set) {
             if (Pattern.matches(item, value)) return true;
         }
@@ -71,6 +68,12 @@ public class ClassUtils {
 
     /**
      * 取得某个注解标记的所有类
+     *
+     * @param clazz         target class
+     * @param annotationCls target annotation
+     * @param searchSupers  search super class
+     * @param <A>           annotation class
+     * @return this Annotation
      */
     public static <A extends Annotation> A getAnnotation(final Class<?> clazz, final Class<A> annotationCls
             , final boolean searchSupers) {
@@ -181,8 +184,13 @@ public class ClassUtils {
 
     /**
      * 取得某个注解标记的所有类
+     *
+     * @param annotationClazzSet annotation clazz set
+     * @param packageName        package name
+     * @return class list
      */
-    public static List<Class<?>> getAllClassByAnnotation(final Set<Class<? extends Annotation>> annotationClazzSet, final String packageName) {
+    public static List<Class<?>> getAllClassByAnnotation(final Set<Class<? extends Annotation>> annotationClazzSet
+            , final String packageName) {
         List<Class<?>> returnClassList = null;
 
         // 获取当前包下以及子包下所以的类
@@ -203,6 +211,10 @@ public class ClassUtils {
 
     /**
      * 取得某个接口下所有实现这个接口的类
+     *
+     * @param interfaceClazz interface clazz
+     * @param packageName    package name
+     * @return class list
      */
     public static List<Class<?>> getAllClassByInterface(final Class<?> interfaceClazz, final String packageName) {
         List<Class<?>> returnClassList = null;
@@ -228,6 +240,9 @@ public class ClassUtils {
 
     /**
      * 从包package中获取所有的Class
+     *
+     * @param packageName package name
+     * @return class list
      */
     public static List<Class<?>> getClasses(final String packageName) {
 
@@ -311,6 +326,11 @@ public class ClassUtils {
 
     /**
      * 以文件的形式来获取包下的所有Class
+     *
+     * @param packageName 包名
+     * @param packagePath 包路径
+     * @param recursive   是否递归
+     * @param classes     class list
      */
     public static void findAndAddClassesInPackageByFile(final String packageName,
                                                         final String packagePath,

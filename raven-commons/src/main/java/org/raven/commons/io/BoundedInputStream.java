@@ -248,7 +248,7 @@ public class BoundedInputStream extends InputStream {
     /**
      * Go back current position
      *
-     * @param backoff
+     * @param backoff back off position
      */
     protected void backoff(long backoff) {
         this.pos -= backoff;

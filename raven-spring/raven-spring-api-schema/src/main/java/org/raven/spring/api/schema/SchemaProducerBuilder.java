@@ -11,8 +11,9 @@ import java.lang.annotation.Annotation;
 import java.util.Set;
 
 /**
+ * date 2018/9/4
+ *
  * @author liangyi
- * @date 2018/9/4
  */
 @Getter
 @Setter
@@ -33,9 +34,6 @@ public class SchemaProducerBuilder {
     private Set<String> excludeClassSet;
     private String version;
 
-    /**
-     *
-     */
     public SchemaProducer build() {
 
         return new SchemaProducer(
