@@ -1,6 +1,7 @@
 package org.raven.commons.data;
 
 import lombok.Data;
+import org.raven.commons.data.Deletable;
 
 /**
  * @author by yanfeng

@@ -1,0 +1,28 @@
+/**
+ * ${description!}
+ */
+<#if enumTypeConvert?? && enumTypeConvert != "">
+export const ${className} = {
+	<#list enums as enum>
+
+	/**
+	* ${enum.description!}
+	*/
+	${enum.name}: <#if enumIsString == true>"${enum.value}"<#else>${enumTypeConvert}(${enum.value})</#if>,
+	</#list>
+
+}
+export type ${className} = typeof ${className}[keyof typeof ${className}];
+<#else>
+export const enum ${className} {
+	<#list enums as enum>
+
+	/**
+	* ${enum.description!}
+	*/
+	${enum.name} = <#if enumIsString == true>"${enum.value}"<#else>${enum.value}</#if>,
+	</#list>
+
+}
+</#if>
+

@@ -3,7 +3,6 @@ package org.raven.commons.context.impl;
 import org.raven.commons.context.Context;
 import org.raven.commons.context.ContextHolder;
 
-import java.util.concurrent.Callable;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;

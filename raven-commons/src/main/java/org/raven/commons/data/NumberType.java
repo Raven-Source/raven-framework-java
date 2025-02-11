@@ -1,9 +1,6 @@
 package org.raven.commons.data;
 
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-
 /**
  * @author yi.liang
  * date 2020.04.26 22:33

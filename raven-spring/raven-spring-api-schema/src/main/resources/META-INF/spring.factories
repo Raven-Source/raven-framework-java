@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.raven.spring.api.schema.config.ApiSchemaConfiguration
+

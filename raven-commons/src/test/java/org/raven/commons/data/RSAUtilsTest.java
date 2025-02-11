@@ -5,9 +5,6 @@ import org.junit.Test;
 import org.raven.commons.contract.KeyPairString;
 import org.raven.commons.util.RSAUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author yanfeng
  */

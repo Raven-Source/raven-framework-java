@@ -2,27 +2,32 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.github.raven-source</groupId>
         <artifactId>raven-framework</artifactId>
-        <version>4.0.14</version>
+        <version>5.0.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
-    <description>raven-serializer</description>
-    <url>https://github.com/Raven-Source/raven-framework-java</url>
+    <modules>
+        <module>raven-serializer-core</module>
+        <module>raven-serializer-hibernate5-convert</module>
+        <module>raven-serializer-mybatis-convert</module>
+        <module>raven-serializer-spring5-convert</module>
+        <module>raven-serializer-withJackson</module>
+        <module>raven-serializer-withJacksonMsgpack</module>
+        <!--        <module>raven-serializer-withMsgpack</module>-->
+        <module>raven-serializer-withProtobuf</module>
+
+        <module>raven-serializer-performancetest</module>
+    </modules>
 
     <artifactId>raven-serializer</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
-    <dependencies>
-
-        <dependency>
-            <groupId>io.github.raven-source</groupId>
-            <artifactId>raven-commons</artifactId>
-            <version>${raven-framework.version}</version>
-        </dependency>
-
-    </dependencies>
+    <properties>
+        <msgpack.version>0.9.8</msgpack.version>
+        <jprotobuf.version>2.4.23</jprotobuf.version>
+    </properties>
 
 </project>

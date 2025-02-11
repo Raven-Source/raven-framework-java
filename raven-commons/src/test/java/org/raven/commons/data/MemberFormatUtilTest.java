@@ -2,6 +2,8 @@ package org.raven.commons.data;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.raven.commons.data.MemberFormatType;
+import org.raven.commons.data.MemberFormatUtils;
 
 public class MemberFormatUtilTest {
 

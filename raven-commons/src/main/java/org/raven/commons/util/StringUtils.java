@@ -11,6 +11,10 @@ public class StringUtils {
     private StringUtils() {
     }
 
+    public static boolean isNotEmpty(final CharSequence s) {
+        return !isEmpty(s);
+    }
+
     /**
      * Returns true if the parameter is null or of zero length
      *
@@ -22,6 +26,10 @@ public class StringUtils {
             return true;
         }
         return s.length() == 0;
+    }
+
+    public static boolean isNotBlank(final CharSequence s) {
+        return !isBlank(s);
     }
 
     /**
@@ -42,12 +50,30 @@ public class StringUtils {
         return true;
     }
 
+    public static boolean hasLength(final CharSequence s) {
+        return (s != null && s.length() > 0);
+    }
+
+    public static boolean hasText(CharSequence str) {
+        return (str != null && str.length() > 0 && containsText(str));
+    }
+
     public static boolean containsBlanks(final CharSequence s) {
         if (s == null) {
             return false;
         }
         for (int i = 0; i < s.length(); i++) {
             if (Character.isWhitespace(s.charAt(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean containsText(CharSequence str) {
+        int strLen = str.length();
+        for (int i = 0; i < strLen; i++) {
+            if (!Character.isWhitespace(str.charAt(i))) {
                 return true;
             }
         }

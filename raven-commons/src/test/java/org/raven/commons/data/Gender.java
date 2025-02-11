@@ -1,6 +1,5 @@
 package org.raven.commons.data;
 
-import org.raven.commons.data.annotation.Create;
 import org.raven.commons.data.annotation.Values;
 
 import java.lang.reflect.Field;

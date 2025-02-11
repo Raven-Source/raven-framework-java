@@ -1,7 +1,7 @@
 package org.raven.commons.data;
 
 
-public enum OperationEnum implements StringType, Description {
+public enum OperationEnum implements StringType, Describable {
 
     Expression("exps","表达式"),
 
@@ -27,7 +27,7 @@ public enum OperationEnum implements StringType, Description {
     }
 
     @Override
-    public String getDesc() {
+    public String getDescription() {
         return description;
     }
 
@@ -36,7 +36,7 @@ public enum OperationEnum implements StringType, Description {
         this.description = description;
     }
 
-    public static OperationEnum fromValue(String value) {
+    public static OperationEnum of(String value) {
 
         for (OperationEnum e : values()) {
             if (e.getValue().equals(value)) {

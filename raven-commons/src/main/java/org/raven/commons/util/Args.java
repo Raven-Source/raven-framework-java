@@ -6,7 +6,7 @@ import java.util.Collection;
  * @author yi.liang
  * date 2018.9.25
  */
-public class Args {
+public abstract class Args {
 
     public static void check(final boolean expression, final String message) {
         if (!expression) {

@@ -5,12 +5,9 @@
     <parent>
         <groupId>io.github.raven-source</groupId>
         <artifactId>raven-framework</artifactId>
-        <version>4.0.14</version>
+        <version>5.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <description>raven-commons</description>
-    <url>https://github.com/Raven-Source/raven-framework-java</url>
 
     <artifactId>raven-commons</artifactId>
     <packaging>jar</packaging>
@@ -19,6 +16,7 @@
     </properties>
 
     <dependencies>
+
     </dependencies>
 
 </project>
