@@ -88,21 +88,21 @@ public class GeneratingCode extends AbstractMojo {
 
     private void loadStructure(CodeBuilder codeBuilder, ApiConfig apiConfig) throws Exception {
 
-        String apiStructureXml = null;
+        String apiSchemaXml = null;
 
         if (!StringUtils.isBlank(apiConfig.getUrl())) {
 
-            log.info("apiStructure url: " + apiConfig.getUrl());
-            apiStructureXml = HttpUtils.get(apiConfig.getUrl());
+            log.info("apiSchemaXml url: " + apiConfig.getUrl());
+            apiSchemaXml = HttpUtils.get(apiConfig.getUrl());
         } else if (!StringUtils.isBlank(apiConfig.getSystemPath())) {
 
             String filePath = Paths.get(apiConfig.getSystemPath())
                     .toAbsolutePath()
                     .toString();
 
-            log.info("apiStructure systemPath: " + filePath);
+            log.info("apiSchemaXml systemPath: " + filePath);
             try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
-                apiStructureXml = bufferedReader.lines().collect(Collectors.joining("\n"));
+                apiSchemaXml = bufferedReader.lines().collect(Collectors.joining("\n"));
 
             } catch (Exception ex) {
 
@@ -111,13 +111,13 @@ public class GeneratingCode extends AbstractMojo {
 
         }
 
-        Assert.hasText(apiStructureXml, "apiStructureXml is empty");
+        Assert.hasText(apiSchemaXml, "apiSchemaXml is empty");
 
         if (log.isDebugEnabled()) {
-            log.info("structure xml:\r\n" + apiStructureXml);
+            log.info("apiSchemaXml content:\r\n" + apiSchemaXml);
         }
 
-        codeBuilder.loadStructure(apiStructureXml);
+        codeBuilder.loadStructure(apiSchemaXml);
 
     }
 

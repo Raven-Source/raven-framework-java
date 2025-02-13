@@ -53,7 +53,7 @@ public class TypeScriptCodeBuilder implements CodeBuilder {
         put(Boolean.class.getSimpleName(), "");
         put(boolean.class.getSimpleName(), "");
         put(Short.class.getSimpleName(), "");
-        put(Short.class.getSimpleName(), "");
+        put(short.class.getSimpleName(), "");
         put(Integer.class.getSimpleName(), "");
         put(int.class.getSimpleName(), "");
         put(Long.class.getSimpleName(), "BigInt");
@@ -71,19 +71,39 @@ public class TypeScriptCodeBuilder implements CodeBuilder {
     private final Map<String, String> defaultClassNameReplaceMap = new LinkedHashMap<String, String>() {{
         put(Void.class.getName(), "void");
         put(String.class.getName(), "string");
+
         put(List.class.getName(), "Array");
         put(Set.class.getName(), "Set");
         put(Map.class.getName(), "Map");
+
         put(Boolean.class.getName(), "boolean");
         put(boolean.class.getName(), "boolean");
+
+        put(Short.class.getName(), "number");
+        put(short.class.getName(), "number");
+        put(Short.class.getName() + "\\[\\]", "number[]");
+        put(short.class.getName() + "\\[\\]", "number[]");
+
         put(Integer.class.getName(), "number");
         put(int.class.getName(), "number");
         put(Integer.class.getName() + "\\[\\]", "number[]");
         put(int.class.getName() + "\\[\\]", "number[]");
+
         put(Long.class.getName(), "bigint");
         put(long.class.getName(), "bigint");
         put(Long.class.getName() + "\\[\\]", "bigint[]");
         put(long.class.getName() + "\\[\\]", "bigint[]");
+
+        put(Float.class.getName(), "number");
+        put(float.class.getName(), "number");
+        put(Float.class.getName() + "\\[\\]", "number[]");
+        put(float.class.getName() + "\\[\\]", "number[]");
+
+        put(Double.class.getName(), "number");
+        put(double.class.getName(), "number");
+        put(Double.class.getName() + "\\[\\]", "number[]");
+        put(double.class.getName() + "\\[\\]", "number[]");
+
         put(BigInteger.class.getName(), "bigint");
         put(BigDecimal.class.getName(), "number");
         put(BigInteger.class.getName() + "\\[\\]", "bigint[]");
