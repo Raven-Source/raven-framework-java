@@ -25,7 +25,7 @@ import java.util.TimeZone;
  */
 @Configuration
 @AutoConfigureBefore(CodecsAutoConfiguration.class)
-@ConditionalOnProperty(name = "lydian.spring.jackson.enable", havingValue = "true",
+@ConditionalOnProperty(name = "raven.spring.jackson.enabled", havingValue = "true",
         matchIfMissing = true)
 @EnableConfigurationProperties(JacksonProperties.class)
 public class JacksonConfiguration {

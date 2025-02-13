@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.raven.springdoc.swagger3.RavenSpringdocSwaggerSConfiguration

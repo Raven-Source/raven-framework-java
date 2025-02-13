@@ -13,7 +13,6 @@ import javax.validation.Valid;
 @RequestMapping("/home")
 public class HomeController {
 
-//    @Value("${lydian.name}")
 //    private String name;
 
     @GetMapping("/invoke")

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackages = "org.raven.spring.commons")
 @ConditionalOnProperty(
         prefix = "raven.spring",
-        name = {"enable"},
+        name = {"enabled"},
         havingValue = "true",
         matchIfMissing = true
 )

@@ -1,8 +1,8 @@
-package org.raven.api.codegen.java;//package com.rome.lydian.spring.api.structure.generation.java;
+package org.raven.api.codegen.java;//package org.raven.spring.api.structure.generation.java;
 //
-//import com.rome.lydian.spring.api.structure.generation.CodeGenerator;
-//import com.rome.lydian.spring.api.structure.generation.StructureParser;
-//import com.rome.lydian.spring.api.structure.generation.TemplateProvision;
+//import org.raven.spring.api.structure.generation.CodeGenerator;
+//import org.raven.spring.api.structure.generation.StructureParser;
+//import org.raven.spring.api.structure.generation.TemplateProvision;
 //import freemarker.template.Template;
 //
 //import java.util.HashMap;

@@ -22,7 +22,7 @@ public abstract class DefaultCodeBuilderOptions {
         // Java
         options = new CodeBuilderOptions();
         options.setIgnoreClassSet(Collections.unmodifiableSet(Sets.newHashSet(
-                "com.rome.lydian.common.*"
+                "org.raven.common.*"
         )));
         options.setClassNameReplaceMap(Collections.unmodifiableMap(Maps.newHashMap(
                 "(.*)Controller", "$1Api"
@@ -41,8 +41,8 @@ public abstract class DefaultCodeBuilderOptions {
                 "(.*)Controller", "$1"
         ));
         options.setPackageNameReplaceMap(Collections.unmodifiableMap(Maps.newHashMap(
-                "com.rome.lydian.common.contract(\\..*)?", "types",
-                "com.rome.lydian.common.data(\\..*)?", "types"
+                "org.raven.common.contract(\\..*)?", "types",
+                "org.raven.common.data(\\..*)?", "types"
         )));
 
         optionsMap.put(Language.TypeScript, options);
