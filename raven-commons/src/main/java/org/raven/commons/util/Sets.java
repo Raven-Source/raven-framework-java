@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 
-public class Sets {
+public final class Sets {
 
     private Sets() {
         // Do not instantiate

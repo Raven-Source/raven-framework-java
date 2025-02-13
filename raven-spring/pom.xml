@@ -19,14 +19,6 @@
 
     <properties>
 
-        <spring-boot.version>2.5.2</spring-boot.version>
-        <spring-cloud.version>2020.0.6</spring-cloud.version>
-
-        <swagger.version>1.6.6</swagger.version>
-        <swagger3.version>2.2.2</swagger3.version>
-        <springfox.version>3.0.0</springfox.version>
-        <springdoc.version>1.6.11</springdoc.version>
-
     </properties>
 
     <dependencyManagement>

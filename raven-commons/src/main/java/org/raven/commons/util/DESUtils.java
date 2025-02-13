@@ -9,7 +9,7 @@ import javax.crypto.spec.IvParameterSpec;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 
-public class DESUtils {
+public final class DESUtils {
     private DESUtils() {
     }
 

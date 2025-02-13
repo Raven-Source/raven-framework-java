@@ -7,7 +7,7 @@ package org.raven.commons.data;
  */
 public interface Deletable {
 
-    String DEL = "deleted";
+    String DELETED = "deleted";
 
     /**
      * @return logically delete

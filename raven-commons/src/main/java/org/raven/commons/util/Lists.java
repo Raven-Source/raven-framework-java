@@ -7,7 +7,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 
-public class Lists {
+public final class Lists {
+
+    private Lists() {
+    }
 
     /**
      * Creates a new {@link ArrayList}.
@@ -45,10 +48,6 @@ public class Lists {
         final ArrayList<E> list = newArrayList();
         Collections.addAll(list, elements);
         return list;
-    }
-
-    private Lists() {
-        // do not instantiate
     }
 
 }

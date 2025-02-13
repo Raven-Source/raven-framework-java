@@ -4,7 +4,10 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class Iterators {
+public final class Iterators {
+
+    private Iterators() {
+    }
 
     /**
      * Adds all the elements in the source {@code iterator} to the target
@@ -15,11 +18,11 @@ public class Iterators {
      * {@code hasNext()} method returns {@code false}.
      * </p>
      *
-     * @param <T> type of the elements contained inside the collection
+     * @param <T>        type of the elements contained inside the collection
      * @param collection target collection
-     * @param iterator source
+     * @param iterator   source
      * @return {@code true} if the target {@code collection} was modified as a
-     *         result of this operation
+     * result of this operation
      */
     public static <T> boolean addAll(final Collection<T> collection, final Iterator<? extends T> iterator) {
         Objects.requireNonNull(collection);
@@ -29,10 +32,6 @@ public class Iterators {
             wasModified |= collection.add(iterator.next());
         }
         return wasModified;
-    }
-
-    private Iterators() {
-        // do not instantiate
     }
 
 }

@@ -9,11 +9,11 @@ import org.raven.commons.data.annotation.Ignore;
  * created by 2018/1/3 14:00:00
  */
 @Data
-public class ResponseModel<TData, TCode> implements Response<TData, TCode, Extension> {
+public class ResponseModel<TData> implements Response<TData, String, Extension> {
 
     private boolean success;
 
-    private TCode code;
+    private String code;
 
     private TData data;
 
@@ -29,7 +29,7 @@ public class ResponseModel<TData, TCode> implements Response<TData, TCode, Exten
         this.extension = new Extension();
     }
 
-    public ResponseModel(boolean success, TData data, String message, TCode code) {
+    public ResponseModel(boolean success, TData data, String message, String code) {
 
         this.success = success;
         this.code = code;

@@ -2,10 +2,10 @@ package org.raven.commons.util;
 
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.raven.commons.constant.DateFormatString;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.TimeZone;
@@ -15,12 +15,13 @@ import java.util.stream.Collectors;
 import static org.raven.commons.constant.DateFormatString.*;
 
 @Slf4j
-public class DateTimeUtils {
+public final class DateTimeUtils {
 
     private DateTimeUtils() {
     }
 
-    private static final Pattern TIMEZONE_PATTERN = Pattern.compile(".*([\\+\\-]\\d{2}:?\\d{2}|Z).*");
+    public static final Pattern TIMEZONE_PATTERN = Pattern.compile(".*([\\+\\-]\\d{2}:?\\d{2}|Z).*");
+    public static final Pattern ISO_TIME_PATTERN = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})?$");
 
     public static final DateTimeFormatter ISO_DATE_FORMAT = DateTimeFormatter.ofPattern(ISO_OFFSET_DATE_TIME);
     public static final DateTimeFormatter DATE_MONTH_FORMAT = DateTimeFormatter.ofPattern("yyyyMM");
@@ -39,6 +40,10 @@ public class DateTimeUtils {
             ISO_LOCAL_DATE_TIME
             , ISO_LOCAL_DATE_TIME_SECOND
             , ISO_LOCAL_DATE);
+
+    public static final DateTimeFormatter DESERIALIZE_NON_ISO_DATE_FORMAT = buildDateTimeFormatter(
+            NON_ISO_LOCAL_DATE_TIME
+            , NON_ISO_LOCAL_DATE_TIME_SECOND);
 
 
     public static final ZoneId defaultZoneId = ZoneId.systemDefault();
@@ -97,7 +102,7 @@ public class DateTimeUtils {
      * @return format string
      */
     public static String format(Date date, @NonNull TimeZone timeZone) {
-        return format(date, DateFormatString.ISO_OFFSET_DATE_TIME, timeZone);
+        return format(date, ISO_OFFSET_DATE_TIME, timeZone);
     }
 
     /**
@@ -142,6 +147,7 @@ public class DateTimeUtils {
     /**
      * @param dateString date string
      * @return the date
+     * @throws DateTimeParseException if the text cannot be parsed
      */
     public static Date parse(String dateString) {
 
@@ -151,27 +157,78 @@ public class DateTimeUtils {
         } catch (Exception ignored) {
         }
 
-        try {
+        boolean hasTimeZone = TIMEZONE_PATTERN.matcher(dateString).matches();
 
-            boolean hasTimeZone = TIMEZONE_PATTERN.matcher(dateString).matches();
-            ZonedDateTime zonedDateTime;
+        ZonedDateTime zonedDateTime;
 
-            if (hasTimeZone) {
-                // 使用 ZonedDateTime 解析
-                zonedDateTime = ZonedDateTime.parse(dateString, DESERIALIZE_ZONE_DATE_FORMAT);
+        if (hasTimeZone) {
+            // 使用 ZonedDateTime 解析
+            zonedDateTime = ZonedDateTime.parse(dateString, DESERIALIZE_ZONE_DATE_FORMAT);
+        } else {
+
+            boolean iosTime = ISO_TIME_PATTERN.matcher(dateString).matches();
+            // 使用 LocalDateTime 解析（无时区，需要手动补充默认时区）
+            LocalDateTime localDateTime;
+            if (iosTime) {
+                localDateTime = LocalDateTime.parse(dateString, DESERIALIZE_DATE_FORMAT);
             } else {
-                // 使用 LocalDateTime 解析（无时区，需要手动补充默认时区）
-                LocalDateTime localDateTime = LocalDateTime.parse(dateString, DESERIALIZE_DATE_FORMAT);
-                zonedDateTime = localDateTime.atZone(defaultZoneId);
+                localDateTime = LocalDateTime.parse(dateString, DESERIALIZE_NON_ISO_DATE_FORMAT);
             }
-
-            return Date.from(zonedDateTime.toInstant());
-
-        } catch (Exception ex) {
-            log.error(ex.getMessage(), ex);
+            zonedDateTime = localDateTime.atZone(defaultZoneId);
         }
 
-        return null;
+        return Date.from(zonedDateTime.toInstant());
+    }
+
+    /**
+     * @param dateString         date string
+     * @param dateTimeFormatters DateTimeFormatter
+     * @return the date
+     * @throws DateTimeParseException if the text cannot be parsed
+     */
+    public static Date parse(String dateString, DateTimeFormatter... dateTimeFormatters) {
+
+        try {
+            long time = Long.parseLong(dateString);
+            return new Date(time);
+        } catch (Exception ignored) {
+        }
+
+        boolean hasTimeZone = TIMEZONE_PATTERN.matcher(dateString).matches();
+        boolean iosTime = ISO_TIME_PATTERN.matcher(dateString).matches();
+
+        ZonedDateTime zonedDateTime;
+
+        for (DateTimeFormatter formatter : dateTimeFormatters) {
+
+            try {
+
+                if (hasTimeZone) {
+                    // 使用 ZonedDateTime 解析
+                    zonedDateTime = ZonedDateTime.parse(dateString, formatter);
+                } else {
+                    // 使用 LocalDateTime 解析（无时区，需要手动补充默认时区）
+                    LocalDateTime localDateTime;
+                    if (iosTime) {
+                        localDateTime = LocalDateTime.parse(dateString, DESERIALIZE_DATE_FORMAT);
+                    } else {
+                        localDateTime = LocalDateTime.parse(dateString, DESERIALIZE_NON_ISO_DATE_FORMAT);
+                    }
+                    zonedDateTime = localDateTime.atZone(defaultZoneId);
+                }
+
+                return Date.from(zonedDateTime.toInstant());
+
+            } catch (DateTimeParseException ignore) {
+            }
+
+        }
+
+        throw new DateTimeParseException(
+                String.format("not a valid date string: %s", dateString)
+                , dateString
+                , 0);
+
     }
 
     /**

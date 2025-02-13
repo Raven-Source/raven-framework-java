@@ -19,14 +19,14 @@
 
         <dependency>
             <groupId>io.github.raven-source</groupId>
-            <artifactId>raven-serializer-core</artifactId>
+            <artifactId>raven-commons</artifactId>
             <version>${raven-framework.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
+            <groupId>io.github.raven-source</groupId>
+            <artifactId>raven-serializer-core</artifactId>
+            <version>${raven-framework.version}</version>
         </dependency>
 
         <dependency>

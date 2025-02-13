@@ -14,6 +14,8 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Slf4j
 public class DateTimeUtilsTest {
@@ -85,6 +87,8 @@ public class DateTimeUtilsTest {
                 "2025-02-10T14:30:45.123+0800",  // 带时区
                 "2025-02-10T14:30:45.123Z",      // UTC 格式
                 "2025-02-10T14:30:45+08:00",     // 带时区
+                "2025-02-10T14:30:45.123",       // 无时区
+                "2025-02-10T14:30:45",           // 无时区
                 "2025-02-10 14:30:45.123",       // 无时区
                 "2025-02-10 14:30:45"            // 无时区
         };
@@ -132,4 +136,34 @@ public class DateTimeUtilsTest {
 
     }
 
+    @Test
+    public void testRegex () {
+
+        String[] matchString = {
+                "2021-02-12T05:10:18",
+                "2021-02-12T05:10:18.900",
+                "2021-02-12T05:10:18Z",
+                "2021-02-12T05:10:18+08:00",
+        };
+
+        String[] nonMatchString = {
+                "2021-02-12 05:10:18", // 不匹配
+                "2021-02-12 05:10:18.900", // 不匹配
+                "2021-02-12 05:10:18.900+08:00", // 不匹配
+        };
+
+        Pattern pattern = DateTimeUtils.ISO_TIME_PATTERN;
+        for (String str : matchString) {
+            Matcher matcher = pattern.matcher(str);
+            System.out.println(str + " : " + (matcher.matches() ? "匹配" : "不匹配"));
+            Assert.assertTrue(matcher.matches());
+        }
+
+        for (String str : nonMatchString) {
+            Matcher matcher = pattern.matcher(str);
+            System.out.println(str + " : " + (matcher.matches() ? "匹配" : "不匹配"));
+            Assert.assertFalse(matcher.matches());
+        }
+
+    }
 }

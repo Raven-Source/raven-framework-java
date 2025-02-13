@@ -2,7 +2,6 @@ package org.raven.spring.api.schema;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
@@ -10,6 +9,7 @@ import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
 import org.raven.commons.data.MutableDescribable;
 import org.raven.commons.util.CollectionUtils;
+import org.raven.commons.util.StringUtils;
 
 import java.io.IOException;
 import java.io.StringWriter;

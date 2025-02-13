@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
  * date 2022/7/19 11:20
  */
 @Configuration
-@ComponentScan("org.raven.spring.commons")
+@ComponentScan(basePackages = "org.raven.spring.commons")
 @ConditionalOnProperty(
         prefix = "raven.spring",
         name = {"enable"},

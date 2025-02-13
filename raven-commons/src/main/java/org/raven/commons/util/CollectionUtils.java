@@ -2,7 +2,10 @@ package org.raven.commons.util;
 
 import java.util.Collection;
 
-public class CollectionUtils {
+public final class CollectionUtils {
+
+    private CollectionUtils() {
+    }
 
     public static boolean isEmpty(final Collection<?> coll) {
         return coll == null || coll.isEmpty();

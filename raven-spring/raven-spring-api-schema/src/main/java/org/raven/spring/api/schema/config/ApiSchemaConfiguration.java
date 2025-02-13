@@ -1,5 +1,7 @@
 package org.raven.spring.api.schema.config;
 
+import org.raven.commons.data.annotation.SchemaIgnore;
+import org.raven.commons.util.Assert;
 import org.raven.commons.util.Sets;
 import org.raven.spring.api.schema.ApiSchemaContext;
 import org.raven.spring.api.schema.ApiSchemaProperties;
@@ -31,16 +33,18 @@ import java.util.Set;
  */
 @EnableConfigurationProperties({ApiSchemaProperties.class})
 @Configuration
-@ComponentScan({"org.raven.spring.api.schema"})
+@ComponentScan(basePackages = "org.raven.spring.api.schema")
 public class ApiSchemaConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(name = "api.structure.enabled", havingValue = "true")
+    @ConditionalOnProperty(name = "raven.api.schema.enabled", havingValue = "true")
     public ApiSchemaContext apiStructureContext(@Autowired(required = false) WebHandlerProvide webHandlerInfoProvide,
                                                 @Autowired(required = false) JavadocProvide javadocProvide,
                                                 @Autowired(required = false) ConstraintProvide constraintProvide,
                                                 ApiSchemaProperties apiSchemaProperties) {
+
+        Assert.hasText(apiSchemaProperties.getPackageRoot(), "packageRoot must not be null");
 
         Set<String> excludeClassSet = Sets.newHashSet(
                 ApiSchemaController.class.getName()
@@ -53,10 +57,10 @@ public class ApiSchemaConfiguration {
 
         SchemaProducer schemaProducer
                 = new SchemaProducerBuilder()
+                .loadPackageRoot(apiSchemaProperties.getPackageRoot())
                 .webHandlerInfoProvide(webHandlerInfoProvide)
                 .javadocProvide(javadocProvide)
                 .constraintProvide(constraintProvide)
-                .loadPackageRoot(apiSchemaProperties.getPackageRoot())
                 .serviceFindByAnnotationSet(Sets.newHashSet(RestController.class, Controller.class))
                 .operationFilterByAnnotationSet(Sets.newHashSet(
                                 PostMapping.class, GetMapping.class,
@@ -64,7 +68,8 @@ public class ApiSchemaConfiguration {
                                 RequestMapping.class
                         )
                 )
-                .memberIgnoreByAnnotationSet(Sets.newHashSet(Ignore.class))
+                .operationIgnoreByAnnotationSet(Sets.newHashSet(SchemaIgnore.class))
+                .memberIgnoreByAnnotationSet(Sets.newHashSet(Ignore.class, SchemaIgnore.class))
                 .paramFilterByAnnotationSet(Sets.newHashSet(RequestBody.class))
                 .enumInterface(SerializableType.class)
                 .excludeClassSet(excludeClassSet)

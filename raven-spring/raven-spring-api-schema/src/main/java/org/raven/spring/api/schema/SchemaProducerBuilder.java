@@ -20,13 +20,15 @@ import java.util.Set;
 @Accessors(chain = true, fluent = true)
 public class SchemaProducerBuilder {
 
+    private String loadPackageRoot;
+
     private WebHandlerProvide webHandlerInfoProvide;
     private JavadocProvide javadocProvide;
     private ConstraintProvide constraintProvide;
 
-    private String loadPackageRoot;
     private Set<Class<? extends Annotation>> serviceFindByAnnotationSet;
     private Set<Class<? extends Annotation>> operationFilterByAnnotationSet;
+    private Set<Class<? extends Annotation>> operationIgnoreByAnnotationSet;
     private Set<Class<? extends Annotation>> memberIgnoreByAnnotationSet;
     private Set<Class<? extends Annotation>> paramFilterByAnnotationSet;
     //    private Class<?> responseModelClass;
@@ -37,12 +39,13 @@ public class SchemaProducerBuilder {
     public SchemaProducer build() {
 
         return new SchemaProducer(
+                this.loadPackageRoot,
                 this.webHandlerInfoProvide,
                 this.javadocProvide,
                 this.constraintProvide,
-                this.loadPackageRoot,
                 this.serviceFindByAnnotationSet,
                 this.operationFilterByAnnotationSet,
+                this.operationIgnoreByAnnotationSet,
                 this.memberIgnoreByAnnotationSet,
                 this.paramFilterByAnnotationSet,
 //                this.requestModelClass,

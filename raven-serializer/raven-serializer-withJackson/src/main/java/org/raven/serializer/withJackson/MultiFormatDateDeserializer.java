@@ -6,11 +6,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.JsonTokenId;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import org.apache.commons.lang3.time.DateUtils;
+import lombok.NonNull;
+import org.raven.commons.util.DateTimeUtils;
 import org.raven.commons.util.StringUtils;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -21,13 +25,16 @@ import java.util.Date;
 public class MultiFormatDateDeserializer extends JsonDeserializer<Date>
         implements java.io.Serializable {
 
-    private String[] deserializeDateFormatString;
+    //    private String[] deserializeDateFormatString;
+    private DateTimeFormatter[] deserializeDateTimeFormatters;
     private static Class _valueClass = Date.class;
 
-    public MultiFormatDateDeserializer(String[] deserializeDateFormatString) {
+    public MultiFormatDateDeserializer(@NonNull String[] deserializeDateFormatString) {
         super();
 
-        this.deserializeDateFormatString = deserializeDateFormatString;
+        this.deserializeDateTimeFormatters = Arrays.stream(deserializeDateFormatString)
+                .map(DateTimeFormatter::ofPattern)
+                .toArray(DateTimeFormatter[]::new);
     }
 
     @Override
@@ -64,11 +71,11 @@ public class MultiFormatDateDeserializer extends JsonDeserializer<Date>
             if (StringUtils.isBlank(value)) {
                 return (java.util.Date) getNullValue(ctxt);
             }
-            return DateUtils.parseDate(value, deserializeDateFormatString);
+            return DateTimeUtils.parse(value, deserializeDateTimeFormatters);
         } catch (IllegalArgumentException iae) {
             return (java.util.Date) ctxt.handleWeirdStringValue(_valueClass, value,
                     "not a valid representation (error: %s)", iae.getMessage());
-        } catch (ParseException iae) {
+        } catch (DateTimeParseException iae) {
             return (java.util.Date) ctxt.handleWeirdStringValue(_valueClass, value,
                     "not a valid representation (error: %s)", iae.getMessage());
         }

@@ -1,9 +1,9 @@
 package org.raven.api.codegen;
 
 import lombok.NonNull;
-import org.apache.commons.lang3.StringUtils;
 import org.raven.commons.util.Args;
 import org.raven.commons.util.CollectionUtils;
+import org.raven.commons.util.StringUtils;
 
 import java.util.HashSet;
 import java.util.LinkedHashMap;

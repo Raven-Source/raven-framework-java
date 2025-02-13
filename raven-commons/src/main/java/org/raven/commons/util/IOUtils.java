@@ -9,7 +9,10 @@ import org.raven.commons.io.RepeatableFileInputStream;
 import java.io.*;
 import java.util.zip.CheckedInputStream;
 
-public class IOUtils {
+public final class IOUtils {
+
+    private IOUtils() {
+    }
 
     public static String readStreamAsString(InputStream in, String charset) throws IOException {
 
@@ -135,7 +138,7 @@ public class IOUtils {
     public static int readNBytes(InputStream inputStream, byte[] b, int off, int len) throws IOException {
         int n;
         int count;
-        for(n = 0; n < len; n += count) {
+        for (n = 0; n < len; n += count) {
             count = inputStream.read(b, off + n, len - n);
             if (count < 0) {
                 break;

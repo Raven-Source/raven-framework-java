@@ -10,7 +10,7 @@ import java.util.Properties;
  * @since JDK1.8
  * date 2020.03.02 16:04
  */
-public class PropertiesUtils {
+public final class PropertiesUtils {
 
 
     private PropertiesUtils() {
@@ -24,7 +24,7 @@ public class PropertiesUtils {
     }
 
     public static String getString(String propertiesPath, String key) {
-        return getString(propertiesPath, key ,StringUtils.EMPTY);
+        return getString(propertiesPath, key, StringUtils.EMPTY);
     }
 
     public static String getString(String propertiesPath, String key, String defaultValue) {

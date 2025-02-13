@@ -15,7 +15,7 @@ import java.security.spec.X509EncodedKeySpec;
 /**
  * @author yanfeng
  */
-public class RSAUtils {
+public final class RSAUtils {
 
     private RSAUtils() {
     }

@@ -1,18 +1,18 @@
 package org.raven.spring.api.schema;
 
+import lombok.NonNull;
 import org.raven.commons.data.MutableDescribable;
 import org.raven.commons.util.ClassUtils;
 import org.raven.commons.util.CollectionUtils;
 import org.raven.commons.util.Maps;
 import org.raven.commons.data.MemberFormatType;
 import org.raven.commons.data.MemberFormatUtils;
+import org.raven.commons.util.StringUtils;
 import org.raven.spring.api.schema.spi.*;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.reflect.MethodUtils;
 
 import javax.annotation.Nullable;
-import javax.validation.constraints.NotNull;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
 import java.util.*;
@@ -34,6 +34,7 @@ public class SchemaProducer {
     private final String loadPackageRoot;
     private final Set<Class<? extends Annotation>> serviceFindByAnnotationSet;
     private final Set<Class<? extends Annotation>> operationFilterByAnnotationSet;
+    private final Set<Class<? extends Annotation>> operationIgnoreByAnnotationSet;
     private final Set<Class<? extends Annotation>> memberIgnoreByAnnotationSet;
     private final Set<Class<? extends Annotation>> paramFilterByAnnotationSet;
     private final Class<?> enumInterface;
@@ -46,12 +47,13 @@ public class SchemaProducer {
     private final Map<String, ClassType> modelTypesMap;
 
     public SchemaProducer(
-            @NotNull WebHandlerProvide webHandlerInfoProvide,
-            @NotNull JavadocProvide javadocProvide,
-            @NotNull ConstraintProvide constraintProvide,
-            @NotNull String loadPackageRoot,
+            @NonNull String loadPackageRoot,
+            WebHandlerProvide webHandlerInfoProvide,
+            JavadocProvide javadocProvide,
+            ConstraintProvide constraintProvide,
             Set<Class<? extends Annotation>> serviceFindByAnnotationSet,
             Set<Class<? extends Annotation>> operationFilterByAnnotationSet,
+            Set<Class<? extends Annotation>> operationIgnoreByAnnotationSet,
             Set<Class<? extends Annotation>> memberIgnoreByAnnotationSet,
             Set<Class<? extends Annotation>> paramFilterByAnnotationSet,
             Class<?> enumInterface,
@@ -82,6 +84,7 @@ public class SchemaProducer {
         this.loadPackageRoot = loadPackageRoot;
         this.serviceFindByAnnotationSet = serviceFindByAnnotationSet;
         this.operationFilterByAnnotationSet = operationFilterByAnnotationSet;
+        this.operationIgnoreByAnnotationSet = operationIgnoreByAnnotationSet;
         this.memberIgnoreByAnnotationSet = memberIgnoreByAnnotationSet;
         this.paramFilterByAnnotationSet = paramFilterByAnnotationSet;
         this.enumInterface = enumInterface;
@@ -108,20 +111,36 @@ public class SchemaProducer {
             Method[] methods = ctrl.getDeclaredMethods();
             for (Method method : methods) {
 
-                boolean flag = false;
+                boolean needed = false;
 
                 if (!CollectionUtils.isEmpty(operationFilterByAnnotationSet)) {
 
                     for (Class<? extends Annotation> aClass : operationFilterByAnnotationSet) {
                         Annotation annotation = MethodUtils.getAnnotation(method, aClass, true, false);
-                        flag = annotation != null;
-                        if (flag) break;
+                        needed = annotation != null;
+                        if (needed) break;
                     }
                 } else {
-                    flag = true;
+                    needed = true;
                 }
 
-                if (!flag) {
+                if (!needed) {
+                    continue;
+                }
+
+                boolean ignore = false;
+                if (!CollectionUtils.isEmpty(operationIgnoreByAnnotationSet)) {
+
+                    for (Class<? extends Annotation> aClass : operationIgnoreByAnnotationSet) {
+                        Annotation annotation = MethodUtils.getAnnotation(method, aClass, true, false);
+                        if (annotation != null) {
+                            ignore = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (ignore) {
                     continue;
                 }
 

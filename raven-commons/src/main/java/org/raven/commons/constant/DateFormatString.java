@@ -6,6 +6,10 @@ package org.raven.commons.constant;
  */
 public abstract class DateFormatString {
 
+    public final static String NON_ISO_LOCAL_DATE_TIME = "yyyy-MM-dd HH:mm:ss.SSS";
+
+    public final static String NON_ISO_LOCAL_DATE_TIME_SECOND = "yyyy-MM-dd HH:mm:ss";
+
     public final static String ISO_LOCAL_DATE = "yyyy-MM-dd";
 
     public final static String ISO_LOCAL_TIME = "HH:mm:ss.SSS";
@@ -14,9 +18,9 @@ public abstract class DateFormatString {
 
     public final static String ISO_OFFSET_TIME = "HH:mm:ss.SSSXXX";
 
-    public final static String ISO_LOCAL_DATE_TIME = "yyyy-MM-dd HH:mm:ss.SSS";
+    public final static String ISO_LOCAL_DATE_TIME = "yyyy-MM-dd'T'HH:mm:ss.SSS";
 
-    public final static String ISO_LOCAL_DATE_TIME_SECOND = "yyyy-MM-dd HH:mm:ss";
+    public final static String ISO_LOCAL_DATE_TIME_SECOND = "yyyy-MM-dd'T'HH:mm:ss";
 
     public final static String ISO_OFFSET_DATE_TIME = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
 

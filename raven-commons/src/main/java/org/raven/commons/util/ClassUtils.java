@@ -1,5 +1,6 @@
 package org.raven.commons.util;
 
+import lombok.NonNull;
 import org.raven.commons.data.MemberFormatType;
 import org.raven.commons.data.MemberFormatUtils;
 
@@ -19,14 +20,17 @@ import java.util.regex.Pattern;
  * date 2022/9/27 15:38
  */
 @SuppressWarnings("unchecked")
-public class ClassUtils {
+public final class ClassUtils {
+
+    private ClassUtils() {
+    }
 
     /**
      * @param value regex string
      * @param set   input string collection
      * @return true if match
      */
-    public static boolean match(String value, Collection<String> set) {
+    public static boolean match(@NonNull String value, @NonNull Collection<String> set) {
         for (String item : set) {
             if (Pattern.matches(item, value)) return true;
         }
@@ -34,7 +38,7 @@ public class ClassUtils {
         return false;
     }
 
-    public static String methodMemberName(Method method) {
+    public static String methodMemberName(@NonNull Method method) {
 
         Class<?> declaringClass = method.getDeclaringClass();
         if (!declaringClass.equals(Object.class)) {
@@ -49,7 +53,9 @@ public class ClassUtils {
         return null;
     }
 
-    public static <A extends Annotation> A getMemberAnnotation(Class<?> clazz, Method method, Class<A> annotationClass) {
+    public static <A extends Annotation> A getMemberAnnotation(@NonNull Class<?> clazz
+            , @NonNull Method method
+            , @NonNull Class<A> annotationClass) {
         A annotation = method.getAnnotation(annotationClass);
 
         if (annotation == null) {
@@ -75,7 +81,8 @@ public class ClassUtils {
      * @param <A>           annotation class
      * @return this Annotation
      */
-    public static <A extends Annotation> A getAnnotation(final Class<?> clazz, final Class<A> annotationCls
+    public static <A extends Annotation> A getAnnotation(@NonNull final Class<?> clazz
+            , @NonNull final Class<A> annotationCls
             , final boolean searchSupers) {
 
         A annotation = clazz.getAnnotation(annotationCls);
@@ -92,7 +99,8 @@ public class ClassUtils {
         return annotation;
     }
 
-    public static Type getGenericSuperclass(Class<?> clazz, Class<?> superclass) {
+    public static Type getGenericSuperclass(@NonNull Class<?> clazz
+            , @NonNull Class<?> superclass) {
 
         for (Type interfaceType : clazz.getGenericInterfaces()) {
             if (interfaceType instanceof ParameterizedType) {
@@ -127,7 +135,8 @@ public class ClassUtils {
 
     }
 
-    public static Type getGenericReturnType(Class<?> clazz, Method method) {
+    public static Type getGenericReturnType(@NonNull Class<?> clazz
+            , @NonNull Method method) {
 
         // Step 3: Get the return type of the getValue method
         Type returnType = method.getGenericReturnType();
@@ -144,7 +153,8 @@ public class ClassUtils {
     }
 
 
-    private static Type resolveTypeVariable(Class<?> clazz, TypeVariable<?> typeVariable) {
+    private static Type resolveTypeVariable(@NonNull Class<?> clazz
+            , @NonNull TypeVariable<?> typeVariable) {
         // Iterate through the class hierarchy to resolve the type variable
         Class<?> currentClass = clazz;
         while (currentClass != null) {
@@ -189,8 +199,8 @@ public class ClassUtils {
      * @param packageName        package name
      * @return class list
      */
-    public static List<Class<?>> getAllClassByAnnotation(final Set<Class<? extends Annotation>> annotationClazzSet
-            , final String packageName) {
+    public static List<Class<?>> getAllClassByAnnotation(@NonNull final Set<Class<? extends Annotation>> annotationClazzSet
+            , @NonNull final String packageName) {
         List<Class<?>> returnClassList = null;
 
         // 获取当前包下以及子包下所以的类
@@ -216,7 +226,8 @@ public class ClassUtils {
      * @param packageName    package name
      * @return class list
      */
-    public static List<Class<?>> getAllClassByInterface(final Class<?> interfaceClazz, final String packageName) {
+    public static List<Class<?>> getAllClassByInterface(@NonNull final Class<?> interfaceClazz
+            , @NonNull final String packageName) {
         List<Class<?>> returnClassList = null;
 
         if (interfaceClazz.isInterface()) {
@@ -244,7 +255,7 @@ public class ClassUtils {
      * @param packageName package name
      * @return class list
      */
-    public static List<Class<?>> getClasses(final String packageName) {
+    public static List<Class<?>> getClasses(@NonNull final String packageName) {
 
         String _packageName = packageName;
         //第一个class类的集合

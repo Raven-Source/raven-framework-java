@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.Set;
 
-@ConfigurationProperties(prefix = "api.schema")
+@ConfigurationProperties(prefix = "raven.api.schema")
 @Getter
 @Setter
 public class ApiSchemaProperties {

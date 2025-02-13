@@ -11,19 +11,17 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Objects;
 
 @Configuration
+@ConditionalOnClass({Api.class, ApiOperation.class})
 public class Swagger2JavadocConfiguration {
 
     @Bean
-    @Primary
     @ConditionalOnMissingBean(JavadocProvide.class)
-    @ConditionalOnClass({Api.class, ApiOperation.class})
     public JavadocProvide javadocProvide() {
         return new Swagger2JavadocProvide();
     }

@@ -39,11 +39,11 @@ public class JsonUtilTest {
         System.out.println(order.getLocalTime());
         System.out.println(order.getLocalTimes());
 
-        ResponseModel<Order, Integer> res = new ResponseModel<>(true, order, "操作成功", 5);
+        ResponseModel<Order> res = new ResponseModel<>(true, order, "操作成功", "5");
         System.out.println(JsonUtils.toJsonString(res));
 
-        res = JsonUtils.parseObject("{\"code\":5,\"data\":{\"id\":null,\"localTime\":\"08:10:00.000\",\"localTimes\":[\"17:13:00.225\",\"08:10:00.000\"]},\"success\":true,\"extension\":{},\"msg\":\"操作成功\"}"
-                , ResponseModel.class, Order.class, Integer.class);
+        res = JsonUtils.parseObject("{\"code\":\"5\",\"data\":{\"id\":null,\"localTime\":\"08:10:00.000\",\"localTimes\":[\"17:13:00.225\",\"08:10:00.000\"]},\"success\":true,\"extension\":{},\"msg\":\"操作成功\"}"
+                , ResponseModel.class, Order.class);
 
 
 //        ObjectMapper mapper = ObjectMapperConfig.getObjectMapper();

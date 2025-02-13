@@ -4,7 +4,7 @@ package org.raven.commons.util;
  * @author yi.liang
  * date 2020.05.05 16:44
  */
-public class StringUtils {
+public final class StringUtils {
 
     public static final String EMPTY = "";
 

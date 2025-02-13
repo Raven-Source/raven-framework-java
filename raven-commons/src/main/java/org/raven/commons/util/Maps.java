@@ -7,6 +7,10 @@ import java.util.Objects;
 
 public final class Maps {
 
+    private Maps() {
+        // do not instantiate
+    }
+
     public static <K, V> HashMap<K, V> newHashMap() {
         return new HashMap<>();
     }

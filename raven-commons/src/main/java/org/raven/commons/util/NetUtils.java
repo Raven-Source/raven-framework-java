@@ -15,7 +15,7 @@ import java.util.Enumeration;
 import java.util.List;
 
 @Slf4j
-public class NetUtils {
+public final class NetUtils {
 
     private final NetProperties netProperties;
 
