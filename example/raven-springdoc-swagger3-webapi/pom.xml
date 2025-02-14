@@ -15,4 +15,59 @@
 
     </properties>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>io.github.raven-source</groupId>
+            <artifactId>raven-spring-api-schema</artifactId>
+            <version>${raven-framework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.raven-source</groupId>
+            <artifactId>raven-springdoc-swagger3</artifactId>
+            <version>${raven-framework.version}</version>
+        </dependency>
+
+        <!-- swagger-ui -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!--                    <fork>true</fork>-->
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!-- 将引入的 jar 打入其中 -->
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
 </project>
