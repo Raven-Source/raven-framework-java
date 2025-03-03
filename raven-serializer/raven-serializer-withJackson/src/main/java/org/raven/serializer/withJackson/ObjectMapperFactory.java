@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
  * date 2018/3/20 14:00:00
  * @since JDK1.8
  */
-public class ObjectMapperConfig {
+public class ObjectMapperFactory {
 
     /**
      * @return ObjectMapper

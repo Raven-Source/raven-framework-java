@@ -2,7 +2,8 @@ package org.raven.spring.commons.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.raven.commons.constant.DateFormatString;
-import org.raven.serializer.withJackson.ObjectMapperConfig;
+import org.raven.serializer.withJackson.ObjectMapperFactory;
+import org.raven.serializer.withJackson.ObjectMapperProvider;
 import org.raven.serializer.withJackson.SerializerSetting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -42,7 +43,7 @@ public class JacksonConfiguration {
     public ObjectMapper objectMapper(SerializerSetting setting) {
         //ApiListingReferenceScanner
 
-        ObjectMapper mapper = ObjectMapperConfig.getObjectMapper(setting);
+        ObjectMapper mapper = ObjectMapperFactory.getObjectMapper(setting);
 
         if (jacksonProperties.getDateFormat() != null) {
             mapper.setDateFormat(new SimpleDateFormat(jacksonProperties.getDateFormat()));
@@ -50,6 +51,8 @@ public class JacksonConfiguration {
         if (jacksonProperties.getTimeZone() != null) {
             mapper.setTimeZone(jacksonProperties.getTimeZone());
         }
+
+        ObjectMapperProvider.setObjectMapper(mapper);
         return mapper;
     }
 

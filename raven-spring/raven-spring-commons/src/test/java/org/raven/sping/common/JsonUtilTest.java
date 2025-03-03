@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.raven.commons.contract.ResponseModel;
-import org.raven.spring.commons.utils.JsonUtils;
+import org.raven.serializer.withJackson.JsonUtils;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 

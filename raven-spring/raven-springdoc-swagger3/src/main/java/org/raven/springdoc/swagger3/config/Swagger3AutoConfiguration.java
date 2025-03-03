@@ -4,7 +4,7 @@ import io.swagger.v3.core.converter.ModelConverter;
 import io.swagger.v3.core.jackson.ModelResolver;
 import org.raven.springdoc.swagger3.CustomTypeNameResolver;
 import org.raven.springdoc.swagger3.SerializableTypeModelConverter;
-import org.raven.serializer.withJackson.ObjectMapperConfig;
+import org.raven.serializer.withJackson.ObjectMapperFactory;
 import org.raven.serializer.withJackson.SerializerSetting;
 import org.springdoc.core.SpringDocConfigProperties;
 import org.springdoc.core.providers.ObjectMapperProvider;
@@ -62,8 +62,8 @@ public class Swagger3AutoConfiguration {
 
         // convert ObjectMapper
         ObjectMapperProvider objectMapperProvider = new ObjectMapperProvider(springDocConfigProperties);
-        ObjectMapperConfig.registerDefaultModules(setting, objectMapperProvider.jsonMapper());
-        ObjectMapperConfig.registerDefaultModules(setting, objectMapperProvider.yamlMapper());
+        ObjectMapperFactory.registerDefaultModules(setting, objectMapperProvider.jsonMapper());
+        ObjectMapperFactory.registerDefaultModules(setting, objectMapperProvider.yamlMapper());
 
         return objectMapperProvider;
     }

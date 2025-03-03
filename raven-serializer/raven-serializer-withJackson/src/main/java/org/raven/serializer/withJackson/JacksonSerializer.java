@@ -34,7 +34,7 @@ public class JacksonSerializer extends BasicSerializer
      */
     public JacksonSerializer(SerializerSetting setting) {
 
-        this.mapper = ObjectMapperConfig.getObjectMapper(setting != null ? setting : SerializerSetting.getDefault());
+        this.mapper = ObjectMapperFactory.getObjectMapper(setting != null ? setting : SerializerSetting.getDefault());
     }
 
     /**

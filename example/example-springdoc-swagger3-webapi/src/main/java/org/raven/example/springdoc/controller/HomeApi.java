@@ -13,11 +13,6 @@ public interface HomeApi {
     @GetMapping("/invoke")
     String invoke();
 
-    /**
-     *
-     * @param tag
-     * @return
-     */
     @Operation(summary = "调用2")
     @PostMapping("/invoke2")
     TagModel[] invoke2(@Valid TagModel[] tag);

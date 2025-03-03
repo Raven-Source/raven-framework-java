@@ -35,34 +35,33 @@ public final class PropertiesUtils {
             properties = get(propertiesPath);
         }
 
-        if (properties != null) {
-            return properties.getProperty(key, defaultValue);
-        } else {
-            return defaultValue;
-        }
+        return properties.getProperty(key, defaultValue);
+//        if (properties != null) {
+//            return properties.getProperty(key, defaultValue);
+//        } else {
+//            return defaultValue;
+//        }
 
     }
 
     private static synchronized Properties get(String propertiesPath) {
         Properties properties = propertiesMap.get(propertiesPath);
         if (properties != null) {
-            propertiesMap.put(propertiesPath, properties);
             return properties;
         }
 
         properties = load(propertiesPath);
-        if (properties != null) {
-            propertiesMap.put(propertiesPath, properties);
-            return properties;
+        if (properties == null) {
+            properties = new Properties();
         }
 
-        return null;
+        propertiesMap.put(propertiesPath, properties);
+        return properties;
     }
 
     private static Properties load(String propertiesPath) {
 
         InputStream in = null;
-        String value = null;
         try {
             in = Thread.currentThread().getContextClassLoader().getResourceAsStream(propertiesPath);
 

@@ -16,18 +16,15 @@
         <module>raven-serializer-spring5-convert</module>
         <module>raven-serializer-withJackson</module>
         <module>raven-serializer-withJacksonMsgpack</module>
-        <!--        <module>raven-serializer-withMsgpack</module>-->
         <module>raven-serializer-withProtobuf</module>
-
-        <module>raven-serializer-performancetest</module>
+        <!--        <module>raven-serializer-performancetest</module>-->
+        <!--        <module>raven-serializer-withMsgpack</module>-->
     </modules>
 
     <artifactId>raven-serializer</artifactId>
     <packaging>pom</packaging>
 
     <properties>
-        <msgpack.version>0.9.8</msgpack.version>
-        <jprotobuf.version>2.4.23</jprotobuf.version>
     </properties>
 
 </project>

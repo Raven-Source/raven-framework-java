@@ -13,11 +13,13 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>raven-spring-webmvc-webapi</module>
-        <module>raven-springdoc-swagger3-webapi</module>
+        <module>example-spring-webmvc-webapi</module>
+        <module>example-springdoc-swagger3-webapi</module>
     </modules>
 
     <properties>
+        <!--<maven.deploy.skip>true</maven.deploy.skip>
+        <maven.install.skip>true</maven.install.skip>-->
     </properties>
 
     <dependencies>
@@ -144,4 +146,25 @@
         </dependencies>
     </dependencyManagement>
 
+    <!--<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <skip>${maven.deploy.skip}</skip>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <skip>${maven.deploy.skip}</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>-->
 </project>

@@ -3,7 +3,7 @@ package org.raven.spring.commons.context;
 import org.raven.commons.context.Context;
 import org.raven.commons.context.ContextHolder;
 import org.raven.commons.context.impl.IgnoreContext;
-import org.raven.spring.commons.utils.ContextHolderProvider;
+import org.raven.spring.commons.util.ContextHolderProvider;
 import org.springframework.lang.Nullable;
 
 import java.util.Collections;

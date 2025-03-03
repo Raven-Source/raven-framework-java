@@ -1,4 +1,4 @@
-package org.raven.spring.commons.utils;
+package org.raven.spring.commons.util;
 
 import lombok.Getter;
 import org.springframework.beans.BeansException;
