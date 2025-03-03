@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.raven-source</groupId>
         <artifactId>raven-framework</artifactId>
-        <version>5.0.0-SNAPSHOT</version>
+        <version>4.2.0</version>
     </parent>
 
     <artifactId>raven-spring</artifactId>
