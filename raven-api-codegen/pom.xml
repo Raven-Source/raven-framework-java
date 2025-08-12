@@ -6,10 +6,14 @@
     <parent>
         <groupId>io.github.raven-source</groupId>
         <artifactId>raven-framework</artifactId>
-        <version>4.2.0</version>
+        <version>4.2.1</version>
     </parent>
 
     <artifactId>raven-api-codegen</artifactId>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Raven Framework Library</description>
+    <url>https://raven-source.github.io/</url>
 
     <properties>
         <freemarker.version>2.3.31</freemarker.version>

@@ -6,8 +6,12 @@
     <parent>
         <groupId>io.github.raven-source</groupId>
         <artifactId>raven-framework</artifactId>
-        <version>4.2.0</version>
+        <version>4.2.1</version>
     </parent>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Raven Framework Library</description>
+    <url>https://raven-source.github.io/</url>
 
     <modules>
         <module>raven-serializer-core</module>

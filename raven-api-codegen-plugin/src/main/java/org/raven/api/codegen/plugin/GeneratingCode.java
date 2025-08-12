@@ -21,12 +21,18 @@ import java.util.stream.Collectors;
 @Slf4j
 public class GeneratingCode extends AbstractMojo {
 
+    /**
+     * api config list
+     */
     @Parameter
     private List<ApiConfig> apis;
 
 //    @Parameter(defaultValue = "false")
 //    private boolean enableDebug = false;
 
+    /**
+     * maven project
+     */
     @Parameter(defaultValue = "${project}", readonly = true, required = true)
     private MavenProject project;
 
