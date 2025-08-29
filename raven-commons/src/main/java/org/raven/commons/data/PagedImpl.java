@@ -1,8 +1,8 @@
 package org.raven.commons.data;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.Getter;
 import lombok.Setter;
+import org.raven.commons.data.annotation.Ignore;
 
 import java.util.ArrayList;
 import java.util.List;

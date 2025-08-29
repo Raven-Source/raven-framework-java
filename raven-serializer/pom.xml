@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.raven-source</groupId>
         <artifactId>raven-framework</artifactId>
-        <version>4.2.1</version>
+        <version>4.2.2</version>
     </parent>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -15,7 +15,7 @@
 
     <modules>
         <module>raven-serializer-core</module>
-        <module>raven-serializer-hibernate5-convert</module>
+<!--        <module>raven-serializer-hibernate5-convert</module>-->
         <module>raven-serializer-mybatis-convert</module>
         <module>raven-serializer-spring5-convert</module>
         <module>raven-serializer-withJackson</module>
