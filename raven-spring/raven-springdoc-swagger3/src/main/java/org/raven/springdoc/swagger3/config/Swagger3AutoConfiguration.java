@@ -2,6 +2,7 @@ package org.raven.springdoc.swagger3.config;
 
 import io.swagger.v3.core.converter.ModelConverter;
 import io.swagger.v3.core.jackson.ModelResolver;
+import jakarta.annotation.PostConstruct;
 import org.raven.springdoc.swagger3.CustomTypeNameResolver;
 import org.raven.springdoc.swagger3.SerializableTypeModelConverter;
 import org.raven.serializer.withJackson.ObjectMapperFactory;
@@ -12,7 +13,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.*;
 
-import javax.annotation.PostConstruct;
 
 /**
  * date 2022/8/29 19:31
