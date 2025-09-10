@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.github.raven-source</groupId>
+        <artifactId>raven-logger</artifactId>
+        <version>5.0.2</version>
+    </parent>
+
+    <artifactId>raven-logger-test</artifactId>
+
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.raven-source</groupId>
+            <artifactId>raven-logger-core</artifactId>
+            <version>${raven-framework.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!--<dependency>
+            <groupId>io.github.raven-source</groupId>
+            <artifactId>raven-logger-kafka</artifactId>
+            <version>${raven.logger.version}</version>
+            <scope>compile</scope>
+        </dependency>-->
+
+        <!--<dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>${kafka.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>-->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <configuration>
+                    <skip>${maven.deploy.skip}</skip>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

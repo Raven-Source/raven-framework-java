@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.github.raven-source</groupId>
+        <artifactId>raven-framework</artifactId>
+        <version>5.0.2</version>
+    </parent>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Raven Framework Library</description>
+    <url>https://raven-source.github.io/</url>
+
+    <modules>
+
+        <module>raven-logger-core</module>
+<!--        <module>raven-logger-test</module>-->
+
+    </modules>
+
+    <artifactId>raven-logger</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <opentracing-api.version>0.33.0</opentracing-api.version>
+        <skywalking.version>8.7.0</skywalking.version>
+
+        <logback.version>1.5.18</logback.version>
+        <logstash-logback-encoder.version>8.1</logstash-logback-encoder.version>
+
+    </properties>
+
+    <profiles>
+
+        <profile>
+            <id>deploy-central</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>raven-logger-core</module>
+            </modules>
+        </profile>
+
+    </profiles>
+
+</project>
