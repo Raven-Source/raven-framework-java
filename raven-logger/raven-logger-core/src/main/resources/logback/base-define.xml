@@ -5,17 +5,17 @@
     <define name="hostName" class="org.raven.logger.property.HostNameDefiner"/>
     <define name="env" class="org.raven.logger.property.EnvDefiner"/>
 
-    <conversionRule conversionWord="lower" converterClass="org.raven.logger.converter.LowerCaseConverter"/>
-    <conversionRule conversionWord="upper" converterClass="org.raven.logger.converter.UpperCaseConverter"/>
-    <conversionRule conversionWord="namespace" converterClass="org.raven.logger.converter.NamespaceConverter"/>
-    <conversionRule conversionWord="traceId" converterClass="org.raven.logger.converter.TraceIdConverter"/>
-    <conversionRule conversionWord="code" converterClass="org.raven.logger.converter.CodeConverter"/>
-    <conversionRule conversionWord="ext" converterClass="org.raven.logger.converter.ExtConverter"/>
-    <conversionRule conversionWord="exceptionName" converterClass="org.raven.logger.converter.ExceptionNameConverter"/>
-    <conversionRule conversionWord="tag" converterClass="org.raven.logger.converter.TagConverter"/>
-    <conversionRule conversionWord="uid" converterClass="org.raven.logger.converter.UserIdConverter"/>
-    <conversionRule conversionWord="event" converterClass="org.raven.logger.converter.EventConverter"/>
-<!--    <conversionRule conversionWord="logLevel" converterClass="org.raven.logger.converter.LogLevelConverter"/>-->
+    <conversionRule conversionWord="lower" class="org.raven.logger.converter.LowerCaseConverter"/>
+    <conversionRule conversionWord="upper" class="org.raven.logger.converter.UpperCaseConverter"/>
+    <conversionRule conversionWord="namespace" class="org.raven.logger.converter.NamespaceConverter"/>
+    <conversionRule conversionWord="traceId" class="org.raven.logger.converter.TraceIdConverter"/>
+    <conversionRule conversionWord="code" class="org.raven.logger.converter.CodeConverter"/>
+    <conversionRule conversionWord="ext" class="org.raven.logger.converter.ExtConverter"/>
+    <conversionRule conversionWord="exceptionName" class="org.raven.logger.converter.ExceptionNameConverter"/>
+    <conversionRule conversionWord="tag" class="org.raven.logger.converter.TagConverter"/>
+    <conversionRule conversionWord="uid" class="org.raven.logger.converter.UserIdConverter"/>
+    <conversionRule conversionWord="event" class="org.raven.logger.converter.EventConverter"/>
+<!--    <conversionRule conversionWord="logLevel" class="org.raven.logger.converter.LogLevelConverter"/>-->
 
     <property name="LOG_PATTERN" value='{
         "@timestamp": "%d{yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSXXX}",
