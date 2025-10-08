@@ -4,7 +4,7 @@ package ${packageName};
 import ${import};
 </#list>
 
-import javax.annotation.*;
+import jakarta.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;

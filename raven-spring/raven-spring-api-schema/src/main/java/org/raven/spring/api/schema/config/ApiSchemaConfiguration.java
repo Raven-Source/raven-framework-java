@@ -77,14 +77,13 @@ public class ApiSchemaConfiguration {
 
         return new ApiSchemaContext(schemaProducer);
 
-
     }
 
-    @ConditionalOnBean(ApiSchemaContext.class)
-    @Bean
-    public ApiSchemaController apiStructureController(ApiSchemaContext apiSchemaContext) {
-        return new ApiSchemaController(apiSchemaContext);
-    }
+//    @ConditionalOnBean(ApiSchemaContext.class)
+//    @Bean
+//    public ApiSchemaController apiSchemaController(ApiSchemaContext apiSchemaContext) {
+//        return new ApiSchemaController(apiSchemaContext);
+//    }
 
     @ConditionalOnMissingBean(ConstraintProvide.class)
     @Bean

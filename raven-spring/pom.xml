@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.raven-source</groupId>
         <artifactId>raven-framework</artifactId>
-        <version>5.0.4</version>
+        <version>5.0.5</version>
     </parent>
 
     <artifactId>raven-spring</artifactId>
@@ -19,7 +19,7 @@
     <modules>
         <module>raven-spring-api-schema</module>
         <module>raven-spring-commons</module>
-        <module>raven-springfox-swagger2</module>
+<!--        <module>raven-springfox-swagger2</module>-->
         <module>raven-springdoc-swagger3</module>
     </modules>
 

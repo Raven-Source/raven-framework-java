@@ -1,6 +1,6 @@
 package org.raven.commons.util;
 
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import java.util.function.Supplier;
 
 public abstract class Assert {

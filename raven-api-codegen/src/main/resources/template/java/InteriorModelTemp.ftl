@@ -3,7 +3,7 @@ package ${packageName};
 <#list imports as import>
 import ${import};
 </#list>
-import javax.annotation.*;
+import jakarta.annotation.*;
 
 /**
  * ${description!}

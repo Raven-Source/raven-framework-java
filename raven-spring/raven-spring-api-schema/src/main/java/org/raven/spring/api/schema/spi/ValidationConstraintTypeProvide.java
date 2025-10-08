@@ -3,7 +3,7 @@ package org.raven.spring.api.schema.spi;
 
 import org.raven.commons.util.ClassUtils;
 
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import java.lang.reflect.Method;
 
 public class ValidationConstraintTypeProvide implements ConstraintProvide {

@@ -8,8 +8,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.raven.commons.contract.KeyValuePair;
 
-import javax.annotation.Nullable;
-import javax.validation.constraints.NotNull;
+import jakarta.annotation.Nullable;
+import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 /**

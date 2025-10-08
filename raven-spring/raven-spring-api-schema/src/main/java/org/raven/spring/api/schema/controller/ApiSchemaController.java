@@ -8,13 +8,15 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * date 2022/9/27 17:14
  */
 @Slf4j
 @AllArgsConstructor
-@RequestMapping("${api.schema:/api-schema}")
+@RequestMapping("${raven.api.schema:/api-schema}")
+@RestController
 public class ApiSchemaController {
 
     private final ApiSchemaContext apiSchemaContext;

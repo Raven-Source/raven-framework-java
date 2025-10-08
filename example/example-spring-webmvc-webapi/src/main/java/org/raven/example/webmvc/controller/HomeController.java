@@ -4,7 +4,7 @@ import org.raven.commons.contract.PageRequest;
 import org.raven.example.webmvc.model.Tag;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 /**
  *
