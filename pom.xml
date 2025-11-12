@@ -20,7 +20,7 @@
         <module>raven-api-codegen</module>
         <module>raven-api-codegen-plugin</module>
         <module>raven-logger</module>
-        <!--        <module>example</module>-->
+                <module>example</module>
     </modules>
 
     <properties>
@@ -43,7 +43,7 @@
         <jakarta.annotation.version>2.1.1</jakarta.annotation.version>
 
         <commons-lang3.version>3.17.0</commons-lang3.version>
-        <dom4j.version>2.1.3</dom4j.version>
+        <dom4j.version>2.2.0</dom4j.version>
         <mybatis.version>3.5.17</mybatis.version>
 
         <spring-boot.version>3.5.5</spring-boot.version>

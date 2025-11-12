@@ -16,14 +16,14 @@ import java.math.BigInteger;
  */
 @Data
 @FieldNameConstants
-@Schema(title = "盒子")
+@Schema(description = "盒子")
 public class Box {
 
     @NotNull
     private Long[] ids;
     private String name;
 
-    @Schema(title = "是否打开")
+    @Schema(description = "是否打开")
     @NotNull
     private Boolean isOpen;
 

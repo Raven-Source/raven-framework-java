@@ -17,6 +17,9 @@ public class KeyValuePair<TKey, TValue> {
 
     private TValue value;
 
+    public KeyValuePair() {
+    }
+
     /**
      * @param key key
      * @param value valueMemberFormatUtils

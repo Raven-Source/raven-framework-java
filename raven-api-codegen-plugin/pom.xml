@@ -17,9 +17,9 @@
     <url>https://raven-source.github.io/</url>
 
     <properties>
-        <maven-plugin.version>3.6.3</maven-plugin.version>
-        <maven-plugin-annotations.version>3.6.4</maven-plugin-annotations.version>
-        <maven-plugin-plugin.version>3.6.4</maven-plugin-plugin.version>
+        <maven-plugin.version>3.9.9</maven-plugin.version>
+        <maven-plugin-annotations.version>3.9.0</maven-plugin-annotations.version>
+        <maven-plugin-plugin.version>3.9.0</maven-plugin-plugin.version>
     </properties>
 
     <dependencies>

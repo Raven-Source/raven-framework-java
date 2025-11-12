@@ -14,7 +14,7 @@
 
     <modules>
 <!--        <module>example-spring-webmvc-webapi</module>-->
-<!--        <module>example-springdoc-swagger3-webapi</module>-->
+        <module>example-springdoc-swagger3-webapi</module>
     </modules>
 
     <properties>

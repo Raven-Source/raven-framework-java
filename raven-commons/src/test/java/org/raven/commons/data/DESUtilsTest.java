@@ -11,7 +11,7 @@ public class DESUtilsTest {
     @Test
     public void genKeyPairTest() throws Exception {
 
-        rsaTest("dvMvuG-eP_EQowA5xjcyulUNZrTKN3KpxWRWi1_T_PQW");
+        rsaTest("dvMvuG-eP_");
     }
 
     private void rsaTest(String password) throws Exception {

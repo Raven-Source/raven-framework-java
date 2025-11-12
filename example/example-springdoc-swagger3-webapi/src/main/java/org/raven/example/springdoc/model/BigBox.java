@@ -6,9 +6,9 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@Schema(title = "大盒子", allOf = Box.class)
+@Schema(description = "大盒子", allOf = Box.class)
 public class BigBox extends Box {
 
-    @Schema(title = "批次号")
+    @Schema(description = "批次号")
     private String batchNo;
 }

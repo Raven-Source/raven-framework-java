@@ -10,4 +10,7 @@ public class Interval<T extends Comparable<?>> {
     protected T start;
 
     protected T end;
+
+    public Interval() {
+    }
 }

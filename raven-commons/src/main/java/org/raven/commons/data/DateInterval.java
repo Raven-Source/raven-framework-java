@@ -8,6 +8,9 @@ import java.util.Date;
 
 public class DateInterval extends Interval<Date> {
 
+    public DateInterval() {
+    }
+
     public DateInterval(Date start, Date end) {
         this.start = start;
         this.end = end;

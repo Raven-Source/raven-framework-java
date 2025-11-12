@@ -18,17 +18,17 @@ import java.util.List;
  */
 @Getter
 @Setter
-@Schema(title = "标签")
+@Schema(description = "标签")
 public class TagModel extends BaseDto<Long, Integer, String> {
 
-    @Schema(title = "title")
+    @Schema(description = "title")
     private String title;
 
     /**
      * 状态: 1. 正常
      */
     @NotNull(message = "启用/禁用状态不能为空")
-    @Schema(title = "状态")
+    @Schema(description = "状态")
     private Status status;
 
     @Nullable

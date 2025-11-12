@@ -14,4 +14,7 @@ public class TimeInterval<T extends Comparable<T>> {
     private T start;
     private T end;
 
+    public TimeInterval() {
+    }
+
 }

@@ -11,7 +11,7 @@ import java.util.Map;
 @Setter
 public abstract class BaseDto<TKey, TA, TB> implements Entity<TKey> {
 
-    @Schema(title = "id")
+    @Schema(description = "id")
     private TKey id;
 
     private Map<TA, TB> userInfo;

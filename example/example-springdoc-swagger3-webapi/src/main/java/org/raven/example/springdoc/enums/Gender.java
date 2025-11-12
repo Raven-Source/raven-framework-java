@@ -17,7 +17,7 @@ import java.lang.reflect.Type;
  * @since JDK1.8
  * date 2020.04.23 01:00
  */
-@Schema(title = "性别")
+@Schema(description = "性别")
 @Getter
 public class Gender implements ValueType<Long>, Describable {
 
@@ -29,10 +29,10 @@ public class Gender implements ValueType<Long>, Describable {
         this.description = description;
     }
 
-    @Schema(title = "男")
+    @Schema(description = "男")
     public final static Gender x = new Gender(10L, "男");
 
-    @Schema(title = "女")
+    @Schema(description = "女")
     public final static Gender y = new Gender(20L, "女");
 
 
