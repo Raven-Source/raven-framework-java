@@ -14,8 +14,8 @@ import java.util.*;
 @Slf4j
 public class SerializerFactory {
 
-    private final static Map<String, Serializer> _serializerDict = new HashMap<String, Serializer>();
-    private final static EnumMap<SerializerType, String[]> _clazzNameDict = new EnumMap<SerializerType, String[]>(SerializerType.class) {
+    private final static Map<String, Serializer> serializerDict = new HashMap<String, Serializer>();
+    private final static EnumMap<SerializerType, String[]> clazzNameDict = new EnumMap<SerializerType, String[]>(SerializerType.class) {
         {
             put(SerializerType.Jackson, new String[]{"org.raven.serializer.withJackson", "JacksonSerializer"});
             put(SerializerType.Msgpack, new String[]{"org.raven.serializer.withJacksonMsgpack", "JacksonMsgpackSerializer"});
@@ -33,19 +33,19 @@ public class SerializerFactory {
 
         String key = getKey(serializerType, args);
 
-        Serializer serializer = _serializerDict.get(key);
+        Serializer serializer = serializerDict.get(key);
         if (!Objects.isNull(serializer)) {
             return serializer;
         }
 
-        synchronized (_serializerDict) {
+        synchronized (serializerDict) {
 
-            serializer = _serializerDict.get(key);
+            serializer = serializerDict.get(key);
             if (!Objects.isNull(serializer)) {
                 return serializer;
             }
 
-            String[] clazzName = _clazzNameDict.get(serializerType);
+            String[] clazzName = clazzNameDict.get(serializerType);
 
             try {
                 Class<?> clazz = Class.forName(String.join(".", clazzName[0], clazzName[1]));
@@ -60,7 +60,7 @@ public class SerializerFactory {
                         Class<?>[] paramsTypes = constructor.getParameterTypes();
                         boolean applyTo = true;
                         for (int i = 0; i < args.length; i++) {
-                            if (!args[i].getClass().isAssignableFrom(paramsTypes[i])) {
+                            if (!paramsTypes[i].isAssignableFrom(args[i].getClass())) {
                                 applyTo = false;
                                 break;
                             }
@@ -68,7 +68,7 @@ public class SerializerFactory {
 
                         if (applyTo) {
                             serializer = (Serializer) constructor.newInstance(args);
-                            _serializerDict.put(key, serializer);
+                            serializerDict.put(key, serializer);
                             return serializer;
                         }
                     }
@@ -98,7 +98,7 @@ public class SerializerFactory {
             Arrays.stream(args).map(Object::toString).forEach(joiner::add);
             argsStr = joiner.toString();
         }
-        return MessageFormat.format("{0}:{1}", _clazzNameDict.get(serializerType)[1], argsStr);
+        return MessageFormat.format("{0}:{1}", clazzNameDict.get(serializerType)[1], argsStr);
     }
 
     /**

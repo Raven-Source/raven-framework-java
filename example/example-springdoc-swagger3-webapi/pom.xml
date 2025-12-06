@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.raven-source</groupId>
         <artifactId>example</artifactId>
-        <version>5.0.5</version>
+        <version>5.0.6</version>
     </parent>
 
     <artifactId>example-springdoc-swagger3-webapi</artifactId>
