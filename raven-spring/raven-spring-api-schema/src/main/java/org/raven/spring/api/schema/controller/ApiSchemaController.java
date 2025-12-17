@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @AllArgsConstructor
-@RequestMapping("${raven.api.schema:/v1/api-schema}")
+@RequestMapping("${raven.api.schema.path:/v1/api-schema}")
 @RestController
 public class ApiSchemaController {
 
