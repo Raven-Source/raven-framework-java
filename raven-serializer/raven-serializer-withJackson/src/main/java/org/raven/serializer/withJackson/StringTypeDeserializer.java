@@ -1,20 +1,18 @@
 package org.raven.serializer.withJackson;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import org.raven.commons.data.SerializableTypeUtils;
 import org.raven.commons.data.StringType;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.deser.std.StdDeserializer;
 
 /**
  * @author yi.liang
  * @since JDK1.8
  * date 2020.10.22 18:08
  */
-public class StringTypeDeserializer<T extends StringType> extends StdDeserializer<T>
-        implements java.io.Serializable {
+public class StringTypeDeserializer<T extends StringType> extends StdDeserializer<T> {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,7 +29,7 @@ public class StringTypeDeserializer<T extends StringType> extends StdDeserialize
     @Override
     @SuppressWarnings("unchecked")
     public T deserialize(JsonParser p, DeserializationContext ctxt)
-            throws IOException {
+            throws JacksonException {
 
         return SerializableTypeUtils.valueOf((Class<T>) _valueClass, p.getValueAsString());
 

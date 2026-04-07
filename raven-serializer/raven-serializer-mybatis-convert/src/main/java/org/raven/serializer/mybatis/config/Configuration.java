@@ -1,10 +1,10 @@
 package org.raven.serializer.mybatis.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.raven.serializer.mybatis.type.ObjectMapperSupplier;
 import org.raven.serializer.mybatis.type.ObjectMapperWrapper;
 import org.raven.serializer.mybatis.utils.ClassLoaderUtils;
+import tools.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;

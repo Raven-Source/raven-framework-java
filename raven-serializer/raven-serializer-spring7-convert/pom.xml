@@ -5,11 +5,11 @@
     <parent>
         <groupId>io.github.raven-source</groupId>
         <artifactId>raven-serializer</artifactId>
-        <version>5.0.6</version>
+        <version>5.1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>raven-serializer-spring5-convert</artifactId>
+    <artifactId>raven-serializer-spring7-convert</artifactId>
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>

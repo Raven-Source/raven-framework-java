@@ -1,10 +1,10 @@
 package org.raven.serializer.withJackson;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.fasterxml.jackson.databind.cfg.MapperConfig;
-import com.fasterxml.jackson.databind.introspect.AnnotatedField;
-import com.fasterxml.jackson.databind.introspect.AnnotatedMethod;
 import org.raven.serializer.withJackson.format.JsonPropertyFormatHelper;
+import tools.jackson.databind.PropertyNamingStrategy;
+import tools.jackson.databind.cfg.MapperConfig;
+import tools.jackson.databind.introspect.AnnotatedField;
+import tools.jackson.databind.introspect.AnnotatedMethod;
 
 /**
  * @author yi.liang

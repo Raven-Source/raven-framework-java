@@ -1,11 +1,11 @@
 package org.raven.serializer.withJackson;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import org.raven.commons.util.Args;
 import org.raven.serializer.BasicSerializer;
 import org.raven.serializer.Serializer;
 import org.raven.serializer.StringSerializer;
+import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,7 +40,7 @@ public class JacksonSerializer extends BasicSerializer
     /**
      * 构造函数
      *
-     * @param mapper ObjectMapper {@link com.fasterxml.jackson.databind.ObjectMapper}
+     * @param mapper ObjectMapper {@link tools.jackson.databind.ObjectMapper}
      */
     public JacksonSerializer(ObjectMapper mapper) {
 

@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.raven-source</groupId>
         <artifactId>raven-spring</artifactId>
-        <version>5.0.6</version>
+        <version>5.1.0</version>
     </parent>
 
     <artifactId>raven-spring-api-schema</artifactId>
@@ -44,11 +44,11 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
             <scope>provided</scope>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework</groupId>

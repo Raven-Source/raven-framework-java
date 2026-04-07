@@ -217,7 +217,7 @@ public class SerializableTypeUtils {
      */
     public static <T extends Enum<T>> T nameOf(@NonNull Class<T> target, String name) {
 
-        if (name == null || name.length() == 0) {
+        if (name == null || name.isEmpty()) {
             return null;
         }
 
@@ -251,7 +251,7 @@ public class SerializableTypeUtils {
                         && method.getParameterCount() == 1
                         && method.getParameterTypes()[0].isAssignableFrom(value.getClass())) {
 
-                    if (!method.isAccessible()) {
+                    if (!method.canAccess(null)) {
                         method.setAccessible(true);
                     }
 
@@ -292,7 +292,7 @@ public class SerializableTypeUtils {
             for (Constructor<?> constr : target.getDeclaredConstructors()) {
                 if (constr.getParameterCount() == 1
                         && constr.getParameterTypes()[0].isAssignableFrom(value.getClass())) {
-                    if (!constr.isAccessible()) {
+                    if (!constr.canAccess(null)) {
                         constr.setAccessible(true);
                     }
                     constructor = constr;

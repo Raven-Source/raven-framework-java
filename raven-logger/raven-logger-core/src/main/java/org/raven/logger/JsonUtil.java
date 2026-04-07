@@ -1,10 +1,10 @@
 package org.raven.logger;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.raven.commons.util.StringUtils;
 import org.raven.logger.spi.ObjectMapperSupplier;
 import org.raven.serializer.withJackson.ObjectMapperProvider;
+import tools.jackson.databind.ObjectMapper;
 
 import java.util.ServiceLoader;
 

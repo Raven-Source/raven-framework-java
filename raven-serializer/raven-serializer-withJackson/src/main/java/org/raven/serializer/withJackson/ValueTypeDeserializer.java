@@ -1,14 +1,15 @@
 package org.raven.serializer.withJackson;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.JsonTokenId;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+
 import lombok.extern.slf4j.Slf4j;
 import org.raven.commons.data.ValueType;
 import org.raven.commons.data.SerializableTypeUtils;
 import org.raven.commons.util.StringUtils;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.core.JsonTokenId;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.deser.std.StdDeserializer;
 
 import java.io.IOException;
 
@@ -18,10 +19,7 @@ import java.io.IOException;
  * @since JDK1.8
  */
 @Slf4j
-public class ValueTypeDeserializer<T extends ValueType> extends StdDeserializer<T>
-        implements java.io.Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class ValueTypeDeserializer<T extends ValueType> extends StdDeserializer<T> {
 
     /**
      * @param target target
@@ -43,7 +41,7 @@ public class ValueTypeDeserializer<T extends ValueType> extends StdDeserializer<
      */
     @Override
     @SuppressWarnings("unchecked")
-    public T deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+    public T deserialize(JsonParser p, DeserializationContext ctxt) throws JacksonException {
 
         int tokenId = p.currentTokenId();
         if (tokenId == JsonTokenId.ID_NUMBER_INT) {

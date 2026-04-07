@@ -1,12 +1,12 @@
 package org.raven.serializer.withJackson;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import org.raven.commons.data.SerializableTypeUtils;
 import org.raven.commons.data.ValueType;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
@@ -15,20 +15,17 @@ import java.math.BigInteger;
  * date 2018/1/9 23:00:00
  * @since JDK1.8
  */
-public class ValueTypeSerializer extends JsonSerializer<ValueType>
-    implements java.io.Serializable {
+public class ValueTypeSerializer extends ValueSerializer<ValueType> {
 
-    private static final long serialVersionUID = 1L;
     static final ValueTypeSerializer INSTANCE = new ValueTypeSerializer();
 
     /**
      * @param value value
      * @param generator generator
-     * @param provider provider
-     * @throws IOException IOException
+     * @throws JacksonException jacksonException
      */
     @Override
-    public void serialize(ValueType value, JsonGenerator generator, SerializerProvider provider) throws IOException {
+    public void serialize(ValueType value, JsonGenerator generator, SerializationContext ctxt) throws JacksonException {
 
         if (value == null) {
             generator.writeNull();

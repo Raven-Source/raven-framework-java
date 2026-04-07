@@ -10,6 +10,7 @@ import org.springframework.format.FormatterRegistry;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
  * @author yi.liang
@@ -21,9 +22,9 @@ public class TestWebConfiguration implements WebMvcConfigurer {
 
     @Override
     public void configurePathMatch(PathMatchConfigurer configurer) {
-        AntPathMatcher pathMatcher = new AntPathMatcher();
-        pathMatcher.setCaseSensitive(false);
-        configurer.setPathMatcher(pathMatcher);
+        PathPatternParser patternParser = new PathPatternParser();
+        patternParser.setCaseSensitive(false);
+        configurer.setPatternParser(patternParser);
     }
 
     @Override

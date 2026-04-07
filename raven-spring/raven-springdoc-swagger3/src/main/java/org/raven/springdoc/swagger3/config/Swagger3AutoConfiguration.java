@@ -62,8 +62,8 @@ public class Swagger3AutoConfiguration {
 
         // convert ObjectMapper
         ObjectMapperProvider objectMapperProvider = new ObjectMapperProvider(springDocConfigProperties);
-        ObjectMapperFactory.registerDefaultModules(setting, objectMapperProvider.jsonMapper());
-        ObjectMapperFactory.registerDefaultModules(setting, objectMapperProvider.yamlMapper());
+//        ObjectMapperFactory.registerDefaultModules(setting, objectMapperProvider.jsonMapper());
+//        ObjectMapperFactory.registerDefaultModules(setting, objectMapperProvider.yamlMapper());
 
         return objectMapperProvider;
     }

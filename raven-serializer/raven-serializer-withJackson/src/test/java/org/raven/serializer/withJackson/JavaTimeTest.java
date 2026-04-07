@@ -37,7 +37,7 @@ public class JavaTimeTest {
     @Test
     public void test() throws Exception {
 
-        LocalDateTime localDateTime = LocalDateTime.of(2021, 2, 12, 5, 10, 18, 900000000);
+        LocalDateTime localDateTime = LocalDateTime.of(2021, 2, 12, 5, 10, 18, 912000000);
         ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, ZoneId.of("+0800"));
 
         for (Field declaredField : DateTimeFormatter.class.getDeclaredFields()) {

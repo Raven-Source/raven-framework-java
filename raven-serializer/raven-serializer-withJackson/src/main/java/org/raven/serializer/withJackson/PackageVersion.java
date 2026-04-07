@@ -1,7 +1,8 @@
 package org.raven.serializer.withJackson;
 
-import com.fasterxml.jackson.core.Version;
-import com.fasterxml.jackson.core.util.VersionUtil;
+
+import tools.jackson.core.Version;
+import tools.jackson.core.util.VersionUtil;
 
 /**
  * @author yi.liang
@@ -10,7 +11,7 @@ import com.fasterxml.jackson.core.util.VersionUtil;
  */
 public class PackageVersion {
 
-    public static final Version VERSION = VersionUtil.parseVersion("4.0.7", "io.github.raven-source", "raven-serializer-withJackson");
+    public static final Version VERSION = VersionUtil.parseVersion("5.0.0", "io.github.raven-source", "raven-serializer-withJackson");
 
     public PackageVersion() {
     }

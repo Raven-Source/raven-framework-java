@@ -1,9 +1,10 @@
 package org.raven.serializer.withJackson;
 
-import com.fasterxml.jackson.databind.introspect.Annotated;
-import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
 import org.raven.commons.data.annotation.Ignore;
 import org.raven.commons.data.annotation.Member;
+import tools.jackson.databind.cfg.MapperConfig;
+import tools.jackson.databind.introspect.Annotated;
+import tools.jackson.databind.introspect.JacksonAnnotationIntrospector;
 
 /**
  * @author yi.liang
@@ -19,7 +20,7 @@ public class AnnotationIntrospectWarp extends JacksonAnnotationIntrospector {
     }
 
     @Override
-    public Integer findPropertyIndex(Annotated a) {
+    public Integer findPropertyIndex(MapperConfig<?> config, Annotated a) {
         Member member = _findAnnotation(a, Member.class);
         if (member != null) {
             int ix = member.index();
@@ -27,6 +28,6 @@ public class AnnotationIntrospectWarp extends JacksonAnnotationIntrospector {
                 return ix;
             }
         }
-        return super.findPropertyIndex(a);
+        return super.findPropertyIndex(config, a);
     }
 }

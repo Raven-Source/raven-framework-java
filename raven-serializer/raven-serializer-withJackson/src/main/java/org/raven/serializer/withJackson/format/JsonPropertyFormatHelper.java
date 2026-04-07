@@ -1,11 +1,11 @@
 package org.raven.serializer.withJackson.format;
 
-import com.fasterxml.jackson.databind.introspect.AnnotatedField;
-import com.fasterxml.jackson.databind.introspect.AnnotatedMember;
 import org.raven.commons.data.MemberFormatUtils;
 import org.raven.commons.data.annotation.Contract;
 import org.raven.commons.data.annotation.Member;
 import org.raven.commons.util.StringUtils;
+import tools.jackson.databind.introspect.AnnotatedField;
+import tools.jackson.databind.introspect.AnnotatedMember;
 
 /**
  * @author yi.liang

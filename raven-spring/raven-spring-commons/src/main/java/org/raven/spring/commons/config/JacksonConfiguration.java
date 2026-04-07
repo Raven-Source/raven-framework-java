@@ -1,7 +1,7 @@
 package org.raven.spring.commons.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.raven.commons.constant.DateFormatString;
+import org.raven.commons.util.StringUtils;
 import org.raven.serializer.withJackson.ObjectMapperFactory;
 import org.raven.serializer.withJackson.ObjectMapperProvider;
 import org.raven.serializer.withJackson.SerializerSetting;
@@ -9,23 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.autoconfigure.http.codec.CodecsAutoConfiguration;
-import org.springframework.boot.autoconfigure.jackson.JacksonProperties;
+import org.springframework.boot.jackson.autoconfigure.JacksonAutoConfiguration;
+import org.springframework.boot.jackson.autoconfigure.JacksonProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import tools.jackson.databind.ObjectMapper;
 
-import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
 /**
  * @author yanfeng
  */
 @Configuration
-@AutoConfigureBefore(CodecsAutoConfiguration.class)
+@AutoConfigureBefore(JacksonAutoConfiguration.class)
 @ConditionalOnProperty(name = "raven.spring.jackson.enabled", havingValue = "true",
         matchIfMissing = true)
 @EnableConfigurationProperties(JacksonProperties.class)
@@ -43,14 +43,7 @@ public class JacksonConfiguration {
     public ObjectMapper objectMapper(SerializerSetting setting) {
         //ApiListingReferenceScanner
 
-        ObjectMapper mapper = ObjectMapperFactory.getObjectMapper(setting);
-
-        if (jacksonProperties.getDateFormat() != null) {
-            mapper.setDateFormat(new SimpleDateFormat(jacksonProperties.getDateFormat()));
-        }
-        if (jacksonProperties.getTimeZone() != null) {
-            mapper.setTimeZone(jacksonProperties.getTimeZone());
-        }
+        ObjectMapper mapper = ObjectMapperFactory.getJsonMapperBuilder(setting).build();
 
         ObjectMapperProvider.setObjectMapper(mapper);
         return mapper;
@@ -61,9 +54,18 @@ public class JacksonConfiguration {
     public SerializerSetting serializerSetting() {
 
         SerializerSetting setting = new SerializerSetting();
-        setting.setDateFormatString(DateFormatString.ISO_OFFSET_DATE_TIME);
+        if (StringUtils.isNotBlank(jacksonProperties.getDateFormat())) {
+            setting.setDateFormatString(jacksonProperties.getDateFormat());
+        } else {
+            setting.setDateFormatString(DateFormatString.ISO_OFFSET_DATE_TIME);
+        }
+
         setting.setDeserializeDateFormatString(DateFormatString.DESERIALIZE_DATE_FORMAT_STRING);
-        setting.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        if (jacksonProperties.getTimeZone() != null) {
+            setting.setTimeZone(jacksonProperties.getTimeZone());
+        } else {
+            setting.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        }
 
         return setting;
     }

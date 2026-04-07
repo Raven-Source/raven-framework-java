@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.raven.commons.constant.DateFormatString;
 import org.raven.serializer.Serializer;
+import tools.jackson.databind.ObjectMapper;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -116,7 +117,7 @@ public class JacksonSerializerTest {
         Assert.assertEquals(paper.getColor(), ColorType.B);
         System.out.println(paper.getColor());
 
-         json = "{\"Color\":\"B\"}";   //ColorType:B
+        json = "{\"Color\":\"B\"}";   //ColorType:B
         data = json.getBytes("UTF-8");
         paper = serializer.deserialize(Paper.class, data);
         Assert.assertEquals(paper.getColor(), ColorType.B);

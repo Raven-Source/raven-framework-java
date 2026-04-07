@@ -57,15 +57,15 @@ public class SerializableTypeModelConverter implements ModelConverter {
                         Schema enumSchema = PrimitiveType.fromType(genericType)
                                 .createProperty();
 
-                        enumSchema.setEnum(enums);
-                        if (StringUtils.isBlank(schema.getDescription())) {
-                            enumSchema.setDescription(desc.toString());
-                        }
-
                         Schema original = context.getDefinedModels().get(name);
                         if (original != null) {
                             enumSchema.setTitle(original.getTitle());
                             enumSchema.setDescription(original.getDescription());
+                        }
+
+                        enumSchema.setEnum(enums);
+                        if (StringUtils.isBlank(schema.getDescription())) {
+                            enumSchema.setDescription(desc.toString());
                         }
 
                         context.defineModel(name, enumSchema);

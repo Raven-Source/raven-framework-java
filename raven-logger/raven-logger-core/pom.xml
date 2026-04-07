@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.raven-source</groupId>
         <artifactId>raven-logger</artifactId>
-        <version>5.0.6</version>
+        <version>5.1.0</version>
     </parent>
 
     <artifactId>raven-logger-core</artifactId>
@@ -64,8 +64,8 @@
             <version>${logstash-logback-encoder.version}</version>
             <exclusions>
                 <exclusion>
+                    <groupId>tools.jackson.core</groupId>
                     <artifactId>jackson-databind</artifactId>
-                    <groupId>com.fasterxml.jackson.core</groupId>
                 </exclusion>
             </exclusions>
         </dependency>

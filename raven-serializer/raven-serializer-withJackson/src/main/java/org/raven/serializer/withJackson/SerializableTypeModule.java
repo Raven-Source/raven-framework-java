@@ -1,8 +1,8 @@
 package org.raven.serializer.withJackson;
 
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.raven.commons.data.StringType;
 import org.raven.commons.data.ValueType;
+import tools.jackson.databind.module.SimpleModule;
 
 /**
  * @author yi.liang

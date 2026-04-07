@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.raven-source</groupId>
         <artifactId>raven-framework</artifactId>
-        <version>5.0.6</version>
+        <version>5.1.0</version>
     </parent>
 
     <artifactId>example</artifactId>
@@ -32,7 +32,7 @@
 
         <dependency>
             <groupId>io.github.raven-source</groupId>
-            <artifactId>raven-serializer-spring5-convert</artifactId>
+            <artifactId>raven-serializer-spring7-convert</artifactId>
             <version>${raven-framework.version}</version>
         </dependency>
 
@@ -51,7 +51,7 @@
 
             <!--  region swagger2 -->
 
-            <dependency>
+            <!--<dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${springfox.version}</version>
@@ -93,19 +93,19 @@
                 </exclusions>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/io.swagger/swagger-annotations -->
+            &lt;!&ndash; https://mvnrepository.com/artifact/io.swagger/swagger-annotations &ndash;&gt;
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-annotations</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/io.swagger/swagger-annotations -->
+            &lt;!&ndash; https://mvnrepository.com/artifact/io.swagger/swagger-annotations &ndash;&gt;
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-models</artifactId>
                 <version>${swagger.version}</version>
-            </dependency>
+            </dependency>-->
 
             <!-- endregion -->
 
@@ -125,19 +125,7 @@
 
             <dependency>
                 <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-ui</artifactId>
-                <version>${springdoc.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-webmvc-core</artifactId>
-                <version>${springdoc.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-common</artifactId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>${springdoc.version}</version>
             </dependency>
 

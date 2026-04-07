@@ -1,9 +1,10 @@
 package org.raven.serializer.withJackson;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import org.raven.commons.data.StringType;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 
 import java.io.IOException;
 
@@ -12,17 +13,15 @@ import java.io.IOException;
  * date 2018/1/9 23:00:00
  * @since JDK1.8
  */
-public class StringTypeSerializer extends JsonSerializer<StringType>
-        implements java.io.Serializable {
+public class StringTypeSerializer extends ValueSerializer<StringType> {
 
-    private static final long serialVersionUID = 1L;
     static final StringTypeSerializer INSTANCE = new StringTypeSerializer();
 
     /**
      *
      */
     @Override
-    public void serialize(StringType value, JsonGenerator generator, SerializerProvider provider) throws IOException {
+    public void serialize(StringType value, JsonGenerator generator, SerializationContext ctxt) throws JacksonException {
 
         if (value == null) {
             generator.writeNull();

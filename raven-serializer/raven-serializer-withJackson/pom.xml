@@ -5,7 +5,7 @@
     <parent>
         <groupId>io.github.raven-source</groupId>
         <artifactId>raven-serializer</artifactId>
-        <version>5.0.6</version>
+        <version>5.1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -34,22 +34,22 @@
         </dependency>
 
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
+            <groupId>tools.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-        </dependency>
+        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jdk8 -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jdk8</artifactId>
             <version>${jackson.version}</version>
-        </dependency>
+        </dependency>-->
 
 
     </dependencies>

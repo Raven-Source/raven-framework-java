@@ -1,17 +1,14 @@
 package org.raven.serializer.withJackson;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.JsonTokenId;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
 import lombok.NonNull;
 import org.raven.commons.util.DateTimeUtils;
 import org.raven.commons.util.StringUtils;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.core.JsonTokenId;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
@@ -22,12 +19,12 @@ import java.util.Date;
  * @since JDK1.8
  * date 2019.06.28 16:49
  */
-public class MultiFormatDateDeserializer extends JsonDeserializer<Date>
+public class MultiFormatDateDeserializer extends ValueDeserializer<Date>
         implements java.io.Serializable {
 
     //    private String[] deserializeDateFormatString;
-    private DateTimeFormatter[] deserializeDateTimeFormatters;
-    private static Class _valueClass = Date.class;
+    private final DateTimeFormatter[] deserializeDateTimeFormatters;
+    private static final Class<Date> _valueClass = Date.class;
 
     public MultiFormatDateDeserializer(@NonNull String[] deserializeDateFormatString) {
         super();
@@ -38,16 +35,16 @@ public class MultiFormatDateDeserializer extends JsonDeserializer<Date>
     }
 
     @Override
-    public Date deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+    public Date deserialize(JsonParser p, DeserializationContext ctxt) throws JacksonException {
 
         switch (p.currentTokenId()) {
             case JsonTokenId.ID_STRING:
-                return _parseDate(p.getText().trim(), ctxt);
+                return _parseDate(p.getString(), ctxt);
             case JsonTokenId.ID_NUMBER_INT: {
                 long ts;
                 try {
                     ts = p.getLongValue();
-                } catch (JsonParseException e) {
+                } catch (JacksonException e) {
                     Number v = (Number) ctxt.handleWeirdNumberValue(_valueClass, p.getNumberValue(),
                             "not a valid 64-bit long for creating `java.util.Date`");
                     ts = v.longValue();
@@ -64,18 +61,14 @@ public class MultiFormatDateDeserializer extends JsonDeserializer<Date>
     }
 
 
-    protected java.util.Date _parseDate(String value, DeserializationContext ctxt)
-            throws IOException {
+    protected java.util.Date _parseDate(String value, DeserializationContext ctxt) {
         try {
             // Take empty Strings to mean 'empty' Value, usually 'null':
             if (StringUtils.isBlank(value)) {
                 return (java.util.Date) getNullValue(ctxt);
             }
-            return DateTimeUtils.parse(value, deserializeDateTimeFormatters);
-        } catch (IllegalArgumentException iae) {
-            return (java.util.Date) ctxt.handleWeirdStringValue(_valueClass, value,
-                    "not a valid representation (error: %s)", iae.getMessage());
-        } catch (DateTimeParseException iae) {
+            return DateTimeUtils.parse(value.trim(), deserializeDateTimeFormatters);
+        } catch (DateTimeParseException | IllegalArgumentException iae) {
             return (java.util.Date) ctxt.handleWeirdStringValue(_valueClass, value,
                     "not a valid representation (error: %s)", iae.getMessage());
         }

@@ -1,8 +1,8 @@
 package org.raven.serializer.withJackson;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.raven.commons.util.Sets;
+import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.lang.reflect.Field;

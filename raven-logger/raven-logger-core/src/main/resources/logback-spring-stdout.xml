@@ -6,8 +6,8 @@
 
     <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
-            <jsonFactoryDecorator class="org.raven.logger.LogJsonFactoryDecorator"/>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+<!--            <jsonFactoryDecorator class="org.raven.logger.LogJsonFactoryDecorator"/>-->
             <providers>
                 <pattern>
                     <pattern>${LOG_PATTERN}</pattern>
@@ -18,8 +18,8 @@
 
     <!-- 控制台输出 -->
     <appender name="EVENT-STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
-            <jsonFactoryDecorator class="org.raven.logger.LogJsonFactoryDecorator"/>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+<!--            <jsonFactoryDecorator class="org.raven.logger.LogJsonFactoryDecorator"/>-->
             <providers>
                 <pattern>
                     <pattern>${EVENT_PATTERN}</pattern>
