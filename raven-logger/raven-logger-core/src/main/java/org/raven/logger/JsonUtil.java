@@ -2,37 +2,37 @@ package org.raven.logger;
 
 import lombok.extern.slf4j.Slf4j;
 import org.raven.commons.util.StringUtils;
-import org.raven.logger.spi.ObjectMapperSupplier;
-import org.raven.serializer.withJackson.ObjectMapperProvider;
-import tools.jackson.databind.ObjectMapper;
+import org.raven.logger.spi.JsonMapperSupplier;
+import org.raven.serializer.withJackson.JsonMapperProvider;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.util.ServiceLoader;
 
 @Slf4j
 public final class JsonUtil {
 
-    static ObjectMapperSupplier objectMapperSupplier;
+    static JsonMapperSupplier jsonMapperSupplier;
 
     private JsonUtil() {
     }
 
-    static ObjectMapper mapper;
+    static JsonMapper mapper;
 
     static {
-        mapper = ObjectMapperProvider.getObjectMapper();
+        mapper = JsonMapperProvider.getJsonMapper();
 
-        ServiceLoader.load(ObjectMapperSupplier.class).forEach(supplier -> {
-            objectMapperSupplier = supplier;
+        ServiceLoader.load(JsonMapperSupplier.class).forEach(supplier -> {
+            jsonMapperSupplier = supplier;
         });
     }
 
-    public static void setMapper(ObjectMapper mapper) {
+    public static void setMapper(JsonMapper mapper) {
         JsonUtil.mapper = mapper;
     }
 
-    public static ObjectMapper getMapper() {
-        if (objectMapperSupplier != null) {
-            return objectMapperSupplier.get();
+    public static JsonMapper getMapper() {
+        if (jsonMapperSupplier != null) {
+            return jsonMapperSupplier.get();
         } else {
             return mapper;
         }

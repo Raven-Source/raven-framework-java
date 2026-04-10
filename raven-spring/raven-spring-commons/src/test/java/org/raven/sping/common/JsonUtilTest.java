@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.raven.commons.contract.ResponseModel;
+import org.raven.serializer.withJackson.JsonMapperFactory;
+import org.raven.serializer.withJackson.JsonMapperProvider;
 import org.raven.serializer.withJackson.JsonUtils;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -29,6 +31,7 @@ public class JsonUtilTest {
         order.setLocalTime(localTime);
         order.setLocalTimes(Arrays.asList(LocalTime.now(), localTime));
 
+        JsonMapperProvider.setJsonMapper(JsonMapperFactory.getJsonMapper());
         String value = JsonUtils.toJsonString(order);
         System.out.println(value);
 

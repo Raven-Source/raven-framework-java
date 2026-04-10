@@ -1,11 +1,11 @@
 //package org.raven.spring.commons.util;
 //
-//import com.fasterxml.jackson.core.type.TypeReference;
-//import com.fasterxml.jackson.databind.JavaType;
-//import com.fasterxml.jackson.databind.ObjectMapper;
 //import lombok.extern.slf4j.Slf4j;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Component;
+//import tools.jackson.core.type.TypeReference;
+//import tools.jackson.databind.JavaType;
+//import tools.jackson.databind.json.JsonMapper;
 //
 //import java.util.List;
 //
@@ -15,13 +15,13 @@
 //@Slf4j
 //@Component
 //public class JsonUtils {
-//    private static ObjectMapper mapper;
+//    private static JsonMapper mapper;
 //
 //    private JsonUtils() {
 //    }
 //
 //    @Autowired
-//    private void setMapper(ObjectMapper mapper) {
+//    private void setMapper(JsonMapper mapper) {
 //        JsonUtils.mapper = mapper;
 //    }
 //

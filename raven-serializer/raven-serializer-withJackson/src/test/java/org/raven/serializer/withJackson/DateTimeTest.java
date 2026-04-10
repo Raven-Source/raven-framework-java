@@ -54,7 +54,7 @@ public class DateTimeTest {
         user = serializer.deserialize(User.class, res.getBytes());
         System.out.println(user.toString());
 
-        ObjectMapper mapper = ObjectMapperFactory.getObjectMapper();
+        ObjectMapper mapper = JsonMapperFactory.getJsonMapper();
 
         System.out.println("------------------------------------");
 

@@ -5,7 +5,7 @@ import org.raven.commons.util.Args;
 import org.raven.serializer.BasicSerializer;
 import org.raven.serializer.Serializer;
 import org.raven.serializer.StringSerializer;
-import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,7 +21,7 @@ public class JacksonSerializer extends BasicSerializer
         implements Serializer, StringSerializer {
 
     @Getter
-    private final ObjectMapper mapper;
+    private final JsonMapper mapper;
 
     public JacksonSerializer() {
         this((SerializerSetting) null);
@@ -34,7 +34,7 @@ public class JacksonSerializer extends BasicSerializer
      */
     public JacksonSerializer(SerializerSetting setting) {
 
-        this.mapper = ObjectMapperFactory.getObjectMapper(setting != null ? setting : SerializerSetting.getDefault());
+        this.mapper = JsonMapperFactory.getJsonMapper(setting != null ? setting : SerializerSetting.getDefault());
     }
 
     /**
@@ -42,7 +42,7 @@ public class JacksonSerializer extends BasicSerializer
      *
      * @param mapper ObjectMapper {@link tools.jackson.databind.ObjectMapper}
      */
-    public JacksonSerializer(ObjectMapper mapper) {
+    public JacksonSerializer(JsonMapper mapper) {
 
         this.mapper = mapper;
     }

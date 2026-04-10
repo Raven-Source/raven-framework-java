@@ -2,7 +2,7 @@ package org.raven.spring.commons.config;
 
 import org.raven.commons.constant.DateFormatString;
 import org.raven.commons.util.StringUtils;
-import org.raven.serializer.withJackson.ObjectMapperFactory;
+import org.raven.serializer.withJackson.JsonMapperFactory;
 import org.raven.serializer.withJackson.SerializerSetting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -53,7 +53,7 @@ public class JacksonConfiguration {
     @Bean
     public JsonMapperBuilderCustomizer jsonMapperBuilderCustomizer(SerializerSetting setting) {
         return builder -> {
-            ObjectMapperFactory.registerDefaultModules(setting,  builder);
+            JsonMapperFactory.registerDefaultModules(setting,  builder);
         };
     }
 

@@ -3,7 +3,7 @@ package org.raven.serializer.withJackson;
 import lombok.extern.slf4j.Slf4j;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.JavaType;
-import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ public class JsonUtils {
     private JsonUtils() {
     }
 
-    private static ObjectMapper mapper() {
-        return ObjectMapperProvider.getObjectMapper();
+    private static JsonMapper mapper() {
+        return JsonMapperProvider.getJsonMapper();
     }
 
     /**

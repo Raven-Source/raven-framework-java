@@ -3,7 +3,6 @@ package org.raven.serializer.withJackson;
 import tools.jackson.core.json.JsonFactory;
 import tools.jackson.databind.DeserializationFeature;
 import tools.jackson.databind.MapperFeature;
-import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.cfg.MapperBuilder;
 import tools.jackson.databind.json.JsonMapper;
 
@@ -16,18 +15,18 @@ import java.text.SimpleDateFormat;
  * date 2018/3/20 14:00:00
  * @since JDK21
  */
-public class ObjectMapperFactory {
+public class JsonMapperFactory {
 
     /**
      * @return ObjectMapper
      */
-    public static ObjectMapper getObjectMapper() {
-        return getObjectMapper(SerializerSetting.getDefault());
+    public static JsonMapper getJsonMapper() {
+        return getJsonMapper(SerializerSetting.getDefault());
     }
 
 
-    public static ObjectMapper getObjectMapper(SerializerSetting setting) {
-        return getObjectMapper(setting, null);
+    public static JsonMapper getJsonMapper(SerializerSetting setting) {
+        return getJsonMapper(setting, null);
     }
 
     /**
@@ -37,7 +36,7 @@ public class ObjectMapperFactory {
      * @param jsonFactory JsonFactory
      * @return ObjectMapper
      */
-    public static ObjectMapper getObjectMapper(SerializerSetting setting, JsonFactory jsonFactory) {
+    public static JsonMapper getJsonMapper(SerializerSetting setting, JsonFactory jsonFactory) {
         return getJsonMapperBuilder(setting, jsonFactory).build();
     }
 
