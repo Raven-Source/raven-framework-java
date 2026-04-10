@@ -5,10 +5,10 @@ import io.swagger.v3.core.jackson.ModelResolver;
 import jakarta.annotation.PostConstruct;
 import org.raven.springdoc.swagger3.CustomTypeNameResolver;
 import org.raven.springdoc.swagger3.SerializableTypeModelConverter;
-import org.raven.serializer.withJackson.ObjectMapperFactory;
 import org.raven.serializer.withJackson.SerializerSetting;
 import org.springdoc.core.properties.SpringDocConfigProperties;
 import org.springdoc.core.providers.ObjectMapperProvider;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.*;
@@ -18,9 +18,7 @@ import org.springframework.context.annotation.*;
  * date 2022/8/29 19:31
  */
 @Lazy(false)
-@Configuration(
-        proxyBeanMethods = false
-)
+@AutoConfiguration
 @ConditionalOnProperty(
         prefix = "raven.swagger3",
         name = {"enabled"},

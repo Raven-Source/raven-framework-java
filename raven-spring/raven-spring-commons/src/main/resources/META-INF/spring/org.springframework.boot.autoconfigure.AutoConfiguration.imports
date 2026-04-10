@@ -1,1 +1,2 @@
-org.raven.spring.commons.RavenSpringCoreConfiguration
+org.raven.spring.commons.config.JacksonConfiguration
+org.raven.spring.commons.config.ContextConfiguration
