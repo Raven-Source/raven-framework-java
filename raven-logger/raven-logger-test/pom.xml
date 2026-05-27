@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.raven-source</groupId>
         <artifactId>raven-logger</artifactId>
-        <version>5.0.2</version>
+        <version>5.1.1</version>
     </parent>
 
     <artifactId>raven-logger-test</artifactId>

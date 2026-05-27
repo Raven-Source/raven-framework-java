@@ -51,5 +51,15 @@ public interface Extender<T> {
             ext.put(key, value);
             return this;
         }
+
+        public MapExtender addExtValues(String key, Number[] values) {
+            ext.put(key, values);
+            return this;
+        }
+
+        public MapExtender addExtValues(String key, String[] values) {
+            ext.put(key, values);
+            return this;
+        }
     }
 }

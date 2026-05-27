@@ -12,7 +12,7 @@
     <conversionRule conversionWord="code" class="org.raven.logger.converter.CodeConverter"/>
     <conversionRule conversionWord="ext" class="org.raven.logger.converter.ExtConverter"/>
     <conversionRule conversionWord="exceptionName" class="org.raven.logger.converter.ExceptionNameConverter"/>
-    <conversionRule conversionWord="tag" class="org.raven.logger.converter.TagConverter"/>
+<!--    <conversionRule conversionWord="tag" class="org.raven.logger.converter.TagConverter"/>-->
     <conversionRule conversionWord="uid" class="org.raven.logger.converter.UserIdConverter"/>
     <conversionRule conversionWord="event" class="org.raven.logger.converter.EventConverter"/>
 <!--    <conversionRule conversionWord="logLevel" class="org.raven.logger.converter.LogLevelConverter"/>-->
@@ -37,9 +37,9 @@
         "ex": "%exceptionName",
         "stack": "%exception",
         "ext": "#tryJson{%ext}",
-        "tag": "#tryJson{%tag}",
         "dt": 100
         }'/>
+    <!--        "tag": "#tryJson{%tag}",-->
 
     <property name="EVENT_PATTERN" value='
         {
@@ -56,8 +56,8 @@
         "level": "%event{level}",
         "value": "#asDouble{%event{eventValue}}",
         "ext": "#tryJson{%event{ext}}",
-        "tag": "#tryJson{%event{tag}}",
         "dt": 1
         }'/>
+    <!--        "tag": "#tryJson{%event{tag}}",-->
 
 </included>

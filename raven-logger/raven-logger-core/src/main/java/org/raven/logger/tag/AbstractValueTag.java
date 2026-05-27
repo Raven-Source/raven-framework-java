@@ -5,6 +5,7 @@ package org.raven.logger.tag;
  * @since JDK1.8
  * date 2020.03.02 13:53
  */
+@Deprecated
 public abstract class AbstractValueTag<T> {
 
     protected final T val;

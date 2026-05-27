@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.raven-source</groupId>
         <artifactId>example</artifactId>
-        <version>5.1.0</version>
+        <version>5.1.1</version>
     </parent>
 
     <artifactId>example-springdoc-swagger3-webapi</artifactId>
@@ -15,6 +15,12 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>io.github.raven-source</groupId>
+            <artifactId>raven-logger-core</artifactId>
+            <version>${raven-framework.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>io.github.raven-source</groupId>
@@ -52,8 +58,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>4.0.5</version>
                 <configuration>
-                    <fork>true</fork>
+<!--                    <fork>true</fork>-->
                     <includeSystemScope>true</includeSystemScope>
                 </configuration>
                 <executions>

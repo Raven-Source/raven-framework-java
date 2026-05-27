@@ -11,8 +11,8 @@
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
             <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
         </triggeringPolicy>
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-<!--            <jsonFactoryDecorator class="org.raven.logger.LogJsonFactoryDecorator"/>-->
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <decorator class="org.raven.logger.LogJsonMapperBuilderDecorator"/>
             <providers>
                 <pattern>
                     <pattern>${EVENT_PATTERN}</pattern>

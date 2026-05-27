@@ -7,6 +7,7 @@ import org.raven.logger.Tagger;
  * @author yi.liang
  * date 2019.12.10 17:05
  */
+@Deprecated
 public class TagConverter extends TargetConverter<Tagger> {
 
     @Override

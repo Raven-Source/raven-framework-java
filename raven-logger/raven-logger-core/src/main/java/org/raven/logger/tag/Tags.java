@@ -4,6 +4,7 @@ package org.raven.logger.tag;
  * @author yi.liang
  * date 2020.1.6 00:00
  */
+@Deprecated
 public final class Tags {
     private Tags() {
     }

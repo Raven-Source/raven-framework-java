@@ -51,11 +51,11 @@
             </exclusions>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-access</artifactId>
             <version>${logback.version}</version>
-        </dependency>
+        </dependency>-->
 
         <!--日志json化-->
         <dependency>

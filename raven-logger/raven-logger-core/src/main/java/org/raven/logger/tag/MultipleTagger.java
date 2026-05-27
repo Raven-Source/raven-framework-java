@@ -7,6 +7,7 @@ import org.raven.logger.Tagger;
  * @author yi.liang
  * date 2020.1.6 00:00
  */
+@Deprecated
 public class MultipleTagger implements Tagger {
 
     private String[] tag;
