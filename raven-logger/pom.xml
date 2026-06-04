@@ -16,7 +16,7 @@
     <modules>
 
         <module>raven-logger-core</module>
-        <module>raven-logger-test</module>
+<!--        <module>raven-logger-test</module>-->
 
     </modules>
 

@@ -20,7 +20,7 @@
         <module>raven-api-codegen</module>
         <module>raven-api-codegen-plugin</module>
         <module>raven-logger</module>
-        <module>example</module>
+<!--        <module>example</module>-->
     </modules>
 
     <properties>

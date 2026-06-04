@@ -20,7 +20,7 @@
         <module>raven-serializer-spring7-convert</module>
         <module>raven-serializer-withJackson</module>
 <!--        <module>raven-serializer-withJacksonMsgpack</module>-->
-        <module>raven-serializer-withProtobuf</module>
+<!--        <module>raven-serializer-withProtobuf</module>-->
         <!--        <module>raven-serializer-performancetest</module>-->
         <!--        <module>raven-serializer-withMsgpack</module>-->
     </modules>
