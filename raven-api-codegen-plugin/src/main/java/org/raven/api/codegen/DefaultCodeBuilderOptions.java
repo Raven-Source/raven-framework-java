@@ -27,9 +27,10 @@ public abstract class DefaultCodeBuilderOptions {
         options.setClassNameReplaceMap(Collections.unmodifiableMap(Maps.newHashMap(
                 "(.*)Controller", "$1Api"
         )));
-        options.setPackageNameReplaceMap(Collections.unmodifiableMap(Maps.newHashMap(
-                "(.*).controller$", "$1.api"
-        )));
+        options.setPackageNameReplaceMap(Collections.unmodifiableMap(Maps.newHashMap()));
+//        options.setPackageNameReplaceMap(Collections.unmodifiableMap(Maps.newHashMap(
+//                "(.*).controller$", "$1.api"
+//        )));
 
 
         optionsMap.put(Language.Java, options);

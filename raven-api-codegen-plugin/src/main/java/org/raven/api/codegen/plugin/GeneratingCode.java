@@ -13,6 +13,7 @@ import org.raven.commons.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -85,10 +86,15 @@ public class GeneratingCode extends AbstractMojo {
                     apiConfig.getName()
             ).toString());
         } else {
-            apiConfig.setOutputRoot(Paths.get(
-                    apiConfig.getOutputRoot(),
-                    apiConfig.getName()
-            ).toString());
+            Path outputpath = Paths.get(apiConfig.getOutputRoot());
+            if (outputpath.isAbsolute()) {
+                apiConfig.setOutputRoot(outputpath.toString());
+            } else {
+                apiConfig.setOutputRoot(Paths.get(
+                        project.getBasedir().getAbsolutePath(),
+                        apiConfig.getOutputRoot()
+                ).toString());
+            }
         }
     }
 
