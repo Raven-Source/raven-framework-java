@@ -105,7 +105,11 @@ public class GeneratingCode extends AbstractMojo {
         if (!StringUtils.isBlank(apiConfig.getUrl())) {
 
             log.info("apiSchemaXml url: " + apiConfig.getUrl());
-            apiSchemaXml = HttpUtils.get(apiConfig.getUrl());
+            try {
+                apiSchemaXml = HttpUtils.get(apiConfig.getUrl());
+            } catch (Exception ex) {
+                log.error(ex.getMessage(), ex);
+            }
         } else if (!StringUtils.isBlank(apiConfig.getSystemPath())) {
 
             String filePath = Paths.get(apiConfig.getSystemPath())

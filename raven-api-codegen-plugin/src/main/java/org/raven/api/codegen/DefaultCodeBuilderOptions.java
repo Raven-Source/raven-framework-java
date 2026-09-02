@@ -8,7 +8,7 @@ import java.util.Map;
 
 public abstract class DefaultCodeBuilderOptions {
 
-    private static Map<Language, CodeBuilderOptions> defaultOptionsMap;
+    private static final Map<Language, CodeBuilderOptions> defaultOptionsMap;
 
     public static CodeBuilderOptions getOptions(Language language) {
         return defaultOptionsMap.get(language);

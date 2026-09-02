@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.raven-source</groupId>
         <artifactId>raven-framework</artifactId>
-        <version>5.1.2</version>
+        <version>5.1.3</version>
     </parent>
 
     <artifactId>raven-api-codegen-plugin</artifactId>

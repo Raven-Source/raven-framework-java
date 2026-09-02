@@ -34,7 +34,7 @@ public class DefaultTypeScriptCodeGeneratorAbstract extends AbstractFileCodeGene
                     fileName = "constants.ts";
                     break;
                 case ServiceModel:
-                    fileName = describe.getClassName().toLowerCase() + "/index.ts";
+                    fileName = describe.getClassName() + "/index.ts";
                     break;
                 case InteriorModel:
                 default:
